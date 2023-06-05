@@ -3,8 +3,6 @@
 
 <template>
     <div>
-        <router-view />
+        Hello
     </div>
 </template>
-
-<style scoped></style>
