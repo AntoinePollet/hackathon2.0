@@ -7,7 +7,7 @@ export const useEventStore = defineStore('events', () => {
 
     async function getEvents() {
         try {
-            const querySnapshot = await getDocs(collection(db, "events",));
+            const querySnapshot = await getDocs(collection(db, "events"));
             querySnapshot.forEach((doc: any) => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
