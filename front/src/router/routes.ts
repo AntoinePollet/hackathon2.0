@@ -92,7 +92,7 @@ export default [
         name: '',
         component: Session,
         children: [
-            { path: 'signins', name: 'signin', component: Signin },
+            { path: 'signin', name: 'signin', component: Signin },
             { path: 'password-forgot', name: 'password-forgot', component: PasswordForgot },
         ]
     }

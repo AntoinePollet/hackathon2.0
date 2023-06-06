@@ -6,7 +6,7 @@
       <v-text-field label="Email" class="w-full" variant="outlined" hide-details/>
       <v-btn text="Reset password" variant="outlined" class="hover:bg-h-blue focus:bg-h-blue active:bg-h-blue bg-h-blue" color="none"></v-btn>
     </div>
-    <router-link to="signin" class="p-2 hover:underline">
+    <router-link :to="{ name: 'signin' }" class="p-2 hover:underline">
       Sign in
     </router-link>
   </div>

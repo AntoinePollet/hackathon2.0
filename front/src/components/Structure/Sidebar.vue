@@ -3,9 +3,7 @@
     <v-layout class="rounded">
       <div class="w-full">
         <v-list-item class="flex justify-center">
-          <div class="font-bold text-3xl p-3 w-full h-full">
-            Carbon
-          </div>
+          <img src="@/assets/logoCarbonGrey.svg"  height="500" width="500" alt="">
         </v-list-item>
 
         <v-list density="compact" :nav="true">
