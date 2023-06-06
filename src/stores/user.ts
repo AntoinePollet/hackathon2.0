@@ -1,16 +1,11 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { userService } from '@/services/api';
 import type { SigninI, SignupI } from '@/interfaces/security';
-import { token, refreshToken } from '@/services';
 import { useRouter } from "vue-router"
 import { UpdateUser } from '@/interfaces/user';
 
 export const useUserStore = defineStore('user', () => {
     const router = useRouter();
-
-    const { _signin, _signup, _getUsers, _signinWithToken, _checkTokenValidity, _changePassword, _resetPassword, _validateResetPassword, _updateUser } = userService;
-
     const user = ref()
     const users = ref([]);
 
@@ -38,9 +33,7 @@ export const useUserStore = defineStore('user', () => {
 
     async function signin(payload: SigninI) {
         try {
-            const res = await _signin(payload);
-            token.value = res.token;
-            user.value = self;
+
         } catch (error) {
             throw error;
         }
@@ -48,7 +41,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function signup(payload: SignupI) {
         try {
-            const res = await _signup(payload);
         } catch (error) {
             throw error;
         }
@@ -56,9 +48,7 @@ export const useUserStore = defineStore('user', () => {
 
     async function signinWithToken(refreshToken: string) {
         try {
-            const res = await _signinWithToken(refreshToken);
-            token.value = res.token;
-            user.value = self;
+
         } catch (error) {
             throw error;
         }
@@ -66,7 +56,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function changePassword(payload: { password: string, newPassword: string }): Promise<void> {
         try {
-            await _changePassword(payload);
         } catch (error) {
             throw error;
         }
@@ -74,7 +63,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function resetPassword(payload: { email: string }): Promise<void> {
         try {
-            await _resetPassword(payload);
         } catch (error) {
             throw error;
         }
@@ -82,7 +70,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function validateResetPassword(payload: { token: string, password: string }): Promise<void> {
         try {
-            await _validateResetPassword(payload);
         } catch (error) {
             throw error;
         }
@@ -90,7 +77,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function checkTokenValidity(payload: { token: string }) {
         try {
-            await _checkTokenValidity(payload);
         } catch (error) {
             throw error;
         }
@@ -98,10 +84,7 @@ export const useUserStore = defineStore('user', () => {
 
     async function logout() {
         try {
-            user.value = undefined;
-            router.push({ name: 'home' });
-            token.value = "";
-            refreshToken.value = "";
+
         } catch (error) {
             throw error;
         }
@@ -109,7 +92,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function getUsers() {
         try {
-            users.value = await _getUsers();
         } catch (error) {
             throw error;
         }
@@ -117,12 +99,11 @@ export const useUserStore = defineStore('user', () => {
 
     async function updateUser(payload: UpdateUser) {
         try {
-            const res = await _updateUser(payload);
-            user.value = res;
+
         } catch (error) {
             throw error;
         }
     }
 
-    return { signin, signup, isAdmin, isConnected, user, toggleAdmin, logout, getUsers, users, signinWithToken, changePassword, checkTokenValidity, resetPassword, updateUser, validateResetPassword, isVIP }
+    return {}
 });
