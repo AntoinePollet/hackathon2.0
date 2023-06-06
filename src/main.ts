@@ -3,7 +3,7 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
-import { app } from './firebase'
+import firebase from './firebase'
 
 const pinia = createPinia();
 

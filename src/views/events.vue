@@ -2,16 +2,18 @@
 import { useEventStore } from '@/stores/event';
 import { onMounted } from 'vue';
 import { EventTypeEnum } from "@/interfaces/event"
-// const eventSource = new EventSource('http://localhost:3000/events/sse');
-// eventSource.onmessage = ({ data }) => {
-//     console.log('New message', JSON.parse(data));
-// };
-const eventStore = useEventStore();
-const { publishEvent, getEvents } = eventStore;
 
-onMounted(() => {
-    getEvents();
-    publishEvent({ title: "New user", description: "Hello", type: EventTypeEnum.START_OF_MISSION })
+const eventStore = useEventStore();
+const { publishEvent, getEvents, watchEventChanges } = eventStore;
+
+onMounted(async () => {
+    try {
+        // await getEvents();
+        publishEvent({ title: "New user", description: "Hello", type: EventTypeEnum.START_OF_MISSION });
+        // watchEventChanges();
+    } catch (error) {
+
+    }
 });
 
 </script>
