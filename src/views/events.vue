@@ -7,9 +7,10 @@ import { EventTypeEnum } from "@/interfaces/event"
 //     console.log('New message', JSON.parse(data));
 // };
 const eventStore = useEventStore();
-const { publishEvent } = eventStore;
+const { publishEvent, getEvents } = eventStore;
 
 onMounted(() => {
+    getEvents();
     publishEvent({ title: "New user", description: "Hello", type: EventTypeEnum.START_OF_MISSION })
 });
 
