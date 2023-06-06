@@ -4,11 +4,16 @@ import { onMounted } from 'vue';
 import { EventTypeEnum } from "@/interfaces/event"
 
 const eventStore = useEventStore();
-const { publishEvent, getEvents } = eventStore;
+const { publishEvent, getEvents, watchEventChanges } = eventStore;
 
-onMounted(() => {
-    getEvents();
-    publishEvent({ title: "New user", description: "Hello", type: EventTypeEnum.START_OF_MISSION })
+onMounted(async () => {
+    try {
+        // await getEvents();
+        publishEvent({ title: "New user", description: "Hello", type: EventTypeEnum.START_OF_MISSION });
+        // watchEventChanges();
+    } catch (error) {
+
+    }
 });
 
 </script>

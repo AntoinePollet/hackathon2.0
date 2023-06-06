@@ -7,10 +7,6 @@ export const useEventStore = defineStore('events', () => {
 
     async function getEvents() {
         try {
-            const unsub = onSnapshot(doc(db, "cities", "SF"), (doc) => {
-                console.log("Current data: ", doc.data());
-            });
-
             const querySnapshot = await getDocs(collection(db, "events"));
             querySnapshot.forEach((doc: any) => {
                 // doc.data() is never undefined for query doc snapshots
@@ -21,8 +17,20 @@ export const useEventStore = defineStore('events', () => {
         }
     }
 
-    async function publishEvent(eventDoc: EventDoc) {
+    function watchEventChanges() {
         try {
+            const unsub = onSnapshot(doc(db, "events"), (doc) => {
+                console.log("Current data: ", doc.data());
+            });
+            console.log(unsub)
+        } catch (error) {
+
+        }
+    }
+
+    async function publishEvent(eventDoc: EventDoc): Promise<any> {
+        try {
+            console.log('publishEvent')
             const docRef = await addDoc(collection(db, "events"), {
                 title: eventDoc.title,
                 description: eventDoc.description,
@@ -34,5 +42,5 @@ export const useEventStore = defineStore('events', () => {
         }
     }
 
-    return { publishEvent, getEvents }
+    return { publishEvent, getEvents, watchEventChanges }
 })
