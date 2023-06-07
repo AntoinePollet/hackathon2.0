@@ -47,17 +47,12 @@ export const useUserStore = defineStore("user", () => {
                 .then((userCredential) => {
                     // Signed in
                     user.value = userCredential.user;
-                    // console.log(
-                    //     "%cuser.ts line:50 user",
-                    //     "color: #007acc;",
-                    //     userCredential.user
-                    // );
-                    // ...
+                    router.push("/");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.error("error signin", errorCode, errorMessage);
+                    // const errorMessage = error.message;
+                    alert(errorCode);
                 });
         } catch (error) {
             throw error;

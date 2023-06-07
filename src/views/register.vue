@@ -6,11 +6,11 @@ const userStore = useUserStore();
 const { signup } = userStore;
 
 onMounted(() => {
-  // TODO: call this signup from user store to register new user into firebase
-  signup({
-    email: "admin2@gmail.com",
-    password: "password",
-  });
+    // TODO: call this signup from user store to register new user into firebase
+    signup({
+        email: "newuser@gmail.com",
+        password: "password",
+    });
 });
 </script>
 

@@ -1,13 +1,12 @@
 import { defineStore } from "pinia";
-import { firestoreDB } from "@/firebase";
+import {firestoreDB, trainingsRef} from "@/firebase";
 import { addDoc, collection, getDocs, onSnapshot, doc, serverTimestamp, DocumentData } from "firebase/firestore";
 import { EventDoc } from "@/interfaces/event";
-import { eventsRef } from "@/firebase";
 import { ComputedRef, computed } from "vue";
 export const useTrainingStore = defineStore('trainings', () => {
 
-    const sortedEvents: ComputedRef<DocumentData> = computed(() => {
-        return eventsRef.value.sort(function (a, b) {
+    const sortedTrainings: ComputedRef<DocumentData> = computed(() => {
+        return trainingsRef.value.sort(function (a, b) {
             return b.created_at.seconds - a.created_at.seconds;
         })
     });
@@ -50,5 +49,5 @@ export const useTrainingStore = defineStore('trainings', () => {
         }
     }
 
-    return { publishTraining, getEvents, watchTrainingChanges, sortedEvents }
+    return { publishTraining, getEvents, watchTrainingChanges, sortedTrainings }
 })

@@ -3,15 +3,14 @@
         <div class="h-full">
             <sidebar />
         </div>
-        <div class="w-full h-screen overflow-auto">
+        <div class="w-full h-screen">
             <router-view class="w-full" />
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Sidebar from "@/components/Structure/Sidebar.vue";
-import SidebarNotification from "@/components/Structure/SidebarNotification.vue";
 
 </script>
 
