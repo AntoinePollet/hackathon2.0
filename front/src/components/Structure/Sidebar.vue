@@ -88,7 +88,7 @@ const items = ref([
 
 const adminItems = ref([
   { title: 'News', icon: 'mdi-account-group-outline', to: 'admin-news-list', value: 'admin-news' },
-  { title: 'Users', icon: 'mdi-account-group-outline', to: 'admin-users-list', value: 'admin-users' },
+  { title: 'Employees', icon: 'mdi-account-group-outline', to: 'admin-employees-list', value: 'admin-employees' },
   { title: 'Plannings', icon: 'mdi-account-group-outline', to: 'admin-plannings-list', value: 'admin-plannings' },
   { title: 'Achievements', icon: 'mdi-account-group-outline', to: 'admin-achievements-list', value: 'admin-achievements' },
   { title: 'Trainings', icon: 'mdi-account-group-outline', to: 'admin-trainings-list', value: 'admin-trainings' },

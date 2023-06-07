@@ -6,10 +6,10 @@ import Signin from "@/components/Session/Signin.vue";
 import PasswordForgot from "@/components/Session/PasswordForgot.vue";
 import UserProfileShow from "@/components/Profile/Show.vue";
 import UserProfileEdit from "@/components/Profile/Edit.vue";
-import AdminUsersList from "@/components/Admin/Employee/List.vue";
-import AdminUsersShow from "@/components/Admin/Employee/Show.vue";
-import AdminUsersEdit from "@/components/Admin/Employee/Edit.vue";
-import AdminUsersCreate from "@/components/Admin/Employee/Create.vue";
+import AdminEmployeesList from "@/components/Admin/Employee/List.vue";
+import AdminEmployeesShow from "@/components/Admin/Employee/Show.vue";
+import AdminEmployeesEdit from "@/components/Admin/Employee/Edit.vue";
+import AdminEmployeesCreate from "@/components/Admin/Employee/Create.vue";
 import AdminPlanningsList from "@/components/Admin/Planning/List.vue";
 import AdminPlanningsShow from "@/components/Admin/Planning/Show.vue";
 import AdminPlanningsEdit from "@/components/Admin/Planning/Edit.vue";
@@ -82,10 +82,10 @@ export default [
         name: '',
         component: Admin,
         children: [
-            { path: 'users', name: 'admin-users-list', component: AdminUsersList },
-            { path: 'users/create', name: 'admin-users-create', component: AdminUsersCreate },
-            { path: 'user/:id', name: 'admin-users-show', component: AdminUsersShow },
-            { path: 'user/:id/edit', name: 'admin-users-edit', component: AdminUsersEdit },
+            { path: 'employees', name: 'admin-employees-list', component: AdminEmployeesList },
+            { path: 'employees/create', name: 'admin-employees-create', component: AdminEmployeesCreate },
+            { path: 'employee/:id', name: 'admin-employees-show', component: AdminEmployeesShow },
+            { path: 'employee/:id/edit', name: 'admin-employees-edit', component: AdminEmployeesEdit },
             { path: 'plannings', name: 'admin-plannings-list', component: AdminPlanningsList },
             { path: 'plannings/create', name: 'admin-plannings-create', component: AdminPlanningsCreate },
             { path: 'planning/:id', name: 'admin-plannings-show', component: AdminPlanningsShow },

@@ -4,7 +4,7 @@
       Trainings
     </div>
     <div class="flex mb-5 gap-4 items-center">
-      <router-link :to="{ name: 'admin-users-create' }" class="p-2 hover:underline">
+      <router-link :to="{ name: 'admin-employees-create' }" class="p-2 hover:underline">
         New training
       </router-link>
       <v-text-field variant="outlined" label="search" hide-details/>
