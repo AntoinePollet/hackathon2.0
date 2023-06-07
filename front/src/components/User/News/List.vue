@@ -4,18 +4,18 @@
       News
     </div>
     <div class="bg-red-100 flex-grow-1">
-      <v-card>
+      <v-card v-for="i in 10">
         <div
           class="p-5"
         >
           <div class="flex items-center mb-4 ">
             <div class="px-3 py-1 rounded-full bg-h-blue text-white font-bold">
-              Cat 1
+              Cat {{ i }}
             </div>
           </div>
           <div class="flex items-center mb-4">
             <Icon icon="ri:add-circle-fill" class="h-8 w-8 mr-4"/>
-            Title
+            News {{i}}
           </div>
           <div>
             DescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptiondddddDescriptionddddd
