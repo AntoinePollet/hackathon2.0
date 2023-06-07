@@ -4,7 +4,9 @@
       Users
     </div>
     <div class="flex mb-5 gap-4 items-center">
-      <v-btn variant="flat">New</v-btn>
+      <router-link :to="{ name: 'password-forgot' }" class="p-2 hover:underline">
+        New
+      </router-link>
       <v-text-field label="search" variant="outlined" hide-details/>
       <v-btn variant="flat">Filter</v-btn>
     </div>
