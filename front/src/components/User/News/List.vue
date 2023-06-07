@@ -3,7 +3,7 @@
     <div class="text-3xl font-bold mb-10">
       News
     </div>
-    <div class="bg-red-100 flex-grow-1">
+    <div class="flex flex-col gap-y-5">
       <v-card v-for="i in 10">
         <div
           class="p-5"
