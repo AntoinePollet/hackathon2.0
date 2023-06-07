@@ -1,12 +1,18 @@
+import { Timestamp } from "firebase/firestore"
+
 export interface EventDoc {
+    id: string
     title: string
     description: string
     type: string
+    created_at: Timestamp
 }
 
 export const EventTypeEnum = {
-    END_OF_MISSION: "Fin de mission",
-    START_OF_MISSION: "Début de mission",
-    WELCOME: "Bienvenue",
-    SKILL_UNLOCKED: "Nouvelle compétence débloqué"
+    END_OF_MISSION: "noto:dragon-face",
+    START_OF_MISSION: "noto-v1:dragon",
+    WELCOME: "twemoji:open-hands",
+    SKILL_UNLOCKED: "fluent-emoji:dragon-face",
+    SKILL_UPGRADE: "emojione-v1:dragon-face",
+    PROFILE_UPDATE: "emojione-v1:dragon"
 }
