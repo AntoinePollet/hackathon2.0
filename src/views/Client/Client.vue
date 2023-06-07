@@ -15,3 +15,4 @@ import Sidebar from "@/components/Structure/Sidebar.vue"
 </script>
 
 <style scoped></style>
+
