@@ -12,7 +12,7 @@
                 </div>
             </router-link>
             <v-divider class="border-black"></v-divider>
-            
+
             <router-link v-for="item in items" :to="{ name: item.to }"
                 class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
@@ -50,7 +50,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup lang="ts">
@@ -58,7 +57,7 @@ import { onMounted, ref } from "vue";
 import router from "@/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useCurrentUser } from "vuefire";
-const isCurrentUserAdmin= ref(false)
+const isCurrentUserAdmin = ref(false)
 
 const currentUserLogged = useCurrentUser();
 
@@ -96,7 +95,7 @@ const adminItems = ref([
 
 const clientItems = ref([
     { title: 'My Account', icon: 'fa-solid fa-user-gear', to: 'client-profile-show', value: 'client-account' },
-    { title: 'Planning', icon: 'fa-solid fa-calendar', to: 'client-plannings-list', value: 'client-plannings' },
+    { title: 'Planning', icon: 'fa-solid fa-calendar', to: 'client-plannings-list', value: 'client-plannings' }
 ]);
 
 onMounted(() => {
