@@ -30,9 +30,20 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { PropType, computed } from 'vue';
+import { TrainingDoc } from "@/interfaces/training"
+import { Icon } from "@iconify/vue"
+
+const props = defineProps({
+  training: {
+    type: Object as PropType<TrainingDoc>,
+    required: true
+  }
+});
+
+const formattedDate = computed(() => {
+  return new Date(props.training.start_at.toDate()).toLocaleDateString('fr-FR', { day: "2-digit", month: "long", hour: "2-digit", minute: "2-digit" })
+});
+
 </script>
-
-<style scoped>
-
-</style>

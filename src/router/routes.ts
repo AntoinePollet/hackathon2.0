@@ -5,46 +5,45 @@ import User from "@/views/User/User.vue"
 import Admin from "@/views/Admin/Admin.vue"
 import Client from "@/views/Client/Client.vue"
 import Session from "@/views/Session/Session.vue"
-import Signin from "@/components/Session/Signin.vue";
-import PasswordForgot from "@/components/Session/PasswordForgot.vue";
-import UserProfileShow from "@/components/Profile/Show.vue";
-import UserProfileEdit from "@/components/Profile/Edit.vue";
-import AdminEmployeesList from "@/components/Admin/Employee/List.vue";
-import AdminEmployeesShow from "@/components/Admin/Employee/Show.vue";
-import AdminEmployeesEdit from "@/components/Admin/Employee/Edit.vue";
-import AdminEmployeesCreate from "@/components/Admin/Employee/Create.vue";
-import AdminPlanningsList from "@/components/Admin/Planning/List.vue";
-import AdminPlanningsShow from "@/components/Admin/Planning/Show.vue";
-import AdminPlanningsEdit from "@/components/Admin/Planning/Edit.vue";
-import AdminPlanningsCreate from "@/components/Admin/Planning/Create.vue";
-import AdminAchievementsList from "@/components/Admin/Achievement/List.vue";
-import AdminAchievementsShow from "@/components/Admin/Achievement/Show.vue";
-import AdminAchievementsEdit from "@/components/Admin/Achievement/Edit.vue";
-import AdminAchievementsCreate from "@/components/Admin/Achievement/Create.vue";
-import AdminTrainingsList from "@/components/Admin/Training/List.vue";
-import AdminTrainingsShow from "@/components/Admin/Training/Show.vue";
-import AdminTrainingsEdit from "@/components/Admin/Training/Edit.vue";
-import AdminTrainingsCreate from "@/components/Admin/Training/Create.vue";
-import AdminNewsEdit from "@/components/Admin/News/Edit.vue"
-import AdminNewsCreate from "@/components/Admin/News/Create.vue";
-import AdminSkillsList from "@/components/Admin/Skills/List.vue";
-import AdminSkillsEdit from "@/components/Admin/Skills/Edit.vue"
-import AdminSkillsCreate from "@/components/Admin/Skills/Create.vue";
-import PlanningsList from "@/components/User/Planning/List.vue";
-import PlanningsShow from "@/components/User/Planning/Show.vue";
-import PlanningsEdit from "@/components/User/Planning/Edit.vue";
-import AchievementsList from "@/components/User/Achievement/List.vue";
-import AchievementsShow from "@/components/User/Achievement/Show.vue";
-import AchievementsEdit from "@/components/User/Achievement/Edit.vue";
-import TrainingsList from "@/components/User/Training/List.vue";
-import TrainingsShow from "@/components/User/Training/Show.vue";
-import TrainingsEdit from "@/components/User/Training/Edit.vue";
-import EvaluationsList from "@/components/User/Evaluation/List.vue";
-import EvaluationsShow from "@/components/User/Evaluation/Show.vue";
-import EvaluationsEdit from "@/components/User/Evaluation/Edit.vue";
-import ClientPlanningsList from "@/components/Client/Planning/List.vue";
-import ClientPlanningsShow from "@/components/Client/Planning/Show.vue";
-import ClientPlanningsEdit from "@/components/Client/Planning/Edit.vue";
+import Signin from "@/views/Session/Session/Signin.vue";
+import PasswordForgot from "@/views/Session/Session/PasswordForgot.vue";
+import UserProfileShow from "@/views/Profile/Show.vue";
+import UserProfileEdit from "@/views/Profile/Edit.vue";
+import AdminEmployeesList from "@/views/Admin/Employee/List.vue";
+import AdminEmployeesShow from "@/views/Admin/Employee/Show.vue";
+import AdminEmployeesEdit from "@/views/Admin/Employee/Edit.vue";
+import AdminEmployeesCreate from "@/views/Admin/Employee/Create.vue";
+import AdminPlanningsList from "@/views/Admin/Planning/List.vue";
+import AdminPlanningsShow from "@/views/Admin/Planning/Show.vue";
+import AdminPlanningsEdit from "@/views/Admin/Planning/Edit.vue";
+import AdminPlanningsCreate from "@/views/Admin/Planning/Create.vue";
+import AdminAchievementsList from "@/views/Admin/Achievement/List.vue";
+import AdminAchievementsShow from "@/views/Admin/Achievement/Show.vue";
+import AdminAchievementsEdit from "@/views/Admin/Achievement/Edit.vue";
+import AdminAchievementsCreate from "@/views/Admin/Achievement/Create.vue";
+import AdminTrainingsList from "@/views/Admin/Training/List.vue";
+import AdminTrainingsShow from "@/views/Admin/Training/Show.vue";
+import AdminTrainingsEdit from "@/views/Admin/Training/Edit.vue";
+import AdminTrainingsCreate from "@/views/Admin/Training/Create.vue";
+import AdminNewsEdit from "@/views/Admin/News/Edit.vue"
+import AdminNewsCreate from "@/views/Admin/News/Create.vue";
+import AdminSkillsList from "@/views/Admin/Skills/List.vue";
+import AdminSkillsEdit from "@/views/Admin/Skills/Edit.vue"
+import AdminSkillsCreate from "@/views/Admin/Skills/Create.vue";
+import PlanningsList from "@/views/User/Planning/List.vue";
+import PlanningsShow from "@/views/User/Planning/Show.vue";
+import PlanningsEdit from "@/views/User/Planning/Edit.vue";
+import AchievementsList from "@/views/User/Achievement/List.vue";
+import AchievementsShow from "@/views/User/Achievement/Show.vue";
+import AchievementsEdit from "@/views/User/Achievement/Edit.vue";
+import TrainingsList from "@/views/User/Training/List.vue";
+import TrainingsShow from "@/views/User/Training/Show.vue";
+import EvaluationsList from "@/views/User/Evaluation/List.vue";
+import EvaluationsShow from "@/views/User/Evaluation/Show.vue";
+import EvaluationsEdit from "@/views/User/Evaluation/Edit.vue";
+import ClientPlanningsList from "@/views/Client/Planning/List.vue";
+import ClientPlanningsShow from "@/views/Client/Planning/Show.vue";
+import ClientPlanningsEdit from "@/views/Client/Planning/Edit.vue";
 
 export default [
     {
@@ -63,7 +62,6 @@ export default [
             { path: 'achievement/:id/edit', name: 'achievements-edit', component: AchievementsEdit },
             { path: 'trainings', name: 'trainings-list', component: TrainingsList },
             { path: 'training/:id', name: 'trainings-show', component: TrainingsShow },
-            { path: 'training/:id/edit', name: 'trainings-edit', component: TrainingsEdit },
             { path: 'evaluations', name: 'evaluations-list', component: EvaluationsList },
             { path: 'evaluation/:id', name: 'evaluations-show', component: EvaluationsShow },
             { path: 'evaluation/:id/edit', name: 'evaluations-edit', component: EvaluationsEdit },
