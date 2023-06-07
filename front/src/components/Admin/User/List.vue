@@ -3,6 +3,11 @@
     <div class="text-3xl font-bold mb-10">
       Users
     </div>
+    <div class="flex mb-5 gap-4 items-center">
+      <v-btn variant="flat">New</v-btn>
+      <v-text-field label="search" variant="outlined" hide-details/>
+      <v-btn variant="flat">Filter</v-btn>
+    </div>
     <div class="bg-red-100 flex-grow-1">
       <v-data-table
         :headers="headers"
