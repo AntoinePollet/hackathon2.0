@@ -1,11 +1,11 @@
 <template>
   <div class="p-10 gap-y-10">
     <div class="text-3xl font-bold mb-10">
-      Users
+      Employees
     </div>
     <div class="flex mb-5 gap-4 items-center">
       <router-link :to="{ name: 'admin-users-create' }" class="p-2 hover:underline">
-        New user
+        New employee
       </router-link>
       <v-text-field label="search" variant="outlined" hide-details/>
       <v-btn variant="flat">Filter</v-btn>
