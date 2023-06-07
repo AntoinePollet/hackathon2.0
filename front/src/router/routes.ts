@@ -101,6 +101,9 @@ export default [
             { path: 'news', name: 'admin-news-list', component: AdminNewsList },
             { path: 'news/create', name: 'admin-news-create', component: AdminNewsCreate },
             { path: 'news/:id/edit', name: 'admin-news-edit', component: AdminNewsEdit },
+            { path: 'skills', name: 'admin-skills-list', component: AdminSkillsList },
+            { path: 'skills/create', name: 'admin-skills-create', component: AdminSkillsCreate },
+            { path: 'skills/:id/edit', name: 'admin-skills-edit', component: AdminSkillsEdit },
         ]
     },
     {

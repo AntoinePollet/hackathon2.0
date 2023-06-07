@@ -92,6 +92,7 @@ const adminItems = ref([
   { title: 'Plannings', icon: 'mdi-account-group-outline', to: 'admin-plannings-list', value: 'admin-plannings' },
   { title: 'Achievements', icon: 'mdi-account-group-outline', to: 'admin-achievements-list', value: 'admin-achievements' },
   { title: 'Trainings', icon: 'mdi-account-group-outline', to: 'admin-trainings-list', value: 'admin-trainings' },
+  { title: 'Skills', icon: 'mdi-account-group-outline', to: 'admin-skills-list', value: 'admin-skills' },
 ]);
 
 const clientItems = ref([
