@@ -1,6 +1,8 @@
 import Home from "@/components/home.vue"
 import Events from "@/views/events.vue"
 import Register from "@/views/register.vue"
+import Login from "@/views/login.vue"
+
 export default [
     {
         path: '/',
@@ -16,5 +18,10 @@ export default [
         path: '/register',
         name: 'register',
         component: Register
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     },
 ]

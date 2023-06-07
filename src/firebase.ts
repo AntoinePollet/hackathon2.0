@@ -13,16 +13,16 @@ const firebaseConfig = {
     projectId: import.meta.env.VITE_PROJECT_ID,
     storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
     messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_APP_ID
+    appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const firebaseApp = initializeApp(firebaseConfig);
+const firestoreDB = getFirestore(firebaseApp);
 
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+const auth = getAuth(firebaseApp);
 
-export { db, auth };
+export { firestoreDB, auth };
 
-export default app;
+export default firebaseApp;
