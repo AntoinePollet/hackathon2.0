@@ -1,10 +1,10 @@
 <template>
   <div class="flex h-screen w-screen">
-    <div class="h-full bg-red-100">
+    <div class="h-full">
       <sidebar/>
     </div>
     <div class="w-full">
-      <router-view class="w-full bg-red-100"/>
+      <router-view class="w-full"/>
     </div>
     <div class="h-full">
       <sidebar-notification />

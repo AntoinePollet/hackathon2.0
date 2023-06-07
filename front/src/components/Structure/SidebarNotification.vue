@@ -22,8 +22,9 @@
       <v-divider class="border-black"></v-divider>
 
       <div v-if="!rail">
-        <div>
-          Notification 1
+        <div class="p-3">
+          <p class="underline"><span>Icon</span> Notification 1 Title</p>
+          <p>Notification description</p>
         </div>
         <v-divider class="border-black"></v-divider>
       </div>

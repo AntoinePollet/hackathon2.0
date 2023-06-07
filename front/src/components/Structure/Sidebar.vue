@@ -79,6 +79,7 @@
 import {onMounted, ref} from "vue";
 
 const items = ref([
+  { title: 'News', icon: 'mdi-account', to: 'news-list', value: 'news' },
   { title: 'Planning', icon: 'mdi-account', to: 'plannings-list', value: 'my-planning' },
   { title: 'Trainings', icon: 'mdi-account', to: 'trainings-list', value: 'my-training' },
   { title: 'Achievements', icon: 'mdi-account', to: 'achievements-list', value: 'my-achievement' },

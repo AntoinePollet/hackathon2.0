@@ -18,6 +18,9 @@ import AdminAchievementsEdit from "@/components/Admin/Achievement/Edit.vue";
 import AdminTrainingsList from "@/components/Admin/Training/List.vue";
 import AdminTrainingsShow from "@/components/Admin/Training/Show.vue";
 import AdminTrainingsEdit from "@/components/Admin/Training/Edit.vue";
+import NewsList from "@/components/User/News/List.vue";
+import NewsShow from "@/components/User/News/Show.vue";
+import NewsEdit from "@/components/User/News/Edit.vue";
 import PlanningsList from "@/components/User/Planning/List.vue";
 import PlanningsShow from "@/components/User/Planning/Show.vue";
 import PlanningsEdit from "@/components/User/Planning/Edit.vue";
@@ -40,6 +43,7 @@ export default [
         name: '',
         component: User,
         children: [
+            { path: '', name: 'news-list', component: NewsList},
             { path: 'profile', name: 'profile-show', component: UserProfileShow},
             { path: 'profile/edit', name: 'profile-edit', component: UserProfileEdit},
             { path: 'plannings', name: 'plannings-list', component: PlanningsList },
