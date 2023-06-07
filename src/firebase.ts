@@ -1,8 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, orderBy, query, limit, getDocs } from "firebase/firestore";
-import { useCollection } from "vuefire"
+import {
+    getFirestore,
+    collection,
+    orderBy,
+    query,
+    limit,
+    getDocs,
+} from "firebase/firestore";
+import { useCollection } from "vuefire";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,7 +32,10 @@ const firestoreDB = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 
 export { firestoreDB, auth };
-export const eventsRef = useCollection(collection(firestoreDB, "events"))
-export const trainingsRef = useCollection(collection(firestoreDB, "trainings"))
+export const eventsRef = useCollection(collection(firestoreDB, "events"));
+export const trainingsRef = useCollection(collection(firestoreDB, "trainings"));
+export const usersRolesRef = useCollection(
+    collection(firestoreDB, "usersRoles")
+);
 
 export default firebaseApp;
