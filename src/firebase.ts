@@ -26,5 +26,6 @@ const auth = getAuth(firebaseApp);
 
 export { firestoreDB, auth };
 export const eventsRef = useCollection(collection(firestoreDB, "events"))
+export const trainingsRef = useCollection(collection(firestoreDB, "trainings"))
 
 export default firebaseApp;

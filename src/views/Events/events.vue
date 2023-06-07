@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useEventStore } from '@/stores/event';
 import { storeToRefs } from 'pinia';
-import event from '@/components/User/Event/event.vue';
+import event from '@/components/Event/event.vue';
 
 const eventStore = useEventStore();
 const { sortedEvents } = storeToRefs(eventStore);

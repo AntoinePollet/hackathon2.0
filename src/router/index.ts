@@ -1,11 +1,12 @@
-import { createRouter, createWebHistory, useRoute } from "vue-router"
-import routes from './routes';
+import { createRouter, createWebHistory, useRoute } from "vue-router";
+import routes from "./routes";
 // import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
+import { getAuth } from "firebase/auth";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes
+    routes,
 });
 
 // router.beforeResolve(async (to, from, next) => {
@@ -34,5 +35,18 @@ const router = createRouter({
 //         next();
 //     }
 // })
+
+router.beforeEach(async (to, from, next) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    // Force all users to be redirected to signin page if not connected into firebase
+    if (!user && to.name !== "signin") {
+        next({ name: "signin" });
+    } else {
+        next();
+    }
+    // TODO: see if we can remove this filter for clients when consultants proposing profiles
+});
 
 export default router;

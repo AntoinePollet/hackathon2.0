@@ -12,7 +12,7 @@
                 </div>
             </router-link>
             <v-divider class="border-black"></v-divider>
-
+            
             <router-link v-for="item in items" :to="{ name: item.to }"
                 class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
@@ -20,6 +20,7 @@
                     {{ item.title }}
                 </div>
             </router-link>
+
             <v-divider class="border-black"></v-divider>
 
             <router-link v-for="item in adminItems" :to="{ name: item.to }"
@@ -29,6 +30,7 @@
                     {{ item.title }}
                 </div>
             </router-link>
+
             <v-divider class="border-black"></v-divider>
 
             <router-link v-for="item in clientItems" :to="{ name: item.to }"
@@ -38,6 +40,7 @@
                     {{ item.title }}
                 </div>
             </router-link>
+
             <v-divider class="border-black"></v-divider>
             <div @click="null" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
@@ -47,58 +50,32 @@
             </div>
         </div>
     </div>
-    <!-- <v-card class="w-64 h-full rounded">
-        <v-layout class="rounded">
-            <div class="w-full">
-                <v-list-item class="flex justify-center">
-                    <img src="@/assets/logoCarbonGrey.svg" height="500" width="500" alt="">
-                </v-list-item>
 
-                <v-list density="compact" :nav="true">
-                    <router-link :to="{ name: 'profile-show' }">
-                        <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" :nav="true"
-                            value="profile">
-                            John Leider
-                        </v-list-item>
-                    </router-link>
-                    <v-divider class="border-black"></v-divider>
-                    <router-link v-for="item in items" :to="{ name: item.to }">
-                        <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
-                    </router-link>
-                    <v-divider class="border-black"></v-divider>
-                    <div>
-                        <v-list-item class="flex">
-                            <div class="font-medium w-full h-full">
-                                Client
-                            </div>
-                        </v-list-item>
-                        <v-divider class="border-black"></v-divider>
-                        <router-link v-for="item in clientItems" :to="{ name: item.to }">
-                            <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
-                        </router-link>
-                    </div>
-                    <v-divider class="border-black"></v-divider>
-                    <div>
-                        <v-list-item class="flex">
-                            <div class="font-medium w-full h-full">
-                                Admin
-                            </div>
-                        </v-list-item>
-                        <v-divider class="border-black"></v-divider>
-                        <router-link v-for="item in adminItems" :to="{ name: item.to }">
-                            <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
-                        </router-link>
-                    </div>
-                    <v-divider class="border-black"></v-divider>
-                    <v-list-item prepend-icon="a" title="Log out" value="logout" @click="null" />
-                </v-list>
-            </div>
-        </v-layout>
-    </v-card> -->
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import router from "@/router";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useCurrentUser } from "vuefire";
+const isCurrentUserAdmin= ref(false)
+
+const currentUserLogged = useCurrentUser();
+
+onAuthStateChanged(getAuth(), (userAuth) => {
+    if (userAuth) {
+        userAuth.getIdTokenResult().then(function ({ claims }) {
+            if (claims.admin) {
+                isCurrentUserAdmin.value = true;
+            }
+        });
+    }
+});
+
+const handleLogout = () => {
+    getAuth().signOut();
+    router.push("/session/signin")
+};
 
 const items = ref([
     { title: 'News', icon: 'fa-solid fa-newspaper', to: 'news-list', value: 'news' },
