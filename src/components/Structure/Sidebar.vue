@@ -42,7 +42,7 @@
             </router-link>
 
             <v-divider class="border-black"></v-divider>
-            <div @click="null" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+            <div @click="handleLogout()" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
                     <font-awesome-icon icon="fa-solid fa-door-closed" />
                     Logout
