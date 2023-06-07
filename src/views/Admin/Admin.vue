@@ -3,7 +3,7 @@
         <div class="h-full">
             <sidebar />
         </div>
-        <div class="w-full h-screen overflow-auto">
+        <div class="w-full h-screen">
             <router-view class="w-full" />
         </div>
         <div class="h-full">
@@ -20,12 +20,10 @@ import { ref } from "vue";
 // import { useCurrentUser } from "vuefire";
 
 import Sidebar from "@/components/Structure/Sidebar.vue";
-import SidebarNotification from "@/components/Structure/SidebarNotification.vue";
 
 const isCurrentUserAdmin = ref(false);
 
 // const user = useCurrentUser();
-
 // TODO: voir pour déplacer ça dans le router directement
 onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {

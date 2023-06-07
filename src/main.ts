@@ -8,6 +8,11 @@ import firebaseApp from "./firebase";
 import Vue3Lottie from 'vue3-lottie'
 import vuetify from './plugins/vuetify';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed } from '@fortawesome/free-solid-svg-icons'
+library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed)
+
 const pinia = createPinia();
 
 const app = createApp(App);
@@ -24,6 +29,6 @@ app.use(VueFire, {
 });
 app.use(Vue3Lottie)
 app.use(vuetify)
-
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount("#app");
 

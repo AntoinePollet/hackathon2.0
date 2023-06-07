@@ -3,7 +3,7 @@
         <div class="h-full">
             <sidebar />
         </div>
-        <div class="w-full h-screen overflow-auto">
+        <div class="w-full h-screen">
             <router-view class="w-full" />
         </div>
     </div>

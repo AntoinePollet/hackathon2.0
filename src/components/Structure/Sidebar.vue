@@ -1,88 +1,63 @@
 <template>
-  <v-card class="w-64 h-full rounded">
-    <v-layout class="rounded">
-      <div class="w-full">
-        <v-list-item class="flex justify-center">
-          <img src="@/assets/logoCarbonGrey.svg"  height="500" width="500" alt="">
-        </v-list-item>
+    <div class="w-64 h-full rounded bg-white border-r">
+        <div class="flex justify-center">
+            <img src="@/assets/logoCarbonGrey.svg" height="500" width="500" alt="">
+        </div>
+        <div class="flex flex-col gap-y-1">
+            <router-link :to="{ name: 'profile-show' }" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+                <div class="flex items-center px-4 py-2 gap-x-3">
+                    <v-avatar
+                        image="https://images.unsplash.com/photo-1615807713086-bfc4975801d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"></v-avatar>
+                    Nom prénom
+                </div>
+            </router-link>
+            <v-divider class="border-black"></v-divider>
+            
+            <router-link v-for="item in items" :to="{ name: item.to }"
+                class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+                <div class="flex items-center px-4 py-2 gap-x-3">
+                    <font-awesome-icon :icon="item.icon" />
+                    {{ item.title }}
+                </div>
+            </router-link>
 
-        <v-list density="compact" :nav="true">
-          <router-link :to="{ name: 'profile-show' }">
-            <v-list-item
-              prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-              :nav="true"
-              value="profile"
-            >
-                {{currentUserLogged?.displayName || currentUserLogged?.email}}
-            </v-list-item>
-          </router-link>
-          <v-divider class="border-black"></v-divider>
-          <router-link
-            v-for="item in items"
-            :to="{ name: item.to }"
-          >
-            <v-list-item
-              :prepend-icon="item.icon"
-              :title="item.title"
-              :value="item.value"
-            />
-          </router-link>
-          <v-divider class="border-black"></v-divider>
-          <div>
-            <v-list-item class="flex">
-              <div class="font-medium w-full h-full">
-                Client
-              </div>
-            </v-list-item>
             <v-divider class="border-black"></v-divider>
-            <router-link v-for="item in clientItems" :to="{ name: item.to }">
-              <v-list-item
-                :prepend-icon="item.icon"
-                :title="item.title"
-                :value="item.value"
-              />
+
+            <router-link v-for="item in adminItems" :to="{ name: item.to }"
+                class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+                <div class="flex items-center px-4 py-2 gap-x-3">
+                    <font-awesome-icon :icon="item.icon" />
+                    {{ item.title }}
+                </div>
             </router-link>
-          </div>
-          <v-divider class="border-black"></v-divider>
-          <!-- TODO: je laisse comme ça juste pour y penser -->
-          <!-- <div v-if="isCurrentUserAdmin"> -->
-          <div>
-            <v-list-item class="flex">
-              <div class="font-medium w-full h-full">
-                Admin
-              </div>
-            </v-list-item>
+
             <v-divider class="border-black"></v-divider>
-            <router-link
-              v-for="item in adminItems"
-              :to="{ name: item.to }"
-            >
-              <v-list-item
-                :prepend-icon="item.icon"
-                :title="item.title"
-                :value="item.value"
-              />
+
+            <router-link v-for="item in clientItems" :to="{ name: item.to }"
+                class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+                <div class="flex items-center px-4 py-2 gap-x-3">
+                    <font-awesome-icon :icon="item.icon" />
+                    {{ item.title }}
+                </div>
             </router-link>
-          </div>
-          <v-divider class="border-black"></v-divider>
-          <v-list-item
-            prepend-icon="a"
-            title="Log out"
-            value="logout"
-            @click="handleLogout"
-          />
-        </v-list>
-      </div>
-    </v-layout>
-  </v-card>
+
+            <v-divider class="border-black"></v-divider>
+            <div @click="null" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+                <div class="flex items-center px-4 py-2 gap-x-3">
+                    <font-awesome-icon icon="fa-solid fa-door-closed" />
+                    Logout
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
 import router from "@/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {onMounted, ref} from "vue";
 import { useCurrentUser } from "vuefire";
-
 const isCurrentUserAdmin= ref(false)
 
 const currentUserLogged = useCurrentUser();
@@ -103,25 +78,25 @@ const handleLogout = () => {
 };
 
 const items = ref([
-  { title: 'News', icon: 'mdi-account', to: 'news-list', value: 'news' },
-  { title: 'Planning', icon: 'mdi-account', to: 'plannings-list', value: 'my-planning' },
-  { title: 'Trainings', icon: 'mdi-account', to: 'trainings-list', value: 'my-training' },
-  { title: 'Achievements', icon: 'mdi-account', to: 'achievements-list', value: 'my-achievement' },
-  { title: 'Evaluations', icon: 'mdi-account', to: 'evaluations-list', value: 'my-evaluation' },
+    { title: 'News', icon: 'fa-solid fa-newspaper', to: 'news-list', value: 'news' },
+    { title: 'Planning', icon: 'fa-solid fa-calendar', to: 'plannings-list', value: 'my-planning' },
+    { title: 'Trainings', icon: 'fa-solid fa-school', to: 'trainings-list', value: 'my-training' },
+    { title: 'Achievements', icon: 'fa-solid fa-star', to: 'achievements-list', value: 'my-achievement' },
+    { title: 'Evaluations', icon: 'fa-solid fa-graduation-cap', to: 'evaluations-list', value: 'my-evaluation' },
 ])
 
 const adminItems = ref([
-  { title: 'News', icon: 'mdi-account-group-outline', to: 'admin-news-list', value: 'admin-news' },
-  { title: 'Employees', icon: 'mdi-account-group-outline', to: 'admin-employees-list', value: 'admin-employees' },
-  { title: 'Plannings', icon: 'mdi-account-group-outline', to: 'admin-plannings-list', value: 'admin-plannings' },
-  { title: 'Achievements', icon: 'mdi-account-group-outline', to: 'admin-achievements-list', value: 'admin-achievements' },
-  { title: 'Trainings', icon: 'mdi-account-group-outline', to: 'admin-trainings-list', value: 'admin-trainings' },
-  { title: 'Skills', icon: 'mdi-account-group-outline', to: 'admin-skills-list', value: 'admin-skills' },
+    { title: 'News', icon: 'fa-solid fa-newspaper', to: 'admin-news-list', value: 'admin-news' },
+    { title: 'Employees', icon: 'fa-solid fa-face-grimace', to: 'admin-employees-list', value: 'admin-employees' },
+    { title: 'Plannings', icon: 'fa-solid fa-calendar', to: 'admin-plannings-list', value: 'admin-plannings' },
+    { title: 'Achievements', icon: 'fa-solid fa-star', to: 'admin-achievements-list', value: 'admin-achievements' },
+    { title: 'Trainings', icon: 'fa-solid fa-school', to: 'admin-trainings-list', value: 'admin-trainings' },
+    { title: 'Skills', icon: 'fa-solid fa-hammer', to: 'admin-skills-list', value: 'admin-skills' },
 ]);
 
 const clientItems = ref([
-  { title: 'My Account', icon: 'mdi-account', to: 'client-profile-show', value: 'client-account' },
-  { title: 'Planning', icon: 'mdi-account', to: 'client-plannings-list', value: 'client-plannings' },
+    { title: 'My Account', icon: 'fa-solid fa-user-gear', to: 'client-profile-show', value: 'client-account' },
+    { title: 'Planning', icon: 'fa-solid fa-calendar', to: 'client-plannings-list', value: 'client-plannings' },
 ]);
 
 onMounted(() => {
@@ -130,5 +105,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
+.router-link-exact-active>div {
+    @apply bg-slate-200 rounded-xl font-bold
+}
 </style>
