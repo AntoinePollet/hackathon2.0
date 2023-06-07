@@ -13,7 +13,7 @@
               :nav="true"
               value="profile"
             >
-                John Leider
+                {{currentUserLogged?.displayName || currentUserLogged?.email}}
             </v-list-item>
           </router-link>
           <v-divider class="border-black"></v-divider>
@@ -69,7 +69,7 @@
             prepend-icon="a"
             title="Log out"
             value="logout"
-            @click="null"
+            @click="handleLogout"
           />
         </v-list>
       </div>
@@ -78,10 +78,14 @@
 </template>
 
 <script lang="ts" setup>
+import router from "@/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {onMounted, ref} from "vue";
+import { useCurrentUser } from "vuefire";
 
 const isCurrentUserAdmin= ref(false)
+
+const currentUserLogged = useCurrentUser();
 
 onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {
@@ -92,6 +96,11 @@ onAuthStateChanged(getAuth(), (userAuth) => {
         });
     }
 });
+
+const handleLogout = () => {
+    getAuth().signOut();
+    router.push("/session/signin")
+};
 
 const items = ref([
   { title: 'News', icon: 'mdi-account', to: 'news-list', value: 'news' },
