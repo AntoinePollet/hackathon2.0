@@ -13,7 +13,8 @@
         class="flex flex-col h-64 w-64"
       >
         <div class="p-5">
-          Training {{i}}
+          <p>Training {{i}}</p>
+          <p class="text-sm">01/01/2001</p>
         </div>
         <v-divider class="border-black"/>
         <div class="p-5 h-28 overflow-auto">
