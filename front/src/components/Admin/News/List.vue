@@ -3,6 +3,13 @@
     <div class="text-3xl font-bold mb-10">
       News
     </div>
+    <div class="flex mb-5 gap-4 items-center">
+      <router-link :to="{ name: 'admin-users-create' }" class="p-2 hover:underline">
+        New training
+      </router-link>
+      <v-text-field label="search" variant="outlined" hide-details/>
+      <v-btn variant="flat">Filter</v-btn>
+    </div>
     <div class="flex flex-col gap-y-5">
       <v-card v-for="i in 10">
         <div

@@ -3,10 +3,12 @@
     <div class="text-3xl font-bold mb-10">
       Achievements
     </div>
-    <div class="mb-6 flex items-center">
-      <v-btn class="m-2" variant="text">New achievement</v-btn>
-      <v-text-field variant="outlined" label="search" hide-details/>
-      <v-btn class="m-2" variant="text">Filter</v-btn>
+    <div class="flex mb-5 gap-4 items-center">
+      <router-link :to="{ name: 'admin-achievements-create' }" class="p-2 hover:underline">
+        New achievement
+      </router-link>
+      <v-text-field label="search" variant="outlined" hide-details/>
+      <v-btn variant="flat">Filter</v-btn>
     </div>
     <div class="flex flex-col gap-6">
       <v-card

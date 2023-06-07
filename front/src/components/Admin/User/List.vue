@@ -4,8 +4,8 @@
       Users
     </div>
     <div class="flex mb-5 gap-4 items-center">
-      <router-link :to="{ name: 'password-forgot' }" class="p-2 hover:underline">
-        New
+      <router-link :to="{ name: 'admin-users-create' }" class="p-2 hover:underline">
+        New user
       </router-link>
       <v-text-field label="search" variant="outlined" hide-details/>
       <v-btn variant="flat">Filter</v-btn>

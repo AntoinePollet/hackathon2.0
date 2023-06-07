@@ -3,7 +3,10 @@
     <div class="text-3xl font-bold mb-10">
       Trainings
     </div>
-    <div class="mb-6 flex items-center">
+    <div class="flex mb-5 gap-4 items-center">
+      <router-link :to="{ name: 'admin-users-create' }" class="p-2 hover:underline">
+        New training
+      </router-link>
       <v-text-field variant="outlined" label="search" hide-details/>
       <v-btn class="m-2" variant="text">Filter</v-btn>
     </div>
