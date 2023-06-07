@@ -10,7 +10,7 @@ const user = useCurrentUser();
 onMounted(() => {
     // TODO: change this call when ui is developped
     signin({
-        email: "admin2@gmail.com",
+        email: "newuser@gmail.com",
         password: "password",
     });
 });
