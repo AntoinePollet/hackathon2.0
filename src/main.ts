@@ -5,6 +5,8 @@ import router from "./router";
 import { createPinia } from "pinia";
 import { VueFire, VueFireAuth } from "vuefire";
 import firebaseApp from "./firebase";
+import Vue3Lottie from 'vue3-lottie'
+import vuetify from './plugins/vuetify';
 
 const pinia = createPinia();
 
@@ -20,4 +22,8 @@ app.use(VueFire, {
         VueFireAuth(),
     ],
 });
+app.use(Vue3Lottie)
+app.use(vuetify)
+
 app.mount("#app");
+
