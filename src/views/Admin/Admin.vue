@@ -6,9 +6,6 @@
         <div class="w-full h-screen">
             <router-view class="w-full" />
         </div>
-        <div class="h-full">
-            <sidebar-notification />
-        </div>
     </div>
     <h1 v-else>Vous n'avez pas les droits</h1>
 </template>

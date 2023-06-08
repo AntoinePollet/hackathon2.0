@@ -7,6 +7,8 @@ import { VueFire, VueFireAuth } from "vuefire";
 import firebaseApp from "./firebase";
 import Vue3Lottie from 'vue3-lottie'
 import vuetify from './plugins/vuetify';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -30,5 +32,7 @@ app.use(VueFire, {
 app.use(Vue3Lottie)
 app.use(vuetify)
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('VueDatePicker', VueDatePicker);
+
 app.mount("#app");
 
