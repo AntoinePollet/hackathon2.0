@@ -126,10 +126,10 @@ const items = ref([
         value: "my-achievement",
     },
     {
-        title: "Evaluation",
+        title: "Evaluations",
         icon: "fa-solid fa-graduation-cap",
-        to: "evaluation-show",
-        value: "my-evaluation",
+        to: "admin-evaluations",
+        value: "admin-evaluations",
     },
 ]);
 

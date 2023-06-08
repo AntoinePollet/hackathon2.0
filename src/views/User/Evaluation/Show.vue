@@ -55,8 +55,10 @@
 import { ref, onMounted } from 'vue';
 import { collection, getDocs, updateDoc, doc, query, where } from "firebase/firestore";
 import { firestoreDB } from "@/firebase";
-import { useCurrentUser } from "vuefire"; 
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
+const uuid = route.params.id;
 let user: any = ref(null);
 const skillMaxRating = 4;
 const evaluationEffectuee = ref(false);
@@ -67,9 +69,7 @@ onMounted(async () => {
 
         usersFromFB.forEach((doc) => {
             const data = doc.data();
-            const currentUserLogged = useCurrentUser();
-
-            if (data.uuid === currentUserLogged.value?.uid) {
+            if (data.uuid === uuid) {
                 user.value = data;
             }
         });
