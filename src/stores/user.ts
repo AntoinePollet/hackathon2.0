@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import type { SigninI, SignupI } from "@/interfaces/security";
 import { useRouter } from "vue-router";
-import { UpdateUser } from "@/interfaces/user";
+import { UpdateUser, UserI } from "@/interfaces/user";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -12,7 +12,7 @@ import { query, where, getDocs } from "firebase/firestore";
 export const useUserStore = defineStore("user", () => {
     const router = useRouter();
     const user = ref();
-    const users = ref([]);
+    const users = ref<UserI[]>([]);
 
     const isAdmin = computed(() => {
         return user.value?.roles?.includes("ROLE_ADMIN");
@@ -135,6 +135,7 @@ export const useUserStore = defineStore("user", () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
+                //@ts-ignore
                 users.value.push(doc.data());
             });
         } catch (error) {

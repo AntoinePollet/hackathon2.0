@@ -209,17 +209,17 @@ export default [
             {
                 path: "skills",
                 name: "admin-skills-list",
-                component: () => import("@/views/Admin/Skill/List.vue"),
+                component: () => import("@/views/Admin/Skills/List.vue"),
             },
             {
                 path: "skills/create",
                 name: "admin-skills-create",
-                component: () => import("@/views/Admin/Skill/Create.vue"),
+                component: () => import("@/views/Admin/Skills/Create.vue"),
             },
             {
                 path: "skills/:id/edit",
                 name: "admin-skills-edit",
-                component: () => import("@/views/Admin/Skill/Edit.vue"),
+                component: () => import("@/views/Admin/Skills/Edit.vue"),
             },
         ],
     },
@@ -236,7 +236,7 @@ export default [
             {
                 path: "password-forgot",
                 name: "password-forgot",
-                component: () => import("@/views/Password/Forgot.vue"),
+                component: () => import("@/views/Session/Session/PasswordForgot.vue"),
             },
         ],
     },

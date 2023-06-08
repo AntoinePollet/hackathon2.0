@@ -25,23 +25,13 @@ const myCustomLightTheme: ThemeDefinition = {
 }
 
 export default createVuetify({
-    components: {
-        ...components,
-        ...labsComponents
-    },
+    components,
     directives,
     defaults: {
         VBtn: {
             color: 'primary',
             variant: 'flat',
             rounded: 'xl'
-        },
-        VMenu: {
-            location: 'bottom'
-        },
-        VCard: {
-            rounded: 'xl',
-            flat: true
         }
     },
     theme: {
