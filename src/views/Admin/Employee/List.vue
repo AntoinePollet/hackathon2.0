@@ -83,8 +83,8 @@
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 <div :class="user.isAvailable
-                                        ? 'h-3 w-3 rounded-full bg-green-500 m-auto'
-                                        : 'h-3 w-3 rounded-full bg-red-500 m-auto'
+                                    ? 'h-3 w-3 rounded-full bg-green-500 m-auto'
+                                    : 'h-3 w-3 rounded-full bg-red-500 m-auto'
                                     "></div>
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-2">
@@ -104,7 +104,7 @@
                                 </div>
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4">
-                                <input class="m-auto block" @click="selectUser(user)" type="checkbox" name="choisir" />
+                                <input class="m-auto block" @click.stop="selectUser(user)" type="checkbox" name="choisir" />
                             </td>
                         </tr>
                     </tbody>
