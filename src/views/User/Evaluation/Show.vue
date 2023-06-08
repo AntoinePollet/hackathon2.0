@@ -3,9 +3,9 @@
         <v-app>
             <v-main>
                 <div class="py-8">
-                <h1 class="text-3xl font-bold text-center mb-8">Évaluation des compétences du consultant</h1>
+                <h1 class="text-3xl font-bold text-center mb-8">Évaluation des compétences</h1>
 
-                <section class="mb-8" v-if="consultant !== null">
+                <section class="mb-8" v-if="user !== null">
                     <div class="bg-white p-4 shadow flex items-center">
                         <div class="mr-4">
                         <v-avatar size="72">
@@ -13,14 +13,14 @@
                         </v-avatar>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-semibold mb-2">{{ consultant.firstname }} {{ consultant.lastname }}</h2>
-                            <p class="text-lg">Consultant</p>
+                            <h2 class="text-2xl font-semibold mb-2">{{ user.firstname }} {{ user.lastname }}</h2>
+                            <p class="text-lg">{{ user.role }}</p>
                         </div>
                     </div>
                 </section>
 
-                <v-container v-if="consultant !== null">
-                    <div v-for="(skill, index) in consultant.skills" :key="index" class="mb-5">
+                <v-container v-if="user !== null">
+                    <div v-for="(skill, index) in user.skills" :key="index" class="mb-5">
                         <v-card>
                             <v-card-title class="text-lg">{{ skill.name }}</v-card-title>
                             <v-card-subtitle class="text-sm">{{ skill.category }}</v-card-subtitle>
@@ -55,22 +55,22 @@
 import { ref, onMounted } from 'vue';
 import { collection, getDocs, updateDoc, doc, query, where } from "firebase/firestore";
 import { firestoreDB } from "@/firebase";
-import { useRoute } from 'vue-router';
+import { useCurrentUser } from "vuefire"; 
 
-const route = useRoute();
-const uuid = route.params.id;
-let consultant: any = ref(null);
+let user: any = ref(null);
 const skillMaxRating = 4;
 const evaluationEffectuee = ref(false);
 
-onMounted(async () => {    
+onMounted(async () => {
     try {
         const usersFromFB = await getDocs(collection(firestoreDB, "users"));
 
         usersFromFB.forEach((doc) => {
             const data = doc.data();
-            if (data.uuid === uuid) {
-                consultant.value = data;
+            const currentUserLogged = useCurrentUser();
+
+            if (data.uuid === currentUserLogged.value?.uid) {
+                user.value = data;
             }
         });
         
@@ -81,7 +81,7 @@ onMounted(async () => {
 
 const updateSkillsRating = async () => {
     try {
-        const { uuid, skills } = consultant.value;
+        const { uuid, skills } = user.value;
 
         // Crée une référence à la collection "users" et utilise une requête pour retrouver le document avec le champ "uuid"
         const q = query(collection(firestoreDB, 'users'), where('uuid', '==', uuid));

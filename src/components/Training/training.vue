@@ -11,7 +11,7 @@
             {{ training.description }}
         </div>
         <div class="p-5">
-            <v-btn block @click="register()">
+            <v-btn block @click="register()" color="primary">
                 {{training.registered ? 'Se désinscrire' : 'S\'inscrire'}}
             </v-btn>
         </div>
