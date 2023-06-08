@@ -4,9 +4,9 @@
       News
     </div>
     <div class="flex mb-5 gap-4 items-center">
-      <router-link :to="{ name: 'admin-employees-create' }" class="p-2 hover:underline">
+      <!-- <router-link :to="{ name: 'admin-employees-create' }" class="p-2 hover:underline">
         New training
-      </router-link>
+      </router-link> -->
       <v-text-field label="search" variant="outlined" hide-details/>
       <v-btn variant="flat">Filter</v-btn>
     </div>
