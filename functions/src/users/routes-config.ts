@@ -9,31 +9,31 @@ export function routesConfig(app: Application) {
     app.post(
         "/users",
         isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "manager"] }),
+        isAuthorized({ hasRole: ["admin", "recruteur"] }),
         create
     );
     // lists all users
     app.get("/users", [
         isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "manager"] }),
+        isAuthorized({ hasRole: ["admin", "recruteur"] }),
         all,
     ]);
     // get :id user
     app.get("/users/:id", [
         isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true }),
+        isAuthorized({ hasRole: ["admin", "recruteur"], allowSameUser: true }),
         get,
     ]);
     // updates :id user
     app.patch("/users/:id", [
         isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true }),
+        isAuthorized({ hasRole: ["admin", "recruteur"], allowSameUser: true }),
         patch,
     ]);
     // deletes :id user
     app.delete("/users/:id", [
         isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "manager"] }),
+        isAuthorized({ hasRole: ["admin", "recruteur"] }),
         remove,
     ]);
     // hello world (basic example from firebase docs)

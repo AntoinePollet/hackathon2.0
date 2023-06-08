@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 
+type TRole = "admin" | "manager" | "consultant" | "recruteur";
+
 export function isAuthorized(opts: {
-    hasRole: Array<"admin" | "manager" | "user">;
+    hasRole: Array<TRole>;
     allowSameUser?: boolean;
 }) {
     return (req: Request, res: Response, next: any) => {

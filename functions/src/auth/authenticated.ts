@@ -27,7 +27,12 @@ export async function isAuthenticated(req: Request, res: Response, next: any) {
         res.locals = {
             ...res.locals,
             uid: decodedToken.uid,
-            role: decodedToken.role,
+            role:
+                decodedToken.role ||
+                (decodedToken.admin && "admin") ||
+                (decodedToken.manager && "manager") ||
+                (decodedToken.recruteur && "recruteur") ||
+                (decodedToken.consultant && "consultant"),
             email: decodedToken.email,
         };
         return next();
