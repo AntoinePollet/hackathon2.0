@@ -1,3 +1,5 @@
+import ClientProfileVue from "@/views/Profile/ClientProfile.vue";
+
 export default [
     {
         path: "/",
@@ -77,9 +79,17 @@ export default [
         component: () => import("@/views/Client/Client.vue"),
         children: [
             {
-                path: "profile",
-                name: "client-profile-show",
+                path: "profiles",
+                name: "client-profile-list",
                 component: () => import("@/views/Profile/Show.vue"),
+                meta: {
+                    publicAccess: true,
+                },
+            },
+            {
+                path: "profile/:id",
+                name: "client-profile-show",
+                component: () => import("@/views/Profile/ClientProfile.vue"),
                 meta: {
                     publicAccess: true,
                 },

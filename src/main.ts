@@ -12,8 +12,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faFire } from '@fortawesome/free-solid-svg-icons'
-library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faFire)
+import { faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire } from '@fortawesome/free-solid-svg-icons'
+library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire)
 
 const pinia = createPinia();
 
