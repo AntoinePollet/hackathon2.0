@@ -22,6 +22,27 @@
             </v-text-field>
         </div>
         <div class="flex-grow-1">
+            <div class="flex">
+                <p class="italic font-medium">Niveaux : </p>
+                <div class="flex flex-wrap gap-4 pl-4">
+                    <div class="flex items-center gap-x-2">
+                        <div class="h-3 w-3 rounded-full bg-h-green"></div>
+                        <p class="italic">Bronze</p>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <div class="h-3 w-3 rounded-full bg-h-blue"></div>
+                        <p class="italic">Silver</p>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <div class="h-3 w-3 rounded-full bg-h-red"></div>
+                        <p class="italic">Gold</p>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <div class="h-3 w-3 rounded-full bg-h-black"></div>
+                        <p class="italic">Diamond</p>
+                    </div>
+                </div>
+            </div>
             <div class="flex flex-wrap gap-2">
                 <template v-for="(skill, index) of selectedSkillsToFilter" :key="`skill-${index}`">
                     <span @click="removeSkill(skill)">
@@ -30,7 +51,6 @@
                 </template>
             </div>
             <div class="table-container">
-
                 <table class="min-w-full">
                     <thead class="bg-white border-b">
                         <tr>
@@ -57,7 +77,9 @@
                                 {{ user.firstname }} {{ user.lastname }}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {{ user.isAvailable }}
+                                <div
+                                    :class="user.isAvailable ? 'h-3 w-3 rounded-full bg-green-500 m-auto' : 'h-3 w-3 rounded-full bg-red-500 m-auto'">
+                                </div>
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4">
                                 <div class="flex flex-wrap gap-2">

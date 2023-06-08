@@ -85,7 +85,7 @@ const items = ref([
 ])
 
 const adminItems = ref([
-    { title: 'News', icon: 'fa-solid fa-newspaper', to: 'admin-news-list', value: 'admin-news' },
+    { title: 'Actualités', icon: 'fa-solid fa-newspaper', to: 'admin-news-list', value: 'admin-news' },
     { title: 'Employées', icon: 'fa-solid fa-face-grimace', to: 'admin-employees-list', value: 'admin-employees' },
     { title: 'Plannings', icon: 'fa-solid fa-calendar', to: 'admin-plannings-list', value: 'admin-plannings' },
     { title: 'Succès', icon: 'fa-solid fa-trophy', to: 'admin-achievements-list', value: 'admin-achievements' },
