@@ -237,6 +237,10 @@ export default [
         ],
     },
     {
+        path: "/share/:id",
+        component: () => import("@/views/Profile/Share.vue"),
+    },
+    {
         path: "/:pathMatch(.*)*",
         component: () => import("@/views/NotFound.vue"),
     },
