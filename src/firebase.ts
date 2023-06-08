@@ -32,10 +32,12 @@ const firestoreDB = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 
 export { firestoreDB, auth };
+
 export const eventsRef = useCollection(collection(firestoreDB, "events"));
 export const trainingsRef = useCollection(collection(firestoreDB, "trainings"));
 export const usersRolesRef = useCollection(
     collection(firestoreDB, "usersRoles")
 );
+export const usersRef = collection(firestoreDB, "users");
 
 export default firebaseApp;

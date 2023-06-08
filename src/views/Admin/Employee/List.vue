@@ -5,25 +5,12 @@
             <v-btn color="primary">
                 Nouveau
 
-                <v-dialog
-                    v-model="isDialogOpen"
-                    activator="parent"
-                    width="auto"
-                >
+                <v-dialog v-model="isDialogOpen" activator="parent" width="auto">
                     <v-card>
                         <div class="p-5" id="dialogCreate">
                             <h2 class="mb-4">Créer un utilisateur</h2>
-                            <v-text-field
-                                v-model="email"
-                                label="Email"
-                                outlined
-                            />
-                            <v-btn
-                                color="primary"
-                                block
-                                @click="handleSubmitNewUser"
-                                >Créer</v-btn
-                            >
+                            <v-text-field v-model="email" label="Email" outlined />
+                            <v-btn color="primary" block @click="handleSubmitNewUser">Créer</v-btn>
                         </div>
                     </v-card>
                 </v-dialog>
@@ -32,13 +19,8 @@
             <v-btn variant="flat">Filter</v-btn>
         </div>
         <div class="bg-red-100 flex-grow-1">
-            <v-data-table
-                :headers="headers"
-                :items="usersRolesRef"
-                class="elevation-1 border rounded-lg h-full"
-                height="600"
-                item-value="name"
-            ></v-data-table>
+            <v-data-table :headers="headers" :items="usersRolesRef" class="elevation-1 border rounded-lg h-full"
+                height="600" item-value="name"></v-data-table>
         </div>
     </div>
 </template>
