@@ -5,11 +5,8 @@
             <v-card class="w-2/3 shadow-none">
                 <div class="!p-0 !m-0 relative">
                     <div class="w-full h-36 border-b"></div>
-                    <img
-                        src="@/assets/logoCarbonGrey.svg"
-                        alt=""
-                        class="absolute h-32 w-32 bg-white -bottom-14 left-5 border-2 rounded-full"
-                    />
+                    <img src="@/assets/logoCarbonGrey.svg" alt=""
+                        class="absolute h-32 w-32 bg-white -bottom-14 left-5 border-2 rounded-full" />
                 </div>
                 <div class="flex flex-col py-16 px-6 gap-y-2 text-xl">
                     <div>

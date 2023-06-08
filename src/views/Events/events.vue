@@ -9,12 +9,14 @@ const { sortedEvents } = storeToRefs(eventStore);
 </script>
 
 <template>
-    <div class="text-center">
-        <h1 class="font-bold text-2xl py-3">Fil d'actualité</h1>
-    </div>
-    <div class="overflow-auto" style="height: calc(100vh - 56px)">
-        <div class="flex flex-col gap-y-3 p-5 w-3/4 m-auto">
-            <event v-for="event in sortedEvents" :key="event.id" :event="event" />
+    <div>
+        <div class="text-center">
+            <h1 class="font-bold text-2xl py-3">Fil d'actualité</h1>
+        </div>
+        <div class="overflow-auto">
+            <div class="flex flex-col gap-y-3 p-5 w-3/4 m-auto">
+                <event v-for="event in sortedEvents" :key="event.id" :event="event" />
+            </div>
         </div>
     </div>
 </template>
