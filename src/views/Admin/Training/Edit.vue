@@ -5,7 +5,7 @@
         </div>
         <div class="flex flex-wrap gap-6">
             <edit-training
-                :training="'1'"
+                :training="training"
             />
         </div>
     </div>
@@ -14,8 +14,22 @@
 <script setup lang="ts">
 import { useTrainingStore } from '@/stores/training';
 import { storeToRefs } from 'pinia';
-import CreateTraining from "@/components/Admin/Training/CreateTraining.vue";
+import {onMounted, ref} from "vue";
+import { useRoute } from "vue-router";
 import EditTraining from "@/components/Admin/Training/EditTraining.vue";
+import { TrainingDoc } from "@/interfaces/training";
 
 const trainingStore = useTrainingStore();
+const route = useRoute();
+
+const { getTraining } = trainingStore
+
+const training = ref<TrainingDoc>({});
+
+onMounted(async () => {
+    training.value = await getTraining(route.params.id)
+    training.value.id = route.params.id
+
+})
+
 </script>

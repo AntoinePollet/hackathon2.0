@@ -4,7 +4,7 @@ export interface TrainingDoc {
     id: string
     title: string
     description: string
-    type: string
-    start_at: Timestamp
-    end_at: Timestamp
+    start_at: Date
+    end_at: Date
+    registered: boolean
 }

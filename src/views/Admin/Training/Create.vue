@@ -10,9 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { useTrainingStore } from '@/stores/training';
-import { storeToRefs } from 'pinia';
 import CreateTraining from "@/components/Admin/Training/CreateTraining.vue";
 
-const trainingStore = useTrainingStore();
 </script>

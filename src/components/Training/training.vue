@@ -1,26 +1,28 @@
 <template>
-  <v-card
-    class="flex flex-col h-64 w-64"
-  >
-    <div class="p-5">
-      <p>{{ training.title }}</p>
-      <p class="text-sm">{{ formattedDate }}</p>
-    </div>
-    <v-divider class="border-black"/>
-    <div class="p-5 h-24 overflow-auto">
-      {{ training.description }}
-    </div>
-    <div class="p-5">
-      <v-btn block>
-        Register
-      </v-btn>
-    </div>
-  </v-card>
+    <v-card
+        class="flex flex-col h-64 w-64"
+    >
+        <div class="p-5">
+            <p>{{ training.title }}</p>
+            <p class="text-sm">{{ formattedDate }}</p>
+        </div>
+        <v-divider class="border-black"/>
+        <div class="p-5 h-24 overflow-auto">
+            {{ training.description }}
+        </div>
+        <div class="p-5">
+            <v-btn block @click="register()">
+                {{training.registered ? 'Se désinscrire' : 'S\'inscrire'}}
+            </v-btn>
+        </div>
+    </v-card>
 </template>
 
 <script setup lang="ts">
 import { PropType, computed } from 'vue';
 import { TrainingDoc } from "@/interfaces/training";
+import {useTrainingStore} from "@/stores/training";
+import {useRouter} from "vue-router";
 
 const props = defineProps({
   training: {
@@ -28,6 +30,17 @@ const props = defineProps({
     required: true
   }
 });
+
+const trainingStore = useTrainingStore();
+const { registerToTraining } = trainingStore;
+
+const register = () => {
+    try {
+        registerToTraining(!props.training.registered, props.training.id)
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 const formattedDate = computed(() => {
   return new Date(props.training.start_at.toDate()).toLocaleDateString('fr-FR', { day: "2-digit", month: "long", hour: "2-digit", minute: "2-digit" })
