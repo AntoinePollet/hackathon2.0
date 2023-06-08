@@ -231,8 +231,13 @@ export default [
             {
                 path: "password-forgot",
                 name: "password-forgot",
-                component: () => import("@/views/Session/Session/PasswordForgot.vue"),
+                component: () =>
+                    import("@/views/Session/Session/PasswordForgot.vue"),
             },
         ],
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        component: () => import("@/views/NotFound.vue"),
     },
 ];
