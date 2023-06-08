@@ -239,6 +239,9 @@ export default [
     {
         path: "/share/:id",
         component: () => import("@/views/Profile/Share.vue"),
+        meta: {
+            publicAccess: true,
+        },
     },
     {
         path: "/:pathMatch(.*)*",
