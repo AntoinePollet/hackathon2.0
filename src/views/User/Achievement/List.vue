@@ -9,8 +9,8 @@
         </div>
         <div class="flex flex-col gap-6">
             <achievement
-                    v-for="achievement in achievements"
-                    :achievement="achievement"
+                v-for="achievement in achievements"
+                :achievement="achievement"
             />
         </div>
     </div>

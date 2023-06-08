@@ -20,6 +20,7 @@
                     <v-btn class="m-2 w-full" color="primary">Edit</v-btn>
                 </router-link>
                 <v-btn class="m-2 w-full" color="primary" @click="deleteAchievement(achievement.id)">Delete</v-btn>
+                <assign-to-modal :achievement="achievement"/>
             </div>
         </div>
     </v-card>
@@ -29,6 +30,8 @@
 import {PropType, ref} from "vue";
 import {AchievementDoc} from "@/interfaces/achievement";
 import {useAchievementsStore} from "@/stores/achievements";
+import AssignToModal from "@/components/Admin/Achievement/AssignToModal.vue";
+import {Icon} from "@iconify/vue";
 
 const props = defineProps({
     achievement: {
@@ -37,6 +40,6 @@ const props = defineProps({
     }
 })
 const achievementStore = useAchievementsStore();
-const { deleteAchievement } = achievementStore;
+const { deleteAchievement, assignAchievement } = achievementStore;
 
 </script>

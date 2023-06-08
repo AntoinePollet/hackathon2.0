@@ -1,4 +1,5 @@
 import { SkillsI } from "./skills"
+import {AchievementDoc} from "@/interfaces/achievement";
 
 export interface UserI {
     id: string
@@ -10,6 +11,7 @@ export interface UserI {
     hiredate: string
     birthdate: string
     skills: SkillsI[]
+    achievements: AchievementDoc[]
 }
 
 export interface UpdateUser {
