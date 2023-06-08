@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
-import { firestoreDB, trainingsRef } from "@/firebase";
+import { firestoreDB } from "@/firebase";
 import { addDoc, collection, getDocs, onSnapshot, doc, serverTimestamp, DocumentData, updateDoc, getDoc, deleteDoc} from "firebase/firestore";
 import { AchievementDoc } from "@/interfaces/achievement";
+import {UserI} from "@/interfaces/user";
 export const useAchievementsStore = defineStore('achievements', () => {
 
     async function getAchievement(id: string) {
@@ -62,5 +63,18 @@ export const useAchievementsStore = defineStore('achievements', () => {
         }
     }
 
-    return { publishAchievement, updateAchievement, getAchievements, getAchievement, deleteAchievement }
+    async function assignAchievement(user: UserI, achievement: AchievementDoc) : Promise<any> {
+        try {
+            const userRef = doc(firestoreDB, "users", user.id);
+
+            await updateDoc(userRef, {
+                achievements: user?.achievements ? [...user?.achievements, achievement] : [achievement]
+            })
+
+        } catch (e) {
+
+        }
+    }
+
+    return { publishAchievement, updateAchievement, getAchievements, getAchievement, deleteAchievement, assignAchievement }
 })

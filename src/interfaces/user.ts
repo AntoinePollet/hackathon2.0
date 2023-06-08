@@ -1,5 +1,6 @@
 import { StoreActions } from "pinia"
 import { SkillsI } from "./skills"
+import {AchievementDoc} from "@/interfaces/achievement";
 
 export interface TrainingI {
     title: string
@@ -28,6 +29,7 @@ export interface UserI {
     position: string
     training: TrainingI[]
     jobs: JobI[]
+    achievements: AchievementDoc[]
 }
 
 export interface UpdateUser {
