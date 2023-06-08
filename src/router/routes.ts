@@ -60,13 +60,8 @@ export default [
                 component: () => import("@/views/User/Training/Show.vue"),
             },
             {
-                path: "evaluations",
-                name: "evaluations-list",
-                component: () => import("@/views/User/Evaluation/List.vue"),
-            },
-            {
-                path: "evaluation/:id",
-                name: "evaluations-show",
+                path: "evaluation",
+                name: "evaluation-show",
                 component: () => import("@/views/User/Evaluation/Show.vue"),
             },
             {
