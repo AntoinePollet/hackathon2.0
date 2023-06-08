@@ -1,8 +1,8 @@
 <template>
     <div class="p-10 gap-y-10">
         <div class="text-3xl font-bold mb-10">Profile</div>
-        <div class="1/3">
-            <v-card class="w-1/3 shadow-none">
+        <div class="w-500">
+            <v-card class="w-2/3 shadow-none">
                 <div class="!p-0 !m-0 relative">
                     <div class="w-full h-36 border-b"></div>
                     <img
@@ -48,6 +48,21 @@ console.log(
     "color: #007acc;",
     currentUserLoggedIn
 );
+
+// if (currentUserLoggedIn.value.accessToken) {
+//     fetch(
+//         "https://us-central1-hackathon2-0-d6ef2.cloudfunctions.net/api/users/LWsiztmrCPUbnSJZi4Qmqi43xc03",
+//         {
+//             headers: {
+//                 Authorization: `Bearer ${currentUserLoggedIn.value.accessToken}`,
+//             },
+//         }
+//     )
+//         .then((res) => res.json())
+//         .then((data) => {
+//             console.log("%cShow.vue line:61 data", "color: #007acc;", data);
+//         });
+// }
 </script>
 
 <style scoped></style>
