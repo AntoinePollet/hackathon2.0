@@ -16,6 +16,20 @@ export async function create(req: Request, res: Response) {
         });
         await admin.auth().setCustomUserClaims(uid, { role });
 
+        // add new user to usersRoles collection
+        await admin.firestore().collection("usersRoles").doc(uid).set({
+            email: email,
+            displayName: displayName,
+            role: role,
+        });
+
+        // add new user to users collection
+        await admin.firestore().collection("users").doc(uid).set({
+            email: email,
+            displayName: displayName,
+            role: role,
+        });
+
         return res.status(201).send({ uid });
     } catch (err) {
         return handleError(res, err);
