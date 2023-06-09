@@ -2,7 +2,7 @@
 import { useEventStore } from '@/stores/event';
 import { storeToRefs } from 'pinia';
 import event from '@/components/Event/event.vue';
-import {eventsRef} from "@/firebase";
+import { eventsRef } from "@/firebase";
 
 const eventStore = useEventStore();
 const { sortedEvents } = storeToRefs(eventStore);
