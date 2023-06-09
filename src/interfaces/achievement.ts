@@ -4,5 +4,5 @@ export interface AchievementDoc {
     id: string
     title: string
     description: string
-    icon: Date
+    icon: string
 }

@@ -21,7 +21,7 @@
                         <div class="p-6">
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-trophy"></FontAwesomeIcon>
-                                <h2 class="text-xl font-bold pl-4">{{ user?.skills.length }} Compétences</h2>
+                                <h2 class="text-xl font-bold pl-4">{{ user?.skills?.length }} Compétences</h2>
                             </div>
                             <p class="text-sm pt-2 italic">Small description for this card ...</p>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="p-6">
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-wallet"></FontAwesomeIcon>
-                                <h2 class="text-xl font-bold pl-4">{{ user?.jobs.length }} Missions</h2>
+                                <h2 class="text-xl font-bold pl-4">{{ user?.jobs?.length }} Missions</h2>
                             </div>
                             <p class="text-sm pt-2 italic">Small description for this card ...</p>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="p-6">
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-face-meh"></FontAwesomeIcon>
-                                <h2 class="text-xl font-bold pl-4">{{ user?.training.length }} Formations</h2>
+                                <h2 class="text-xl font-bold pl-4">{{ user?.training?.length }} Formations</h2>
                             </div>
                             <p class="text-sm pt-2 italic">Small description for this card ...</p>
                         </div>

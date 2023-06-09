@@ -7,8 +7,11 @@
 
         <div v-if="userById(userId)" class="grid grid-cols-4 pt-3">
             <div class="col-span-1">
-                <div class="h-32 w-32 bg-cover"
-                    :style="`background-image: url('https://api.multiavatar.com/${userById(userId).firstname}${userById(userId).lastname}.png?apikey=XdoCH30EA6grGx')`">
+                <div class="relative max-w-fit">
+                    <v-avatar size="120"
+                        image="https://images.unsplash.com/photo-1615807713086-bfc4975801d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"></v-avatar>
+
+                    <FontAwesomeIcon @click="handleShareProfile()" v-if="isCurrentUserAdminOrRecruteur" id="shareButton" class="absolute bottom-0 right-0 cursor-pointer" icon="fas fa-share" />
                 </div>
 
                 <div class="py-4">
@@ -137,13 +140,16 @@
 
 <script lang="ts" setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { useCurrentUser } from "vuefire";
+import { useCollection, useCurrentUser } from "vuefire";
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
 import { onMounted, computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router"
 import { Icon } from "@iconify/vue";
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { createToast } from "mosha-vue-toastify";
+import { addDoc, collection } from "firebase/firestore";
+import { firestoreDB } from "@/firebase";
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore();
@@ -155,6 +161,32 @@ const userr = ref()
 const userId = computed(() => {
     return route.params.id.toString()
 });
+
+const usersCollection =  useCollection(
+    collection(firestoreDB, "users")
+);
+
+// find the user by id in the users collection
+const userFinded = computed(() => {
+    return usersCollection.value.find((user) => user.uuid === userId.value);
+});
+
+
+const handleShareProfile = () => {
+    if (userFinded.value) {
+        addDoc(collection(firestoreDB, "shareProfils"), {
+            users: [userFinded.value],
+        }).then((docRef) => {
+            navigator.clipboard.writeText(window.location.origin + "/share/" + docRef.id);
+            createToast("Lien copié dans le presse-papier", {
+                position: "bottom-right",
+                timeout: 2000,
+                showIcon: true,
+                type: "success",
+            });
+        });
+    }
+}
 
 onMounted(async () => {
     try {
@@ -190,6 +222,30 @@ console.log(
     "color: #007acc;",
     currentUserLoggedIn
 );
+
+const isCurrentUserAdminOrRecruteur = ref(false);
+
+onAuthStateChanged(getAuth(), (userAuth) => {
+    if (userAuth) {
+        userAuth.getIdTokenResult().then(function ({ claims }) {
+            if (claims.admin || claims.recruteur) {
+                isCurrentUserAdminOrRecruteur.value = true;
+            }
+        });
+    }
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+#shareButton {
+    border: 1px solid black;
+    padding: 10px;
+    background-color: #5B98D2;
+    border-radius: 100%;
+    transition: 0.3s;
+}
+#shareButton:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+</style>

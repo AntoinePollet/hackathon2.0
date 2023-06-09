@@ -1,8 +1,12 @@
 <template>
     <div class="p-10 gap-y-10">
-        <div class="text-3xl font-bold mb-10">Profils partagés avec vous</div>
+        <div class="text-3xl font-bold mb-10">
+            {{
+                users.length > 1 ? "Les profils partagés" : "Le profil partagé"
+            }}
+        </div>
         <div class="w-500" v-for="(user, index) of users">
-            <v-card class="w-2/3 shadow-none">
+            <v-card class="w-2/3 shadow-none mb-10">
                 <div class="!p-0 !m-0 relative">
                     <div class="w-full h-36 border-b"></div>
                     <img
