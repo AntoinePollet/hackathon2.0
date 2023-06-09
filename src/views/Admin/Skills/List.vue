@@ -79,8 +79,9 @@ onMounted(async () => {
         const skillsFromFB = await getDocs(collection(firestoreDB, "commonSkills"));
 
         skillsFromFB.forEach((doc) => {
+            const id = doc.id;
             const data = doc.data();
-            skills.value.push(data);
+            skills.value.push({ id, ...data });
         });
         
         skills.value.sort((a, b) => {

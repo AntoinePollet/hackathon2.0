@@ -90,13 +90,7 @@ const items = ref([
         icon: "fa-solid fa-trophy",
         to: "achievements-list",
         value: "my-achievement",
-    },
-    {
-        title: "Evaluations",
-        icon: "fa-solid fa-graduation-cap",
-        to: "admin-evaluations",
-        value: "admin-evaluations",
-    },
+    }
 ]);
 
 const adminItems = ref([
@@ -136,6 +130,12 @@ const adminItems = ref([
         to: "admin-skills-list",
         value: "admin-skills",
     },
+    {
+        title: "Evaluations",
+        icon: "fa-solid fa-graduation-cap",
+        to: "admin-evaluations",
+        value: "admin-evaluations",
+    }
 ]);
 
 const clientItems = ref([
