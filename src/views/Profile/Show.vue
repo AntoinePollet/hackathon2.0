@@ -7,8 +7,9 @@
 
         <div v-if="user" class="grid grid-cols-4 pt-3">
             <div class="col-span-1">
-                <v-avatar size="120"
-                    image="https://images.unsplash.com/photo-1615807713086-bfc4975801d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"></v-avatar>
+                <div class="bg-cover h-32 w-32"
+                    :style="`background-image: url('https://api.multiavatar.com/${user.firstname}${user.lastname}.png?apikey=XdoCH30EA6grGx')`">
+                </div>
 
                 <div class="py-4">
                     <p class="font-semibold text-lg">{{ user?.firstname }} {{ user?.lastname }}</p>
@@ -21,7 +22,7 @@
                         <div class="p-6">
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-trophy"></FontAwesomeIcon>
-                                <h2 class="text-xl font-bold pl-4">{{ user?.skills.length }} Compétences</h2>
+                                <h2 class="text-xl font-bold pl-4">{{ user?.skills?.length }} Compétences</h2>
                             </div>
                             <p class="text-sm pt-2 italic">Small description for this card ...</p>
                         </div>
@@ -31,7 +32,7 @@
                         <div class="p-6">
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-wallet"></FontAwesomeIcon>
-                                <h2 class="text-xl font-bold pl-4">{{ user?.jobs.length }} Missions</h2>
+                                <h2 class="text-xl font-bold pl-4">{{ user?.jobs?.length }} Missions</h2>
                             </div>
                             <p class="text-sm pt-2 italic">Small description for this card ...</p>
                         </div>
@@ -41,7 +42,7 @@
                         <div class="p-6">
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-face-meh"></FontAwesomeIcon>
-                                <h2 class="text-xl font-bold pl-4">{{ user?.training.length }} Formations</h2>
+                                <h2 class="text-xl font-bold pl-4">{{ user?.training?.length }} Formations</h2>
                             </div>
                             <p class="text-sm pt-2 italic">Small description for this card ...</p>
                         </div>

@@ -125,6 +125,9 @@ export default [
                 path: "employees",
                 name: "admin-employees-list",
                 component: () => import("@/views/Admin/Employee/List.vue"),
+                meta: {
+                    adminAccess: true,
+                },
             },
             {
                 path: "employee/:id",

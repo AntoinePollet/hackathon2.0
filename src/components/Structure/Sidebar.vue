@@ -4,7 +4,7 @@
             <img src="@/assets/logoCarbonGrey.svg" height="500" width="500" alt="" />
         </div>
         <div class="flex flex-col gap-y-1">
-            <router-link v-for="item in items" :to="{ name: item.to }"
+            <router-link v-if="currentUserRole === 'consultant'" v-for="item in items" :to="{ name: item.to }"
                 class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
                     <font-awesome-icon :icon="item.icon" />
@@ -14,18 +14,8 @@
 
             <v-divider class="border-black"></v-divider>
 
-            <router-link v-for="item in adminItems" :to="{ name: item.to }"
-                class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
-                <div class="flex items-center px-4 py-2 gap-x-3">
-                    <font-awesome-icon :icon="item.icon" />
-                    {{ item.title }}
-                </div>
-            </router-link>
-
-            <v-divider class="border-black"></v-divider>
-
-            <router-link v-for="item in clientItems" :to="{ name: item.to }"
-                class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
+            <router-link v-if="currentUserRole === 'admin' || currentUserRole === 'manager'" v-for="item in adminItems"
+                :to="{ name: item.to }" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
                     <font-awesome-icon :icon="item.icon" />
                     {{ item.title }}
@@ -48,15 +38,24 @@ import { onMounted, ref } from "vue";
 import router from "@/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useCurrentUser } from "vuefire";
-const isCurrentUserAdmin = ref(false);
+
+const currentUserRole = ref("");
 
 const currentUserLogged = useCurrentUser();
 
 onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {
         userAuth.getIdTokenResult().then(function ({ claims }) {
-            if (claims.admin) {
-                isCurrentUserAdmin.value = true;
+            if (claims) {
+                if (claims.admin) {
+                    currentUserRole.value = "admin";
+                } else if (claims.recruteur) {
+                    currentUserRole.value = "recruteur"
+                } else if (claims.manager) {
+                    currentUserRole.value = "manager"
+                } else {
+                    currentUserRole.value = "consultant"
+                }
             }
         });
     }
