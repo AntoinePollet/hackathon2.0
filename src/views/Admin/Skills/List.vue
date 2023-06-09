@@ -76,14 +76,16 @@ const skillToDelete = ref({})
 
 onMounted(async () => {
     try {
-        const skillsFromFB = await getDocs(collection(firestoreDB, "commonSkills"));
+      const skillsCollection = collection(firestoreDB, 'commonSkills');
 
-        skillsFromFB.forEach((doc) => {
-            const id = doc.id;
-            const data = doc.data();
-            skills.value.push({ id, ...data });
+      onSnapshot(skillsCollection, (snapshot) => {
+        skills.value = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const dataAndId = {...data, id: doc.id};
+          skills.value.push(dataAndId);
         });
-        
+
         skills.value.sort((a, b) => {
           if (a.category < b.category) {
             return -1;
@@ -93,6 +95,7 @@ onMounted(async () => {
             return 0;
           }
         });
+      });
         
     } catch (error) {
         console.log(error);
@@ -162,6 +165,10 @@ const deleteSkill = async (skill) => {
   } catch (error) {
     console.log(error);
   }
+}
+
+const closeDeleteDialog = () => {
+  deleteDialog.value = false;
 }
 
 onAuthStateChanged(getAuth(), (userAuth) => {
