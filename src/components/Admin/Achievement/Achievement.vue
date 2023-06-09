@@ -1,25 +1,24 @@
 <template>
     <v-card
-        class="flex h-32 w-full"
+        class="flex w-64"
     >
-        <div class="flex">
-            <div class="flex-none h-32 w-32 p-5">
+        <div class="flex flex-col p-4">
+            <div class="flex h-32 w-full p-5">
                 <Icon
-                    icon="game-icons:achievement"
+                    :icon="`flat-color-icons:${achievement.icon}`"
                     class="h-full w-full"
                 />
             </div>
             <div class="p-5 grow">
-                <p class="text-2xl font-bold">{{ achievement.title }}</p>
-                <p class="h-16 overflow-auto">
-                    {{ achievement.description }}
-                </p>
+                <p class="text-2xl font-bold text-center">{{ achievement.title }}</p>
             </div>
-            <div class="flex flex-col items-center p-3">
-                <router-link :to="{name: 'admin-achievements-edit', params: { id: achievement.id }}">
-                    <v-btn class="m-2 w-full" color="primary">Edit</v-btn>
-                </router-link>
-                <v-btn class="m-2 w-full" color="primary" @click="deleteAchievement(achievement.id)">Delete</v-btn>
+            <div class="flex flex-col items-center">
+                <div class="flex w-full">
+                    <router-link :to="{name: 'admin-achievements-edit', params: { id: achievement.id }}" class="w-1/2">
+                        <v-btn class="w-full" color="primary">Edit</v-btn>
+                    </router-link>
+                    <v-btn class=" w-1/2" color="primary" @click="deleteAchievement(achievement.id)">Delete</v-btn>
+                </div>
                 <assign-to-modal :achievement="achievement"/>
             </div>
         </div>
@@ -27,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import {PropType, ref} from "vue";
+import {onMounted, PropType, ref} from "vue";
 import {AchievementDoc} from "@/interfaces/achievement";
 import {useAchievementsStore} from "@/stores/achievements";
 import AssignToModal from "@/components/Admin/Achievement/AssignToModal.vue";
@@ -39,7 +38,11 @@ const props = defineProps({
         required: true
     }
 })
+
+const icons = ref()
+
 const achievementStore = useAchievementsStore();
 const { deleteAchievement, assignAchievement } = achievementStore;
+
 
 </script>

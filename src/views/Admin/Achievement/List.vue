@@ -10,7 +10,7 @@
       <v-text-field label="search" variant="outlined" hide-details/>
       <v-btn variant="flat">Filter</v-btn>
     </div>
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-wrap gap-6">
         <achievement
             v-for="achievement in achievements"
             :achievement="achievement"
