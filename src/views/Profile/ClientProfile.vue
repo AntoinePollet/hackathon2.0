@@ -8,10 +8,11 @@
         <div v-if="userById(userId)" class="grid grid-cols-4 pt-3">
             <div class="col-span-1">
                 <div class="relative max-w-fit">
-                    <v-avatar size="120"
-                        image="https://images.unsplash.com/photo-1615807713086-bfc4975801d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80"></v-avatar>
-
-                    <FontAwesomeIcon @click="handleShareProfile()" v-if="isCurrentUserAdminOrRecruteur" id="shareButton" class="absolute bottom-0 right-0 cursor-pointer" icon="fas fa-share" />
+                    <div class="bg-cover h-32 w-32"
+                        :style="`background-image: url('https://api.multiavatar.com/${userById(userId)?.firstname}${userById(userId)?.lastname}.png?apikey=XdoCH30EA6grGx')`">
+                    </div>
+                    <FontAwesomeIcon @click="handleShareProfile()" v-if="isCurrentUserAdminOrRecruteur" id="shareButton"
+                        class="absolute bottom-0 right-0 cursor-pointer" icon="fas fa-share" />
                 </div>
 
                 <div class="py-4">
@@ -162,7 +163,7 @@ const userId = computed(() => {
     return route.params.id.toString()
 });
 
-const usersCollection =  useCollection(
+const usersCollection = useCollection(
     collection(firestoreDB, "users")
 );
 
@@ -244,6 +245,7 @@ onAuthStateChanged(getAuth(), (userAuth) => {
     border-radius: 100%;
     transition: 0.3s;
 }
+
 #shareButton:hover {
     opacity: 0.8;
     transition: 0.3s;

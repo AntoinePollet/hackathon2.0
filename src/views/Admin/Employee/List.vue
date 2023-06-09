@@ -9,8 +9,16 @@
                     <v-card>
                         <div class="p-5" id="dialogCreate">
                             <h2 class="mb-4">Créer un utilisateur</h2>
-                            <v-text-field v-model="email" label="Email" outlined />
-                            <v-btn color="primary" block @click="handleSubmitNewUser">Créer</v-btn>
+                            <v-text-field v-model="newUserData.email" label="Email" outlined />
+                            <v-text-field v-model="newUserData.firstname" label="Prénom" outlined />
+                            <v-text-field v-model="newUserData.lastname" label="Nom" outlined />
+                            <v-radio-group label="Rôle de l'utilisateur" v-model="newUserData.role">
+                                <v-radio label="Admin" value="admin" />
+                                <v-radio label="Recruteur" value="recruteur" />
+                                <v-radio label="Consultant" value="consultant" />
+                                <v-radio label="Manager" value="manager" />
+                            </v-radio-group>
+                            <v-btn color="primary" block @click="handleSubmitNewUser()" :disabled="isButtonNewUserSubmittes">Créer</v-btn>
                         </div>
                     </v-card>
                 </v-dialog>
@@ -136,7 +144,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { usersRef, firestoreDB } from "@/firebase";
+import { firestoreDB } from "@/firebase";
 
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
@@ -145,6 +153,8 @@ import { addDoc, collection } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { useRouter } from "vue-router";
 import { createToast } from "mosha-vue-toastify"
+import { useCurrentUser } from "vuefire";
+import axios from "axios";
 
 const usersSelected = ref<any[]>([]);
 const isShareProfilDialogOpen = ref<boolean>(false);
@@ -190,7 +200,6 @@ const { users } = storeToRefs(userStore);
 
 const selectedSkillsToFilter = ref<string[]>([]);
 const isDialogOpen = ref<boolean>(false);
-const email = ref<string>("");
 const filter = ref<string>("");
 
 onMounted(async () => {
@@ -201,37 +210,6 @@ onMounted(async () => {
 
 const navigateToProfile = (userId: string) => {
     router.push({ name: "client-profile-show", params: { id: userId } })
-}
-
-const addConsultant = async () => {
-    const data = {
-        firstname: "paul",
-        lastname: "consultant",
-        birthdate: "1 Janvier 1990",
-        hiredate: "8 Mars 2021",
-        role: "consultant",
-        isAvailable: true,
-        email: "test@gmail.com",
-        uuid: "669Jkhq6LSTa3rFq8rFhEmHfGqr2",
-        skills: [
-            {
-                name: "Express",
-                category: "Résolution de problèmes algorithmiques",
-                rating: 1,
-            },
-            {
-                name: "Nest",
-                category: "Résolution de problèmes algorithmiques",
-                rating: 2,
-            },
-            {
-                name: "Magician lord supreme",
-                category: "Résolution de problèmes algorithmiques",
-                rating: 1,
-            },
-        ],
-    };
-    await addDoc(usersRef, data);
 }
 
 const skillLevelColor = (rating: number) => {
@@ -291,45 +269,50 @@ const filteredUsers = computed(() => {
     return filterUsers;
 });
 
-// const currentUserLoggedIn: any = useCurrentUser();
+const currentUserLoggedIn: any = useCurrentUser();
+
+const newUserData = ref({
+    role: "consultant",
+    email: "",
+    firstname: "",
+    lastname: "",
+});
+
+const isButtonNewUserSubmittes = ref(false);
 
 const handleSubmitNewUser = () => {
-    // Error have "missing fields" but when testing with postman it works...
-    // if (currentUserLoggedIn?.value?.accessToken) {
-    //     fetch(
-    //         "https://us-central1-hackathon2-0-d6ef2.cloudfunctions.net/api/users",
-    //         {
-    //             headers: {
-    //                 Authorization: `Bearer ${currentUserLoggedIn.value.accessToken}`,
-    //             },
-    //             method: "POST",
-    //             body: JSON.stringify({
-    //                 role: "consultant",
-    //                 email: "consul@teest.fr",
-    //                 password: "testtest",
-    //                 displayName: "marc",
-    //             }),
-    //         }
-    //     )
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log("%cShow.vue line:61 data", "color: #007acc;", data);
-    //         });
-    // }
-    isDialogOpen.value = false;
+    if (currentUserLoggedIn?.value?.accessToken) {
+        isButtonNewUserSubmittes.value = true;
+        axios
+            .post(
+                `${import.meta.env.VITE_FIRESTORE_API}/users`,
+                {
+                    role: newUserData.value.role,
+                    email: newUserData.value.email,
+                    firstname: newUserData.value.firstname,
+                    lastname: newUserData.value.lastname
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${currentUserLoggedIn.value.accessToken}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log("%cShow.vue line:61 res", "color: #007acc;", res);
+                isDialogOpen.value = false;
+            })
+            .catch((err) => {
+                console.log("%cShow.vue line:61 err", "color: #007acc;", err);
+                alert("Une erreur est survenue lors de la création de l'utilisateur")
+            })
+            .finally(() => {
+                isButtonNewUserSubmittes.value = false;
+            });
+    }
+
 };
 
-const headers = ref([
-    {
-        title: "email",
-        align: "start",
-        // sortable: false,
-        key: "email",
-    },
-    { title: "Prénom", align: "end", key: "firstname" },
-    { title: "Nom", align: "end", key: "fat" },
-    { title: "Poste actuel", align: "end", key: "carbs" },
-]);
 </script>
 
 <style scoped>

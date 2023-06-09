@@ -1,34 +1,49 @@
 import { Request, Response } from "express";
 import * as admin from "firebase-admin";
+import { v4 as uuidv4 } from "uuid";
 
 export async function create(req: Request, res: Response) {
     try {
-        const { displayName, password, email, role } = req.body;
+        const { firstname, lastname, email, role } = req.body;
 
-        if (!displayName || !password || !email || !role) {
+        if (!firstname || !lastname || !email || !role) {
             return res.status(400).send({ message: "Missing fields" });
         }
 
         const { uid } = await admin.auth().createUser({
-            displayName,
-            password,
             email,
+            password: uuidv4(),
         });
-        await admin.auth().setCustomUserClaims(uid, { role });
+        await admin
+            .auth()
+            .setCustomUserClaims(uid, { role, lastname, firstname });
 
         // add new user to usersRoles collection
         await admin.firestore().collection("usersRoles").doc(uid).set({
             email: email,
-            displayName: displayName,
             role: role,
+            firstname: firstname,
+            lastname: lastname,
         });
 
+        // get collection "commonSkills"
+        const commonSkills = await admin
+            .firestore()
+            .collection("commonSkills")
+            .get();
+
         // add new user to users collection
-        await admin.firestore().collection("users").doc(uid).set({
-            email: email,
-            displayName: displayName,
-            role: role,
-        });
+        await admin
+            .firestore()
+            .collection("users")
+            .doc(uid)
+            .set({
+                email: email,
+                firstname: firstname,
+                lastname: lastname,
+                role: role,
+                skills: commonSkills.docs.map((doc) => doc.data()),
+            });
 
         return res.status(201).send({ uid });
     } catch (err) {
@@ -82,13 +97,13 @@ export async function get(req: Request, res: Response) {
 export async function patch(req: Request, res: Response) {
     try {
         const { id } = req.params;
-        const { displayName, password, email, role } = req.body;
+        const { displayName, email, role } = req.body;
 
-        if (!id || !displayName || !password || !email || !role) {
+        if (!id || !displayName || !email || !role) {
             return res.status(400).send({ message: "Missing fields" });
         }
 
-        await admin.auth().updateUser(id, { displayName, password, email });
+        await admin.auth().updateUser(id, { displayName, email });
         await admin.auth().setCustomUserClaims(id, { role });
         const user = await admin.auth().getUser(id);
 
