@@ -1,6 +1,6 @@
 <template>
-    <v-btn color="primary">
-        Nouveau
+    <v-btn color="primary" block>
+        Assigner
         <v-dialog
             v-model="isDialogOpen"
             activator="parent"
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import {PropType, ref} from "vue";
+import {onMounted, PropType, ref} from "vue";
 import {AchievementDoc} from "@/interfaces/achievement";
 import {useCollection} from "vuefire";
 import {collection} from "firebase/firestore";
