@@ -39,8 +39,8 @@ onMounted(async () => {
             <div class="flex">
                 <button
                     class="p-3 hover:bg-neutral-100 gap-2 flex items-center"
-                    :class="event?.like?.includes(currentUserUid.toString()) ? 'bg-neutral-100' : null"
-                    @click="event?.like?.includes(currentUserUid.toString()) ? unlikeEvent(event) : likeEvent(event)"
+                    :class="event?.like?.includes(currentUserUid?.toString()) ? 'bg-neutral-100' : null"
+                    @click="event?.like?.includes(currentUserUid?.toString()) ? unlikeEvent(event) : likeEvent(event)"
                 >
                     {{event?.like?.length}}
                     <Icon
