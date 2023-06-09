@@ -32,6 +32,12 @@ export default createVuetify({
             color: 'primary',
             variant: 'flat',
             rounded: 'xl'
+        },
+        VSelect: {
+            color: 'primary',
+            variant: 'flat',
+            rounded: 'xl',
+            bgColor: 'transparent',
         }
     },
     theme: {
