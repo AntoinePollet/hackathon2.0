@@ -6,6 +6,6 @@ import Dashboard from '@/components/Dashboard.vue';
 <template>
     <div class="flex gap-x-2">
         <Dashboard class="w-1/2"></Dashboard>
-        <events class="w-1/2"></events>
+        <events class="w-1/2 overflow-auto"></events>
     </div>
 </template>
