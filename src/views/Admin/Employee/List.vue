@@ -274,9 +274,9 @@ const filteredUsers = computed(() => {
     if (filter.value.length > 0) {
         return filterUsers.filter((user) => {
             return (
-                user.firstname.indexOf(filter.value) !== -1 ||
-                user.lastname.indexOf(filter.value) !== -1 ||
-                user.email.indexOf(filter.value) !== -1
+                user.firstname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
+                user.lastname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
+                user.email.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
             );
         });
     }
