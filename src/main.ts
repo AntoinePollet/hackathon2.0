@@ -9,11 +9,12 @@ import Vue3Lottie from 'vue3-lottie'
 import vuetify from './plugins/vuetify';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import 'mosha-vue-toastify/dist/style.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire } from '@fortawesome/free-solid-svg-icons'
-library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire)
+import { faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire, faShare } from '@fortawesome/free-solid-svg-icons'
+library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire, faShare)
 
 const pinia = createPinia();
 

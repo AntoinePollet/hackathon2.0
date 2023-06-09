@@ -144,6 +144,7 @@ import { onMounted } from "vue";
 import { addDoc, collection } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { useRouter } from "vue-router";
+import { createToast } from "mosha-vue-toastify"
 
 const usersSelected = ref<any[]>([]);
 const isShareProfilDialogOpen = ref<boolean>(false);
@@ -154,6 +155,12 @@ const currentDomain = window.location.origin;
 const handleCopyAndCloseDialog = () => {
     navigator.clipboard.writeText(currentDomain + "/share/" + uid.value);
     isShareProfilDialogOpen.value = false;
+    createToast("Lien copié dans le presse-papier", {
+        position: "bottom-right",
+        timeout: 2000,
+        showIcon: true,
+        type: "success",
+    });
 };
 
 const selectUser = (user: any) => {
