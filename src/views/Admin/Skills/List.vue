@@ -1,6 +1,6 @@
 <template>
   <div class="p-10 gap-y-10">
-    <h1 class="text-3xl font-bold mb-8">Définissez les compétences minimales pour un Carbon</h1>
+    <h1 class="text-3xl font-bold mb-8">Définissez les compétences communes pour tous les nouveaux Carbon</h1>
     <div class="flex flex-wrap">
       <div v-for="skill in skills" :key="skill.name" class="w-1/4 p-4">
         <v-card outlined class="text-center">
@@ -21,20 +21,20 @@
     <div class="my-8">
       <h2 class="text-2xl font-bold mb-4">Ajouter une compétence</h2>
       <form @submit.prevent="addSkill">
-        <v-text-field v-model="newSkill.name" label="Nom" required></v-text-field>
-        <v-text-field v-model="newSkill.category" label="Catégorie" required></v-text-field>
+        <v-text-field variant="outlined" v-model="newSkill.name" label="Nom" required></v-text-field>
+        <v-text-field variant="outlined" v-model="newSkill.category" label="Catégorie" required></v-text-field>
         <v-btn color="primary" type="submit">Ajouter</v-btn>
       </form>
     </div>
     <v-dialog v-model="editDialog" max-width="500px">
       <v-card>
         <v-card-title>
-          Modifier le skill
+          Modifier la compétence
         </v-card-title>
         <v-card-text>
           <v-form @submit.prevent="saveSkill">
-            <v-text-field v-model="editedSkill.name" label="Nom" required></v-text-field>
-            <v-text-field v-model="editedSkill.category" label="Catégorie" required></v-text-field>
+            <v-text-field variant="outlined" v-model="editedSkill.name" label="Nom" required></v-text-field>
+            <v-text-field variant="outlined" v-model="editedSkill.category" label="Catégorie" required></v-text-field>
             <v-card-actions>
               <v-btn color="primary" type="submit">Enregistrer</v-btn>
               <v-btn color="error" @click="closeEditDialog">Annuler</v-btn>
@@ -122,7 +122,6 @@ const closeEditDialog = () => {
 }
 
 const saveSkill = async () => {
-  // Logique pour enregistrer les modifications du skill ici
   const skillToEdit = doc(firestoreDB, "commonSkills", editedSkill.value.id);
 
   await updateDoc(skillToEdit, {
@@ -132,7 +131,7 @@ const saveSkill = async () => {
 
   editDialog.value = false;
 
-  createToast("Skill modifié", {
+  createToast("Compétence modifiée", {
     position: "bottom-right",
     timeout: 2000,
     showIcon: true,

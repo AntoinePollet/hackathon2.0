@@ -215,16 +215,6 @@ export default [
                 component: () => import("@/views/Admin/Skills/List.vue"),
             },
             {
-                path: "skills/create",
-                name: "admin-skills-create",
-                component: () => import("@/views/Admin/Skills/Create.vue"),
-            },
-            {
-                path: "skills/:id/edit",
-                name: "admin-skills-edit",
-                component: () => import("@/views/Admin/Skills/Edit.vue"),
-            },
-            {
                 path: "evaluations",
                 name: "admin-evaluations",
                 component: () => import("@/views/Admin/Evaluation/List.vue"),
