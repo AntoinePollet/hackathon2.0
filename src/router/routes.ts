@@ -251,6 +251,9 @@ export default [
                 name: "password-forgot",
                 component: () =>
                     import("@/views/Session/Session/PasswordForgot.vue"),
+                meta: {
+                    publicAccess: true,
+                },
             },
         ],
     },

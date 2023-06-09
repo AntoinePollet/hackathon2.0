@@ -11,7 +11,7 @@
                 required
             />
             <v-text-field
-                label="Password"
+                label="Mot de passe"
                 type="password"
                 class="w-full"
                 variant="outlined"
@@ -19,10 +19,9 @@
                 hide-details
             />
             <v-btn
-                text="Sign In"
-                variant="outlined"
+                text="Se connecter"
                 class="hover:bg-h-blue focus:bg-h-blue active:bg-h-blue bg-h-blue"
-                color="none"
+                color="primary"
                 type="submit"
             />
         </form>
@@ -30,7 +29,7 @@
             :to="{ name: 'password-forgot' }"
             class="p-2 hover:underline"
         >
-            Password forgot ?
+            Mot de passe oublié ?
         </router-link>
     </div>
 </template>

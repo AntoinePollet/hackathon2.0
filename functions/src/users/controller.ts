@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import * as admin from "firebase-admin";
-import { v4 as uuidv4 } from "uuid";
 
 export async function create(req: Request, res: Response) {
     try {
@@ -12,7 +11,7 @@ export async function create(req: Request, res: Response) {
 
         const { uid } = await admin.auth().createUser({
             email,
-            password: uuidv4(),
+            password: firstname + lastname,
         });
         await admin
             .auth()
