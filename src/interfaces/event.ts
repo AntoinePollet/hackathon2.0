@@ -1,10 +1,12 @@
 import { Timestamp } from "firebase/firestore"
+import {UserI} from "@/interfaces/user";
 
 export interface EventDoc {
     id: string
     title: string
     description: string
     type: string
+    like: string[]
     created_at: Timestamp
 }
 
