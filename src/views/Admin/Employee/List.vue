@@ -112,7 +112,7 @@
             </div>
 
             <div class="flex justify-center">
-                <v-btn color="primary" class="mt-4" @click="addDocForSharingProfils()"
+                <v-btn color="primary" class="mt-4 mb-10" @click="addDocForSharingProfils()"
                     :disabled="usersSelected.length === 0">
                     Partager ces profils
                 </v-btn>
@@ -120,7 +120,7 @@
                     <v-card>
                         <v-card-text>
                             Voici l'url que vous pouvez partager :
-                            {{ currentDomain + "/" + uid }}
+                            {{ currentDomain + "/share/" + uid }}
                         </v-card-text>
                         <v-card-actions>
                             <v-btn color="primary" block @click="handleCopyAndCloseDialog()">Copier</v-btn>
@@ -150,7 +150,7 @@ const uid = ref<string>("");
 const currentDomain = window.location.origin;
 
 const handleCopyAndCloseDialog = () => {
-    navigator.clipboard.writeText(currentDomain + "/" + uid.value);
+    navigator.clipboard.writeText(currentDomain + "/share/" + uid.value);
     isShareProfilDialogOpen.value = false;
 };
 
@@ -274,9 +274,9 @@ const filteredUsers = computed(() => {
     if (filter.value.length > 0) {
         return filterUsers.filter((user) => {
             return (
-                user.firstname.indexOf(filter.value) !== -1 ||
-                user.lastname.indexOf(filter.value) !== -1 ||
-                user.email.indexOf(filter.value) !== -1
+                user.firstname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
+                user.lastname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
+                user.email.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
             );
         });
     }

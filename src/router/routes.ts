@@ -9,7 +9,7 @@ export default [
             {
                 path: "",
                 name: "news-list",
-                component: () => import("@/views/Events/events.vue"),
+                component: () => import("@/views/Home.vue"),
             },
             {
                 path: "profile",
@@ -199,7 +199,7 @@ export default [
             {
                 path: "news",
                 name: "admin-news-list",
-                component: () => import("@/views/Events/events.vue"),
+                component: () => import("@/views/Home.vue"),
             },
             {
                 path: "news/create",

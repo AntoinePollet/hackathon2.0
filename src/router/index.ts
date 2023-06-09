@@ -8,7 +8,7 @@ const router = createRouter({
     routes,
 });
 
-async function getCurrentUser(): Promise<User | null> {
+export async function getCurrentUser(): Promise<User | null> {
     return new Promise((resolve, reject) => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             unsubscribe();
