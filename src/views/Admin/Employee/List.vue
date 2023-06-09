@@ -2,22 +2,43 @@
     <div class="p-10 gap-y-10">
         <div class="text-3xl font-bold mb-10">Employées</div>
         <div class="flex mb-5 gap-4 items-center">
-            <v-btn color="primary" @click="generateUsers">Générer des users</v-btn>
+            <v-btn color="primary" @click="addConsultant">Add</v-btn>
             <v-btn color="primary">
                 Nouveau
-                <v-dialog v-model="isDialogOpen" activator="parent" width="auto">
+                <v-dialog
+                    v-model="isDialogOpen"
+                    activator="parent"
+                    width="auto"
+                >
                     <v-card>
                         <div class="p-5" id="dialogCreate">
                             <h2 class="mb-4">Créer un utilisateur</h2>
-                            <v-text-field v-model="email" label="Email" outlined />
-                            <v-btn color="primary" block @click="handleSubmitNewUser">Créer</v-btn>
+                            <v-text-field
+                                v-model="email"
+                                label="Email"
+                                outlined
+                            />
+                            <v-btn
+                                color="primary"
+                                block
+                                @click="handleSubmitNewUser"
+                                >Créer</v-btn
+                            >
                         </div>
                     </v-card>
                 </v-dialog>
             </v-btn>
-            <v-text-field v-model="filter" label="Rechercher" variant="outlined" hide-details density="compact">
+            <v-text-field
+                v-model="filter"
+                label="Rechercher"
+                variant="outlined"
+                hide-details
+                density="compact"
+            >
                 <template #prepend-inner>
-                    <FontAwesomeIcon icon="fa-solid fa-search"></FontAwesomeIcon>
+                    <FontAwesomeIcon
+                        icon="fa-solid fa-search"
+                    ></FontAwesomeIcon>
                 </template>
             </v-text-field>
         </div>
@@ -44,7 +65,10 @@
                 </div>
             </div>
             <div class="flex flex-wrap gap-2">
-                <template v-for="(skill, index) of selectedSkillsToFilter" :key="`skill-${index}`">
+                <template
+                    v-for="(skill, index) of selectedSkillsToFilter"
+                    :key="`skill-${index}`"
+                >
                     <span @click="removeSkill(skill)">
                         <v-chip>{{ skill }}</v-chip>
                     </span>
@@ -54,19 +78,34 @@
                 <table class="min-w-full">
                     <thead class="bg-white border-b">
                         <tr>
-                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                            <th
+                                scope="col"
+                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
                                 Email
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                            <th
+                                scope="col"
+                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
                                 Nom
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                            <th
+                                scope="col"
+                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
                                 Disponible
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                            <th
+                                scope="col"
+                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
                                 Compétences
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            <th
+                                scope="col"
+                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                            >
                                 Selectionner
                             </th>
                         </tr>
@@ -74,37 +113,90 @@
                     <tbody>
                         <tr v-for="(user, index) of filteredUsers"
                             class="hover:bg-gray-200 bg-gray-100 border-b cursor-pointer"
+                            :class="usersSelected.includes(user) ? 'bg-purple-100 hover:bg-purple-200' : 'bg-gray-100'"
+
                             @click.stop="navigateToProfile(user.uuid)">
                             <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 {{ user.email }}
                             </td>
-                            <td class="text-sm text-gray-900 font-medium px-6 py-2 whitespace-nowrap">
+                            <td
+                                class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                            >
                                 {{ user.firstname }} {{ user.lastname }}
                             </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                <div :class="user.isAvailable
-                                    ? 'h-3 w-3 rounded-full bg-green-500 m-auto'
-                                    : 'h-3 w-3 rounded-full bg-red-500 m-auto'
-                                    "></div>
+                            <td
+                                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                            >
+                                <div
+                                    :class="
+                                        user.isAvailable
+                                            ? 'h-3 w-3 rounded-full bg-green-500 m-auto'
+                                            : 'h-3 w-3 rounded-full bg-red-500 m-auto'
+                                    "
+                                ></div>
                             </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-2">
+                            <td
+                                class="text-sm text-gray-900 font-light px-6 py-4"
+                            >
                                 <div class="flex flex-wrap gap-2">
                                     <template v-for="skill in user.skills">
-                                        <v-tooltip v-if="skill.name.split(' ').length > 2" :text="skill.name">
-                                            <template v-slot:activator="{ props }">
-                                                <span @click.stop="filterBySkill(skill.name)">
-                                                    <v-chip v-bind="props"
-                                                        :color="skillLevelColor(skill.rating)">{{ ellipsisIfMoreThanThreeWords(skill.name) }}</v-chip>
+                                        <v-tooltip
+                                            v-if="
+                                                skill.name.split(' ').length > 2
+                                            "
+                                            :text="skill.name"
+                                        >
+                                            <template
+                                                v-slot:activator="{ props }"
+                                            >
+                                                <span
+                                                    @click="
+                                                        filterBySkill(
+                                                            skill.name
+                                                        )
+                                                    "
+                                                >
+                                                    <v-chip
+                                                        v-bind="props"
+                                                        :color="
+                                                            skillLevelColor(
+                                                                skill.rating
+                                                            )
+                                                        "
+                                                        >{{
+                                                            ellipsisIfMoreThanThreeWords(
+                                                                skill.name
+                                                            )
+                                                        }}</v-chip
+                                                    >
                                                 </span>
                                             </template>
                                         </v-tooltip>
-                                        <span v-else @click.stop="filterBySkill(skill.name)">
-                                            <v-chip :color="skillLevelColor(skill.rating)">{{ skill.name }}</v-chip></span>
+                                        <span
+                                            v-else
+                                            @click="filterBySkill(skill.name)"
+                                        >
+                                            <v-chip
+                                                :color="
+                                                    skillLevelColor(
+                                                        skill.rating
+                                                    )
+                                                "
+                                                >{{ skill.name }}</v-chip
+                                            ></span
+                                        >
                                     </template>
                                 </div>
                             </td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4">
-                                <input class="m-auto block" @click.stop="selectUser(user)" type="checkbox" name="choisir" />
+                            <td
+                                class="text-sm text-gray-900 font-light px-6 py-4"
+                            >
+                                <input
+                                    class="m-auto block"
+                                    @click="selectUser(user)"
+                                    type="checkbox"
+                                    name="choisir"
+                                />
                             </td>
                         </tr>
                     </tbody>
@@ -112,7 +204,7 @@
             </div>
 
             <div class="flex justify-center">
-                <v-btn color="primary" class="mt-4" @click="addDocForSharingProfils()"
+                <v-btn color="primary" class="mt-4 mb-10" @click="addDocForSharingProfils()"
                     :disabled="usersSelected.length === 0">
                     Partager ces profils
                 </v-btn>
@@ -120,10 +212,15 @@
                     <v-card>
                         <v-card-text>
                             Voici l'url que vous pouvez partager :
-                            {{ currentDomain + "/" + uid }}
+                            {{ currentDomain + "/share/" + uid }}
                         </v-card-text>
                         <v-card-actions>
-                            <v-btn color="primary" block @click="handleCopyAndCloseDialog()">Copier</v-btn>
+                            <v-btn
+                                color="primary"
+                                block
+                                @click="handleCopyAndCloseDialog()"
+                                >Copier</v-btn
+                            >
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -141,7 +238,6 @@ import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 import { addDoc, collection } from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { useRouter } from "vue-router";
 
 const usersSelected = ref<any[]>([]);
 const isShareProfilDialogOpen = ref<boolean>(false);
@@ -150,7 +246,7 @@ const uid = ref<string>("");
 const currentDomain = window.location.origin;
 
 const handleCopyAndCloseDialog = () => {
-    navigator.clipboard.writeText(currentDomain + "/" + uid.value);
+    navigator.clipboard.writeText(currentDomain + "/share/" + uid.value);
     isShareProfilDialogOpen.value = false;
 };
 
@@ -174,9 +270,8 @@ const addDocForSharingProfils = () => {
     });
 };
 
-const router = useRouter();
 const userStore = useUserStore();
-const { getUsers, generateUsers } = userStore;
+const { getUsers } = userStore;
 const { users } = storeToRefs(userStore);
 
 const selectedSkillsToFilter = ref<string[]>([]);
@@ -187,12 +282,8 @@ const filter = ref<string>("");
 onMounted(async () => {
     try {
         await getUsers();
-    } catch { }
+    } catch {}
 });
-
-const navigateToProfile = (userId: string) => {
-    router.push({ name: "client-profile-show", params: { id: userId } })
-}
 
 const addConsultant = async () => {
     const data = {
@@ -223,8 +314,7 @@ const addConsultant = async () => {
         ],
     };
     await addDoc(usersRef, data);
-}
-
+};
 const skillLevelColor = (rating: number) => {
     switch (rating) {
         case 1:
@@ -260,23 +350,20 @@ const removeSkill = (skillName: string) => {
 };
 
 const filteredUsers = computed(() => {
-
-    console.log(users)
     const filterUsers = users.value;
     if (selectedSkillsToFilter.value.length > 0) {
-        return filterUsers.filter(user => {
-            if (user?.skills?.length > 0) {
-                return selectedSkillsToFilter.value.every(desiredSkill => user.skills.some(skill => skill.name === desiredSkill))
-            }
-            return;
-        })
+        return filterUsers.filter((user) => {
+            return selectedSkillsToFilter.value.every((desiredSkill) =>
+                user?.skills?.some((skill) => skill.name === desiredSkill)
+            );
+        });
     }
     if (filter.value.length > 0) {
         return filterUsers.filter((user) => {
             return (
-                user.firstname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
-                user.lastname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
-                user.email.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
+                user.firstname.indexOf(filter.value) !== -1 ||
+                user.lastname.indexOf(filter.value) !== -1 ||
+                user.email.indexOf(filter.value) !== -1
             );
         });
     }

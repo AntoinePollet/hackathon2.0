@@ -1,19 +1,16 @@
 <template>
     <v-card
-            class="flex h-32 w-full"
+        class="flex w-64"
     >
-        <div class="flex">
-            <div class="flex-none h-32 w-32 p-5">
+        <div class="flex flex-col p-4">
+            <div class="flex h-32 w-full p-5">
                 <Icon
-                        icon="game-icons:achievement"
+                        :icon="`flat-color-icons:${achievement.icon}`"
                         class="h-full w-full"
                 />
             </div>
             <div class="p-5 grow">
-                <p class="text-2xl font-bold">{{ achievement.title }}</p>
-                <p class="h-16 overflow-auto">
-                    {{ achievement.description }}
-                </p>
+                <p class="text-2xl font-bold text-center">{{ achievement.title }}</p>
             </div>
         </div>
     </v-card>
