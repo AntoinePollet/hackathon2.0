@@ -10,7 +10,7 @@ const { sortedEvents } = storeToRefs(eventStore);
 </script>
 
 <template>
-    <div class="w-1/2">
+    <div class="border-l w-1/2 mb-10">
         <div class="text-center">
             <h1 class="font-bold text-2xl py-3">Fil d'actualité</h1>
         </div>

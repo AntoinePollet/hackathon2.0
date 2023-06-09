@@ -5,12 +5,12 @@
         <div class="flex flex-col p-4">
             <div class="flex h-32 w-full p-5">
                 <Icon
-                        :icon="`flat-color-icons:${achievement.icon}`"
+                        :icon="`flat-color-icons:${achievement?.icon}`"
                         class="h-full w-full"
                 />
             </div>
             <div class="p-5 grow">
-                <p class="text-2xl font-bold text-center">{{ achievement.title }}</p>
+                <p class="text-2xl font-bold text-center">{{ achievement?.title }}</p>
             </div>
         </div>
     </v-card>

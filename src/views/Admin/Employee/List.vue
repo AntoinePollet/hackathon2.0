@@ -270,7 +270,6 @@ const removeSkill = (skillName: string) => {
 
 const filteredUsers = computed(() => {
 
-    console.log(users)
     const filterUsers = users.value;
     if (selectedSkillsToFilter.value.length > 0) {
         return filterUsers.filter(user => {

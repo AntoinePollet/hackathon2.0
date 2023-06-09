@@ -33,7 +33,8 @@ const auth = getAuth(firebaseApp);
 
 export { firestoreDB, auth };
 
-export const eventsRef = useCollection(collection(firestoreDB, "events"));
+const filteredEvents = query(collection(firestoreDB, 'events'), orderBy("created_at", "desc"))
+export const eventsRef = useCollection(filteredEvents);
 export const trainingsRef = useCollection(collection(firestoreDB, "trainings"));
 export const usersRolesRef = useCollection(
     collection(firestoreDB, "usersRoles")

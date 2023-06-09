@@ -19,10 +19,13 @@
 <script setup>
 import Achievement from "@/components/Achievement/Achievement.vue";
 import {useCollection} from "vuefire";
-import {collection} from "firebase/firestore";
+import {collection, orderBy, query, where} from "firebase/firestore";
 import {firestoreDB} from "@/firebase";
 
-const achievements = useCollection(collection(firestoreDB, 'achievements'))
+const achievementsCollection = collection(firestoreDB, 'achievements')
+const filteredAchievements = query(achievementsCollection, orderBy("title", "asc"))
+
+const achievements = useCollection(filteredAchievements)
 </script>
 
 <style scoped>

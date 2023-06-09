@@ -13,8 +13,8 @@ import 'mosha-vue-toastify/dist/style.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire, faShare } from '@fortawesome/free-solid-svg-icons'
-library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire, faShare)
+import { faNewspaper, faUser, faCalendar, faGraduationCap, faCalendarWeek, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire, faShare, faBook } from '@fortawesome/free-solid-svg-icons'
+library.add(faNewspaper, faUser, faCalendar, faGraduationCap, faCalendarWeek, faIdBadge, faSchool, faStar, faFaceGrimace, faHammer, faUserGear, faDoorClosed, faSearch, faTrophy, faWallet, faFaceMeh, faPersonBooth, faArrowLeftRotate, faCheckCircle, faHourglass, faFire, faShare, faBook)
 
 const pinia = createPinia();
 
