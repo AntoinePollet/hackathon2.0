@@ -74,6 +74,8 @@
                     <tbody>
                         <tr v-for="(user, index) of filteredUsers"
                             class="hover:bg-gray-200 bg-gray-100 border-b cursor-pointer"
+                            :class="usersSelected.includes(user) ? 'bg-purple-100 hover:bg-purple-200' : 'bg-gray-100'"
+
                             @click.stop="navigateToProfile(user.uuid)">
                             <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 {{ user.email }}
