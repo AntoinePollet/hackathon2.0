@@ -145,11 +145,6 @@ export default [
                 component: () => import("@/views/Admin/Planning/List.vue"),
             },
             {
-                path: "plannings/create",
-                name: "admin-plannings-create",
-                component: () => import("@/views/Admin/Planning/Create.vue"),
-            },
-            {
                 path: "planning/:id",
                 name: "admin-plannings-show",
                 component: () => import("@/views/Admin/Planning/Show.vue"),

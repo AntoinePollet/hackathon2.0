@@ -1,6 +1,6 @@
 <template>
     <v-btn colors="primary" class="ml-5">
-        Nouvelle évènement
+        Nouvel évènement
         <v-dialog
             v-model="isDialogOpen"
             activator="parent"

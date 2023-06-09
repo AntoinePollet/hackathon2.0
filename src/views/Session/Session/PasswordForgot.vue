@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center justify-center w-full h-full p-10">
         <v-img class="!max-h-10 w-full" />
         <span class="p-5 text-2xl font-bold">Mot de passe oublié</span>
-        <div class="flex flex-col w-full gap-y-4">
+        <div id="formForgotPwd" class="flex flex-col gap-y-4">
             <v-text-field
                 v-model="email"
                 label="Email"
@@ -46,4 +46,9 @@ const handleSendEmail = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#formForgotPwd {
+    width: 100%;
+    max-width: 420px;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="p-10 gap-y-10">
-    <h1 class="text-3xl font-bold mb-8">Skills chez Carbon</h1>
+    <h1 class="text-3xl font-bold mb-8">Définissez les compétences minimales pour un Carbon</h1>
     <div class="flex flex-wrap">
       <div v-for="skill in skills" :key="skill.name" class="w-1/4 p-4">
         <v-card outlined class="text-center">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="my-8">
-      <h2 class="text-2xl font-bold mb-4">Ajouter un skill</h2>
+      <h2 class="text-2xl font-bold mb-4">Ajouter une compétence</h2>
       <form @submit.prevent="addSkill">
         <v-text-field v-model="newSkill.name" label="Nom" required></v-text-field>
         <v-text-field v-model="newSkill.category" label="Catégorie" required></v-text-field>

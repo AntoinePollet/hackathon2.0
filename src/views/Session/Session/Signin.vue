@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col items-center justify-center w-full h-full p-10">
         <span class="mb-20 text-5xl font-bold">Welcome on Carbon</span>
-        <form @submit="login" class="flex flex-col w-full gap-y-4">
+        <form @submit="login" id="formSignin" class="flex flex-col gap-y-4">
             <v-text-field
                 label="Email"
                 class="w-full"
@@ -51,4 +51,9 @@ const login = (e: Event) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#formSignin {
+    width: 100%;
+    max-width: 420px;
+}
+</style>
