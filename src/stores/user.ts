@@ -270,7 +270,7 @@ export const useUserStore = defineStore("user", () => {
 
     async function getUser(userId: string) {
         try {
-            const someTodo = useDocument(doc(collection(firestoreDB, 'users'), "yKBXyU2CwWfjBgMxtTtm"));
+            const someTodo = useDocument(doc(collection(firestoreDB, 'users'), userId));
             user.value = someTodo;
         } catch (error) {
             throw error;

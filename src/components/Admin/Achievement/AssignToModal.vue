@@ -10,7 +10,7 @@
                 <div class="p-5" id="dialogCreate">
                     <h2 class="mb-4">Assigner un utilisateur</h2>
                     <div class="flex flex-col gap-y-2">
-                        <div v-for="user in users" class="flex w-full h-12 bg-red-100 rounded-lg gap-x-2 items-center p-2 border">
+                        <div v-for="user in users" class="flex w-full h-12 rounded-lg gap-x-2 items-center p-2 border">
                             <div class="">{{ user.firstname }}</div>
                             <div>{{ user.lastname }}</div>
                             <div class="grow" />

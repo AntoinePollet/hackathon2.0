@@ -45,11 +45,14 @@ Antoine LIN
 Michael DE MADET
 Antoine POLLET
 
-## Fonctionnalité 
+## Fonctionnalités
 
-- Employé - 
-- Succès - Antoine LIN
-- Formations - Antoine LIN
-- Skills - 
-- Evaluation -
-- Planning -
+- Flux d’actualité -> Antoine Pollet
+- Partage de fiche consultant pour client final -> Nils Millot
+- Succès déblocables -> Antoine Lin?
+- Formations -> Antoine Lin
+- Evaluation personnelle -> Michael De Madet
+- Un manager peut donner une note à son consultant -> Michael de madet
+- Compétences (skills) -> Antoine Lin et Michael?
+- Planning -> Antoine Lin
+- Gestion des utilisateurs en fonction des rôles -> Antoine pollet et Nils Millot
