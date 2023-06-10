@@ -15,7 +15,8 @@
                         <p class="text-lg">{{ user.role }}</p>
                     </div>
                     <div class="ml-auto"> <!-- Utilisation de ml-auto pour aligner le bouton à droite -->
-                        <v-btn prepend-icon="mdi-plus" color="primary" @click="openAddSkillDialog" class="add-skill-btn">Ajouter une compétence</v-btn>
+                        <v-btn prepend-icon="mdi-plus" color="primary" @click="openAddSkillDialog"
+                            class="add-skill-btn">Ajouter une compétence</v-btn>
                     </div>
                 </div>
             </section>
@@ -38,7 +39,8 @@
                         </v-col>
                         <v-col cols="3">
                             <div class="text-center">
-                                <v-btn variant="elevated" icon small color="red" @click="removeSkill(index)" class="ml-2 relative bottom-2">
+                                <v-btn variant="elevated" icon small color="red" @click="removeSkill(index)"
+                                    class="ml-2 relative bottom-2">
                                     <v-icon class="text-red-500">mdi-delete</v-icon>
                                 </v-btn>
                             </div>
@@ -51,16 +53,16 @@
         </v-container>
         <v-dialog v-model="addSkillDialog" max-width="500px">
             <v-card>
-            <v-card-title>Ajouter une compétence</v-card-title>
-            <v-card-text>
-                <v-form @submit.prevent="addNewSkill">
-                    <v-text-field v-model="newSkill.name" label="Nom de la compétence"></v-text-field>
-                    <v-text-field v-model="newSkill.category" label="Catégorie de la compétence"></v-text-field>
-                    <v-btn type="submit" color="primary">Ajouter</v-btn>
-                </v-form>
-            </v-card-text>
+                <v-card-title>Ajouter une compétence</v-card-title>
+                <v-card-text>
+                    <v-form @submit.prevent="addNewSkill">
+                        <v-text-field v-model="newSkill.name" label="Nom de la compétence"></v-text-field>
+                        <v-text-field v-model="newSkill.category" label="Catégorie de la compétence"></v-text-field>
+                        <v-btn type="submit" color="primary">Ajouter</v-btn>
+                    </v-form>
+                </v-card-text>
             </v-card>
-      </v-dialog>
+        </v-dialog>
     </div>
 </template>
   
@@ -95,7 +97,7 @@ onMounted(async () => {
 
             onSnapshot(consultantRef, (doc) => {
                 if (doc.exists()) {
-                    user.value = {...doc.data(), id: doc.id};
+                    user.value = { ...doc.data(), id: doc.id };
                 } else {
                     console.warn('Aucun document correspondant à l\'UUID spécifié n\'a été trouvé.');
                 }
@@ -119,16 +121,17 @@ const updateSkillsRating = async () => {
 
         if (querySnapshot.size > 0) {
             // Récupère l'ID du premier document correspondant à la requête
+            const consultant = querySnapshot.docs[0];
             const docId = querySnapshot.docs[0].id;
 
             const consultantRef = doc(firestoreDB, "users", docId);
-
+            console.log("consultant update", consultantRef, consultant.data());
             // Met à jour le document correspondant dans Firestore en utilisant l'ID
             await updateDoc(consultantRef, {
                 skills: skills
             });
 
-            await publishEvent({ title: "Validation de compétences", description: `Une nouvelle validation de compétences faites pour ${consultantRef.data}`, type: EventTypeEnum.SKILL_UPGRADE });
+            await publishEvent({ title: "Validation de compétences", description: `Une nouvelle validation de compétences faites pour ${consultant.data().firstname} ${consultant.data().lastname}`, type: EventTypeEnum.SKILL_UPGRADE });
 
             createToast('Les compétences ont été mises à jour avec succès.', {
                 position: 'bottom-right',
@@ -149,34 +152,34 @@ const openAddSkillDialog = () => {
 }
 
 const addNewSkill = async () => {
-  try {
-    const { name, category } = newSkill.value;
+    try {
+        const { name, category } = newSkill.value;
 
-    if (name && category) {
-        const skill = { name, category, rating: 1 };
-        
-        const userToEdit = doc(firestoreDB, "users", user.value.id);
+        if (name && category) {
+            const skill = { name, category, rating: 1 };
 
-        await updateDoc(userToEdit, {
-            skills: [skill, ...user.value.skills]
-        });
+            const userToEdit = doc(firestoreDB, "users", user.value.id);
 
-        // Fermer le dialogue et réinitialiser le formulaire
-        addSkillDialog.value = false;
-        newSkill.value = { name: '', category: '' };
+            await updateDoc(userToEdit, {
+                skills: [skill, ...user.value.skills]
+            });
 
-        createToast('La compétence a été ajoutée avec succès.', {
-            position: 'bottom-right',
-            type: 'success',
-            showIcon: true,
-            timeout: 2000,
-        });
-    } else {
-        console.warn('Veuillez remplir tous les champs du formulaire.');
-    }
-  } catch (error) {
+            // Fermer le dialogue et réinitialiser le formulaire
+            addSkillDialog.value = false;
+            newSkill.value = { name: '', category: '' };
+
+            createToast('La compétence a été ajoutée avec succès.', {
+                position: 'bottom-right',
+                type: 'success',
+                showIcon: true,
+                timeout: 2000,
+            });
+        } else {
+            console.warn('Veuillez remplir tous les champs du formulaire.');
+        }
+    } catch (error) {
         console.error('Erreur lors de l\'ajout de la compétence :', error);
-  }
+    }
 }
 
 const removeSkill = async (indexSkillToRemove: any) => {
@@ -195,9 +198,9 @@ const removeSkill = async (indexSkillToRemove: any) => {
             showIcon: true,
             type: "success",
         });
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+        console.log(error);
+    }
 }
 </script>
   

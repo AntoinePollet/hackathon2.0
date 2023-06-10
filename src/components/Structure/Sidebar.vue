@@ -1,6 +1,6 @@
 <template>
     <div class="w-64 h-full rounded bg-white border-r">
-        <div class="flex justify-center">
+        <div class="flex justify-center cursor-pointer" @click="router.push({ name: 'news-list' })">
             <img src="@/assets/logoCarbonGrey.svg" height="500" width="500" alt="" />
         </div>
         <div class="flex flex-col gap-y-1">
@@ -100,12 +100,6 @@ const items = ref([
 ]);
 
 const adminItems = ref([
-    {
-        title: "Actualités",
-        icon: "fa-solid fa-newspaper",
-        to: "admin-news-list",
-        value: "admin-news",
-    },
     {
         title: "Employées",
         icon: "fa-solid fa-face-grimace",
