@@ -10,11 +10,19 @@
                 <div class="p-5" id="dialogCreate">
                     <h2 class="mb-4">Ajoutez un évènement</h2>
                     <div class="flex flex-col gap-y-2">
-                        <v-text-field v-model="title" variant="outlined" label="titre" />
+                        <v-text-field v-model="planning_title" variant="outlined" label="titre" />
                         Date
                         <input type="datetime-local" v-model="date" class="p-3 rounded border border-neutral-400"/>
                         <v-select
                             v-model="user_id"
+                            :items="users"
+                            item-title="email"
+                            item-value="id"
+                            class=""
+                            hide-details
+                            variant="outlined"
+                        /><v-select
+                            v-model="client_id"
                             :items="users"
                             item-title="email"
                             item-value="id"
@@ -53,15 +61,19 @@ const planningStore = usePlanningStore();
 const { publishPlanning } = planningStore;
 
 const title = ref('')
-const date = ref('')
+const date = ref(new Date())
 const user_id = ref('')
+const client_id = ref('')
+const planning_title = ref('')
 
 const submit = async (planning: PlanningDoc) => {
     await publishPlanning({
         id: '',
-        title: title.value,
+        title: planning_title.value,
         date: date.value,
-        user_id: user_id.value
+        user_id: user_id.value,
+        client_id: client_id.value,
+        planning_title: title.value,
     })
 }
 </script>
