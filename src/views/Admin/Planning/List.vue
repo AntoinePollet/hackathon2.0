@@ -14,17 +14,28 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import frLocale from '@fullcalendar/core/locales/fr'
 import PlanningModal from "@/components/Admin/Planning/PlanningModal.vue";
+import {usePlanningStore} from "@/stores/plannings";
+import {onMounted, ref, watch} from "vue";
+import {useCollection} from "vuefire";
+import {collection} from "firebase/firestore";
+import {firestoreDB} from "@/firebase";
 
-const calendarOptions = {
+const planningStore = usePlanningStore()
+const plannings = ref(null)
+const calendarOptions = ref(null)
+calendarOptions.value = {
     plugins: [dayGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
-    weekends: false,
-    events: [
-        { title: 'event 1', date: new Date() },
-        { title: 'event 2', date: new Date() }
-    ],
+    weekends: true,
+    events: [],
     locale: frLocale
 }
+
+onMounted(async () => {
+    plannings.value = await useCollection(collection(firestoreDB, 'plannings'))
+    calendarOptions.value.events.push(...plannings.value.data);
+})
+
 </script>
 
 <style scoped>

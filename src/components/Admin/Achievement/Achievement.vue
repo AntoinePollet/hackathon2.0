@@ -12,8 +12,8 @@
             <div class="p-5 grow">
                 <p class="text-2xl font-bold text-center">{{ achievement.title }}</p>
             </div>
-            <div class="flex flex-col items-center">
-                <div class="flex w-full">
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex w-full gap-2">
                     <router-link :to="{name: 'admin-achievements-edit', params: { id: achievement.id }}" class="w-1/2">
                         <v-btn class="w-full" color="primary">Edit</v-btn>
                     </router-link>
