@@ -87,6 +87,7 @@ onMounted(async () => {
     try {
         onSnapshot(doc(firestoreDB, "users", uid), (doc) => {
             user.value = { id: doc.id, ...doc.data() };
+            setSkillsRatingTo1IfUndefined();
         });
 
     } catch (error) {
@@ -96,37 +97,22 @@ onMounted(async () => {
 
 const updateSkillsRating = async () => {
     try {
-        const { uuid, skills } = user.value;
+        const { skills, id } = user.value;
+        const consultantRef = doc(firestoreDB, "users", id);
 
-        console.log(user);
-        
+        // Met à jour le document correspondant dans Firestore en utilisant l'ID
+        await updateDoc(consultantRef, {
+            skills: skills
+        });
 
-        // Crée une référence à la collection "users" et utilise une requête pour retrouver le document avec le champ "uuid"
-        const q = query(collection(firestoreDB, 'users'), where('uuid', '==', uuid));
-        const querySnapshot = await getDocs(q);
+        await publishEvent({ title: "Validation de compétences", description: `Une nouvelle validation de compétences faites pour ${consultantRef.data}`, type: EventTypeEnum.SKILL_UPGRADE });
 
-        if (querySnapshot.size > 0) {
-            // Récupère l'ID du premier document correspondant à la requête
-            const docId = querySnapshot.docs[0].id;
-
-            const consultantRef = doc(firestoreDB, "users", docId);
-
-            // Met à jour le document correspondant dans Firestore en utilisant l'ID
-            await updateDoc(consultantRef, {
-                skills: skills
-            });
-
-            await publishEvent({ title: "Validation de compétences", description: `Une nouvelle validation de compétences faites pour ${consultantRef.data}`, type: EventTypeEnum.SKILL_UPGRADE });
-
-            createToast('Les compétences ont été mises à jour avec succès.', {
-                position: 'bottom-right',
-                type: 'success',
-                showIcon: true,
-                timeout: 2000,
-            });
-        } else {
-            console.warn('Aucun document correspondant à l\'UUID spécifié n\'a été trouvé.');
-        }
+        createToast('Les compétences ont été mises à jour avec succès.', {
+            position: 'bottom-right',
+            type: 'success',
+            showIcon: true,
+            timeout: 2000,
+        });
     } catch (error) {
         console.error('Erreur lors de la mise à jour des compétences :', error);
     }
@@ -186,6 +172,14 @@ const removeSkill = async (indexSkillToRemove: any) => {
   } catch (error) {
     console.log(error);
   }
+}
+
+const setSkillsRatingTo1IfUndefined = () => {
+    user.value.skills.forEach((skill: any) => {
+        if (!skill.rating) {
+            skill.rating = 1;
+        }
+    });
 }
 </script>
   

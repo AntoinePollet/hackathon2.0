@@ -92,7 +92,7 @@ const items = ref([
         value: "my-achievement",
     },
     {
-        title: "Evaluations",
+        title: "Evaluation",
         icon: "fa-solid fa-graduation-cap",
         to: "evaluation-show",
         value: "my-evaluation",
