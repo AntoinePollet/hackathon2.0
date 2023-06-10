@@ -1,6 +1,6 @@
 <template>
     <v-card
-        class="flex flex-col h-64 w-64"
+        class="flex flex-col h-64 w-72"
     >
         <div class="p-5">
             <p>{{ training.title }}</p>
@@ -11,13 +11,13 @@
             {{ training.description }}
         </div>
         <div class="flex p-5 justify-center gap-5">
-            <router-link class="w-1/3" :to="{ name: 'admin-trainings-edit', params: {id: training.id }}">
-                <v-btn class="w-1/3" color="primary">
-                    Edit
+            <router-link :to="{ name: 'admin-trainings-edit', params: {id: training.id }}">
+                <v-btn  color="primary">
+                    Modifier
                 </v-btn>
             </router-link>
-            <v-btn class="w-1/3" color="error" @click="deleteTraining(training.id)">
-                Delete
+            <v-btn  color="error" @click="deleteTraining(training.id)">
+                Supprimer
             </v-btn>
         </div>
     </v-card>

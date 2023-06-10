@@ -1,16 +1,16 @@
 <template>
     <div class="w-full" v-if="training">
-        <v-text-field v-model="training.title" label="title" variant="outlined"/>
-        <v-textarea v-model="training.description" label="description" variant="outlined"/>
+        <v-text-field v-model="training.title" label="Titre" variant="outlined"/>
+        <v-textarea v-model="training.description" label="Description" variant="outlined"/>
         <div class="mb-4">
-            <span>Start at</span>
+            <span>Commence le</span>
             <VueDatePicker v-model="training.start_at" :value="training.start_at"></VueDatePicker>
         </div>
         <div class="my-4">
-            <span>End at</span>
+            <span>Se termine</span>
             <VueDatePicker v-model="training.end_at"></VueDatePicker>
         </div>
-        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Edit</button>
+        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Modifier</button>
     </div>
 </template>
 
