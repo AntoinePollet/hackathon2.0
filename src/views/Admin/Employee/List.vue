@@ -18,7 +18,8 @@
                                 <v-radio label="Consultant" value="consultant" />
                                 <v-radio label="Manager" value="manager" />
                             </v-radio-group>
-                            <v-btn color="primary" block @click="handleSubmitNewUser()" :disabled="isButtonNewUserSubmittes">Créer</v-btn>
+                            <v-btn color="primary" block @click="handleSubmitNewUser()"
+                                :disabled="isButtonNewUserSubmittes">Créer</v-btn>
                         </div>
                     </v-card>
                 </v-dialog>
@@ -28,8 +29,25 @@
                     <FontAwesomeIcon icon="fa-solid fa-search"></FontAwesomeIcon>
                 </template>
             </v-text-field>
+
+            <div class="flex justify-center">
+                <v-btn color="primary" @click="addDocForSharingProfils()" :disabled="usersSelected.length === 0">
+                    Partager ces profils
+                </v-btn>
+                <v-dialog v-model="isShareProfilDialogOpen" width="auto">
+                    <v-card>
+                        <v-card-text>
+                            Voici l'url que vous pouvez partager :
+                            {{ currentDomain + "/share/" + uid }}
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-btn color="primary" variant="flat" block @click="handleCopyAndCloseDialog()">Copier</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </div>
         </div>
-        <div class="flex-grow-1">
+        <div class="flex-grow-1 mb-10">
             <div class="flex">
                 <p class="italic font-medium">Niveaux :</p>
                 <div class="flex flex-wrap gap-4 pl-4">
@@ -83,7 +101,6 @@
                         <tr v-for="(user, index) of filteredUsers"
                             class="hover:bg-gray-200 bg-gray-100 border-b cursor-pointer"
                             :class="usersSelected.includes(user) ? 'bg-purple-100 hover:bg-purple-200' : 'bg-gray-100'"
-
                             @click.stop="navigateToProfile(user.uuid)">
                             <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 {{ user.email }}
@@ -119,24 +136,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div class="flex justify-center">
-                <v-btn color="primary" class="mt-4 mb-10" @click="addDocForSharingProfils()"
-                    :disabled="usersSelected.length === 0">
-                    Partager ces profils
-                </v-btn>
-                <v-dialog v-model="isShareProfilDialogOpen" width="auto">
-                    <v-card>
-                        <v-card-text>
-                            Voici l'url que vous pouvez partager :
-                            {{ currentDomain + "/share/" + uid }}
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-btn color="primary" block @click="handleCopyAndCloseDialog()">Copier</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog>
             </div>
         </div>
     </div>
