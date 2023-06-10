@@ -1,22 +1,22 @@
 <template>
     <div class="w-full">
-        <v-text-field v-model="title" label="title" variant="outlined" />
-        <v-textarea v-model="description" label="description" variant="outlined" />
+        <v-text-field v-model="title" label="Titre" variant="outlined" />
+        <v-textarea v-model="description" label="Description" variant="outlined" />
         <div class="mb-4">
-            <span>Start at</span>
+            <span>Commence le</span>
             <VueDatePicker v-model="start_at"></VueDatePicker>
         </div>
         <div class="my-4">
-            <span>End at</span>
+            <span>Termine le</span>
             <VueDatePicker v-model="end_at"></VueDatePicker>
         </div>
-        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Create</button>
+        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Créer</button>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useTrainingStore } from '@/stores/training';
-import { storeToRefs } from 'pinia';
+
 import { ref } from "vue";
 
 const title = ref<string>('');
