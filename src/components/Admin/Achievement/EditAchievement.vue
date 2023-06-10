@@ -1,7 +1,7 @@
 <template>
     <div class="w-full" v-if="achievement">
-        <v-text-field v-model="achievement.title" label="title" variant="outlined"/>
-        <v-textarea v-model="achievement.description" label="description" variant="outlined"/>
+        <v-text-field v-model="achievement.title" label="Intitulé" variant="outlined"/>
+        <v-textarea v-model="achievement.description" label="Description" variant="outlined"/>
         <v-select
                 v-if="icons"
                 v-model="achievement.icon"
@@ -19,7 +19,7 @@
                 </div>
             </template>
         </v-select>
-        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Edit</button>
+        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Modifier</button>
     </div>
 </template>
 
