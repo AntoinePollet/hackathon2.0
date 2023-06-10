@@ -41,12 +41,13 @@ export const useAchievementsStore = defineStore('achievements', () => {
 
     async function updateAchievement(achievementDoc: AchievementDoc): Promise<any> {
         try {
+
             const docRef = doc(firestoreDB, "achievements", achievementDoc.id);
 
             await updateDoc(docRef ,{
                 title: achievementDoc.title,
                 description: achievementDoc.description,
-                start_at:  achievementDoc.icon,
+                icon:  achievementDoc.icon,
             });
         } catch (e) {
             console.error("Error adding document: ", e);
