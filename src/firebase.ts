@@ -8,8 +8,9 @@ import {
     query,
     limit,
     getDocs,
+    where,
 } from "firebase/firestore";
-import { useCollection } from "vuefire";
+import { useCollection, getCurrentUser } from "vuefire";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,6 +37,9 @@ export { firestoreDB, auth };
 const filteredEvents = query(collection(firestoreDB, 'events'), orderBy("created_at", "desc"))
 export const eventsRef = useCollection(filteredEvents);
 export const trainingsRef = useCollection(collection(firestoreDB, "trainings"));
+export const planningsRef = useCollection(collection(firestoreDB, "plannings"));
+//export const userPlanningsRef = useCollection(query(collection(firestoreDB, "plannings"), where("user_id", "==", (await getCurrentUser()).uid)))
+//export const clientPlanningsRef = useCollection(query(collection(firestoreDB, "plannings"), where("client_id", "==", (await getCurrentUser()).uid)))
 export const usersRolesRef = useCollection(
     collection(firestoreDB, "usersRoles")
 );

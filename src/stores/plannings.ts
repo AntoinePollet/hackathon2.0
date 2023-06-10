@@ -35,6 +35,8 @@ export const usePlanningStore = defineStore('plannings', () => {
                 title: planningDoc.title,
                 date:  planningDoc.date,
                 user_id: planningDoc.user_id,
+                client_id: planningDoc.client_id,
+                planning_title: planningDoc.planning_title
             });
             console.log("Document written with ID: ", docRef);
         } catch (e) {
