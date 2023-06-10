@@ -47,11 +47,11 @@ onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {
         userAuth.getIdTokenResult().then(function ({ claims }) {
             if (claims) {
-                if (claims.admin) {
+                if (claims.admin || claims.role === "admin") {
                     currentUserRole.value = "admin";
-                } else if (claims.recruteur) {
+                } else if (claims.recruteur || claims.role === "recruteur") {
                     currentUserRole.value = "recruteur"
-                } else if (claims.manager) {
+                } else if (claims.manager || claims.role === "manager") {
                     currentUserRole.value = "manager"
                 } else {
                     currentUserRole.value = "consultant"
