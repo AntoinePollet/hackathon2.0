@@ -69,40 +69,25 @@ import { EventTypeEnum } from '@/interfaces/event';
 import { ref, onMounted } from 'vue';
 import { collection, getDocs, updateDoc, doc, query, where, onSnapshot } from "firebase/firestore";
 import { firestoreDB } from "@/firebase";
-import { useRoute } from 'vue-router';
 import { useEventStore } from '@/stores/event'
 import { createToast } from 'mosha-vue-toastify';
+import { useCurrentUser } from "vuefire"; 
+
 const eventStore = useEventStore();
 const { publishEvent } = eventStore;
-const route = useRoute();
-const uuid = route.params.id;
 let user: any = ref(null);
 const skillMaxRating = 4;
 const addSkillDialog = ref(false);
 const newSkill = ref({ name: '', category: '' });
 
 onMounted(async () => {
+    const currentUserLogged = useCurrentUser(); 
+    const uid = currentUserLogged.value?.uid;        
+
     try {
-        // Get users by uuid on snapshot
-        const q = query(collection(firestoreDB, 'users'), where('uuid', '==', uuid));
-        const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.size > 0) {
-            // Récupère l'ID du premier document correspondant à la requête
-            const docId = querySnapshot.docs[0].id;
-
-            const consultantRef = doc(firestoreDB, "users", docId);
-
-            onSnapshot(consultantRef, (doc) => {
-                if (doc.exists()) {
-                    user.value = {...doc.data(), id: doc.id};
-                } else {
-                    console.warn('Aucun document correspondant à l\'UUID spécifié n\'a été trouvé.');
-                }
-            });
-        } else {
-            console.warn('Aucun document correspondant à l\'UUID spécifié n\'a été trouvé.');
-        }
+        onSnapshot(doc(firestoreDB, "users", uid), (doc) => {
+            user.value = { id: doc.id, ...doc.data() };
+        });
 
     } catch (error) {
         console.log(error);
@@ -112,6 +97,9 @@ onMounted(async () => {
 const updateSkillsRating = async () => {
     try {
         const { uuid, skills } = user.value;
+
+        console.log(user);
+        
 
         // Crée une référence à la collection "users" et utilise une requête pour retrouver le document avec le champ "uuid"
         const q = query(collection(firestoreDB, 'users'), where('uuid', '==', uuid));
