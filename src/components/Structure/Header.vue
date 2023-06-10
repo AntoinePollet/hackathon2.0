@@ -1,6 +1,7 @@
 <template>
     <div class="w-full h-12 border-b">
         <div v-if="user" class="h-full flex justify-end items-center pr-3">
+            <!-- <span class="font-semibold mr-4">{{ `Bonjour ${tokenResult?.firstname}`}}</span> -->
             <v-avatar @click="router.push({ name: 'profile-show' })" class="cursor-pointer"
                 :image="`https://api.multiavatar.com/${user.email.split('@')[0]}.png?apikey=XdoCH30EA6grGx'`"></v-avatar>
         </div>
@@ -10,15 +11,13 @@
 <script setup lang="ts">
 import { useCurrentUser } from "vuefire";
 import { onMounted, ref } from "vue";
-import { useUserStore } from "@/stores/user";
 import { useRouter } from 'vue-router';
-import { usersRef } from "@/firebase";
-import { getCurrentUser } from "@/router"
-import { storeToRefs } from "pinia";
+import { getCurrentUser, getCurrentUserTokenResult } from "@/router"
 
 const user = ref();
-const userStore = useUserStore();
-const { userById } = storeToRefs(userStore);
+
+// const tokenResult = await getCurrentUserTokenResult();
+// console.log('tokenResult', tokenResult)
 
 onMounted(async () => {
     user.value = await getCurrentUser();

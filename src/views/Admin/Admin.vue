@@ -14,23 +14,20 @@
 <script lang="ts" setup>
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ref } from "vue";
-// import { useCurrentUser } from "vuefire";
+import router from "@/router";
 
 import Sidebar from "@/components/Structure/Sidebar.vue";
 import Navbar from "@/components/Structure/Header.vue";
 
 const isCurrentUserAdmin = ref(false);
 
-// const user = useCurrentUser();
-// TODO: voir pour déplacer ça dans le router directement
 onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {
         userAuth.getIdTokenResult().then(function ({ claims }) {
-            if (claims.admin) {
+            if (claims.admin || claims.role === "admin") {
                 isCurrentUserAdmin.value = true;
             } else {
-                // TODO: Décommenter pour faire une redirection
-                // router.push("/");
+                router.go(-1);
             }
         });
     }

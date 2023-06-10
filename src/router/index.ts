@@ -22,6 +22,15 @@ export async function getCurrentUser(): Promise<User | null> {
     });
 }
 
+export async function getCurrentUserTokenResult(): Promise<any> {
+    const auth = getAuth();
+
+    return new Promise((resolve, reject) => {
+        const tokenResult = auth.currentUser?.getIdTokenResult();
+        resolve(tokenResult);
+    });
+}
+
 router.beforeEach(async (to, from, next) => {
     await state();
 

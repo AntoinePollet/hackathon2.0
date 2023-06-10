@@ -49,7 +49,7 @@
           Confirmation de suppression
         </v-card-title>
         <v-card-text>
-          Êtes-vous sûr de vouloir supprimer ce skill ?
+          Êtes-vous sûr de vouloir supprimer cette compétence ?
         </v-card-text>
         <v-card-actions>
           <v-btn color="error" @click="deleteSkill">Supprimer</v-btn>
@@ -105,7 +105,7 @@ onMounted(async () => {
 const addSkill = async () => {
   try {
     await addDoc(collection(firestoreDB, "commonSkills"), newSkill.value);
-    createToast("Skill ajouté", {
+    createToast("Compétence ajoutée", {
         position: "bottom-right",
         timeout: 2000,
         showIcon: true,
@@ -154,7 +154,7 @@ const deleteSkill = async (skill) => {
       const skillDoc = doc(firestoreDB, "commonSkills", skillToDelete.value.id);
       await deleteDoc(skillDoc);
       skillToDelete.value = null;
-      createToast("Skill supprimé", {
+      createToast("Compétence supprimée", {
         position: "bottom-right",
         timeout: 2000,
         showIcon: true,
