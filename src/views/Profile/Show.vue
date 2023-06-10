@@ -96,12 +96,12 @@
                             <div class="flex items-center">
                                 <FontAwesomeIcon icon="fa-solid fa-trophy"></FontAwesomeIcon>
                                 <h2 class="text-xl font-bold pl-4">A mon sujet</h2>
+                                <v-icon v-if="user?.biography" @click="isBiographyInputOpen = true" color="grey lighten-1" class="ml-2">mdi-pencil</v-icon>
                             </div>
                             <p v-if="user?.biography" class="text-sm pt-2 italic">
-                                du
                                 {{ user?.biography }}
                             </p>
-                            <p v-else class="text-sm pt-2 italic">No description yet !</p>
+                            <v-textarea v-if="isBiographyInputOpen" class="mt-2" v-model.lazy="biographyModified" @blur="handleSubmitBio" label="Quelques mots sur vous" variant="outlined" />
                         </div>
                     </div>
                     <div class="bg-white rounded-lg shadow-lg">
@@ -138,28 +138,49 @@
 <script lang="ts" setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { useCurrentUser } from "vuefire";
-import { useUserStore } from "@/stores/user";
-import { storeToRefs } from "pinia";
-import { onMounted, computed, ref } from "vue";
-import { useRoute, useRouter } from "vue-router"
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router"
 import { Icon } from "@iconify/vue";
-import { getCurrentUser } from "@/router/index";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { firestoreDB } from "@/firebase";
 
-const route = useRoute()
 const router = useRouter()
-const userStore = useUserStore();
-const { userById } = storeToRefs(userStore);
-const { getUsers } = userStore;
 const currentUserLoggedIn = useCurrentUser();
 const user = ref()
 
+const biographyModified = ref("")
+const isBiographyInputOpen = ref(false)
+
+
+const handleSubmitBio = async () => {
+    updateDoc(doc(firestoreDB, "users", currentUserLoggedIn.value?.uid as string), {
+        biography: biographyModified.value
+    })
+    if (biographyModified.value !== "") {
+        isBiographyInputOpen.value = false
+        await callUserDocAgain();
+    }
+};
+
+const callUserDocAgain = async () => {
+    try {
+        if (currentUserLoggedIn) {
+        const documentGetted = await getDoc(
+            doc(firestoreDB, "users", currentUserLoggedIn.value?.uid as string)
+        );
+        user.value = documentGetted.data();
+
+        if (!documentGetted.data()?.biography) {
+            isBiographyInputOpen. value = true
+        }
+    }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 onMounted(async () => {
-    try {
-        user.value = await getCurrentUser();
-    } catch (error) {
-
-    }
+    await callUserDocAgain();
 })
 
 const skillLevelColor = (rating: number) => {
