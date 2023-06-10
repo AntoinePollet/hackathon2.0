@@ -8,7 +8,9 @@
             <router-view class="w-full overflow-auto h-full" />
         </div>
     </div>
-    <h1 v-else>Vous n'avez pas les droits</h1>
+    <div v-else class="flex justify-center h-screen items-center">
+        <h1 class="text-2xl font-bold">Vous n'avez pas les droits</h1>
+    </div>
 </template>
 
 <script lang="ts" setup>
