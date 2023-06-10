@@ -10,9 +10,9 @@
             <div class="flex flex-col items-center gap-2">
                 <div class="flex w-full gap-2">
                     <router-link :to="{ name: 'admin-achievements-edit', params: { id: achievement.id } }" class="w-1/2">
-                        <v-btn class="w-full" color="primary">Edit</v-btn>
+                        <v-btn class="w-full" color="primary">Modifier</v-btn>
                     </router-link>
-                    <v-btn class=" w-1/2" color="primary" @click="deleteAchievement(achievement.id)">Delete</v-btn>
+                    <v-btn class=" w-1/2" color="primary" @click="deleteAchievement(achievement.id)">Supprimer</v-btn>
                 </div>
                 <assign-to-modal :achievement="achievement" />
             </div>
