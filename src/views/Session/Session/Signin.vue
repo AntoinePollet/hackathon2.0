@@ -1,34 +1,14 @@
 <template>
     <div class="flex flex-col items-center justify-center w-full h-full p-10">
-        <span class="mb-20 text-5xl font-bold">Welcome on Carbon</span>
+        <span class="mb-16 text-5xl font-bold">Bienvenue</span>
         <form @submit="login" id="formSignin" class="flex flex-col gap-y-4">
-            <v-text-field
-                label="Email"
-                class="w-full"
-                variant="outlined"
-                hide-details
-                v-model="formData.email"
-                required
-            />
-            <v-text-field
-                label="Mot de passe"
-                type="password"
-                class="w-full"
-                variant="outlined"
-                v-model="formData.password"
-                hide-details
-            />
-            <v-btn
-                text="Se connecter"
-                class="hover:bg-h-blue focus:bg-h-blue active:bg-h-blue bg-h-blue"
-                color="primary"
-                type="submit"
-            />
+            <v-text-field label="Email" class="w-full" variant="outlined" hide-details v-model="formData.email" required />
+            <v-text-field label="Mot de passe" type="password" class="w-full" variant="outlined" v-model="formData.password"
+                hide-details />
+            <v-btn text="Se connecter" class="hover:bg-h-blue focus:bg-h-blue active:bg-h-blue bg-h-blue" color="primary"
+                type="submit" />
         </form>
-        <router-link
-            :to="{ name: 'password-forgot' }"
-            class="p-2 hover:underline"
-        >
+        <router-link :to="{ name: 'password-forgot' }" class="p-2 hover:underline">
             Mot de passe oublié ?
         </router-link>
     </div>
