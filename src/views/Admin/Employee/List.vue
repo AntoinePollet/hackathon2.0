@@ -297,7 +297,6 @@ const handleSubmitNewUser = () => {
                 }
             )
             .then((res) => {
-                console.log("%cShow.vue line:61 res", "color: #007acc;", res);
                 isDialogOpen.value = false;
             })
             .catch((err) => {

@@ -172,10 +172,8 @@ const closeDeleteDialog = () => {
 }
 
 onAuthStateChanged(getAuth(), (userAuth) => {
-  console.log('userAuth', userAuth);
     if (userAuth) {
         userAuth.getIdTokenResult().then(function ({ claims }) {
-           console.log('claims', claims);
         });
     }
 });

@@ -157,7 +157,6 @@ const user = ref()
 onMounted(async () => {
     try {
         user.value = await getCurrentUser();
-        console.log('---------', user)
     } catch (error) {
 
     }
@@ -184,11 +183,6 @@ const ellipsisIfMoreThanThreeWords = (skill: string) => {
     return skill;
 }
 
-console.log(
-    "%cShow.vue line:46 currentUserLoggedIn",
-    "color: #007acc;",
-    currentUserLoggedIn
-);
 </script>
 
 <style scoped></style>

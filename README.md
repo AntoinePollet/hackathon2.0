@@ -31,3 +31,25 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
     1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
     2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+
+Listing des fonctionnalités avec les auteurs de celle-ci
+Nom et pseudo de chaque développeur
+Procédure d’installation et de lancement de votre solution
+
+
+## Développeur 
+
+Nils MILLOT
+Antoine LIN
+Michael DE MADET
+Antoine POLLET
+
+## Fonctionnalité 
+
+- Employé - 
+- Succès - Antoine LIN
+- Formations - Antoine LIN
+- Skills - 
+- Evaluation -
+- Planning -

@@ -8,7 +8,6 @@ export const useAuth = () => {
         if (userAuth) {
             userAuth.getIdTokenResult().then(function ({ claims }) {
                 authenticatedUser.value = claims;
-                console.log('authenticatedUser', authenticatedUser.value)
             });
         }
     });

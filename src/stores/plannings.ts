@@ -22,7 +22,6 @@ export const usePlanningStore = defineStore('plannings', () => {
             const querySnapshot = await getDocs(collection(firestoreDB, "plannings"));
             querySnapshot.forEach((doc: any) => {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
             });
         } catch (error) {
 
@@ -38,7 +37,6 @@ export const usePlanningStore = defineStore('plannings', () => {
                 client_id: planningDoc.client_id,
                 planning_title: planningDoc.planning_title
             });
-            console.log("Document written with ID: ", docRef);
         } catch (e) {
             console.error("Error adding document: ", e);
         }

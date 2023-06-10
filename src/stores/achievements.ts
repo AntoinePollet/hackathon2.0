@@ -19,7 +19,6 @@ export const useAchievementsStore = defineStore('achievements', () => {
             const querySnapshot = await getDocs(collection(firestoreDB, "achievements"));
             querySnapshot.forEach((doc: any) => {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
             });
         } catch (error) {
 
@@ -33,7 +32,6 @@ export const useAchievementsStore = defineStore('achievements', () => {
                 description: achievementDoc.description,
                 icon:  achievementDoc.icon,
             });
-            console.log("Document written with ID: ", docRef);
         } catch (e) {
             console.error("Error adding document: ", e);
         }

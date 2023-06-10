@@ -42,7 +42,6 @@ export const useTrainingStore = defineStore('trainings', () => {
             const querySnapshot = await getDocs(collection(firestoreDB, "trainings"));
             querySnapshot.forEach((doc: any) => {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
             });
         } catch (error) {
 
@@ -52,7 +51,6 @@ export const useTrainingStore = defineStore('trainings', () => {
     function watchTrainingChanges() {
         try {
             const unsub = onSnapshot(doc(firestoreDB, "trainings"), (doc) => {
-                console.log("Current data: ", doc.data());
             });
             console.log(unsub)
         } catch (error) {
@@ -69,7 +67,7 @@ export const useTrainingStore = defineStore('trainings', () => {
                 end_at: trainingDoc.end_at,
                 registered: false,
             });
-            console.log("Document written with ID: ", docRef);
+            //console.log("Document written with ID: ", docRef);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
