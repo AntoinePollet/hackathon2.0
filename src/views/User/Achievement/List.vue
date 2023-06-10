@@ -1,7 +1,7 @@
 <template>
     <div class="p-10 gap-y-10">
         <div class="text-3xl font-bold mb-10">
-          Achievements
+          Succès
         </div>
         <div class="mb-6 flex items-center">
           <v-text-field variant="outlined" label="search" hide-details/>

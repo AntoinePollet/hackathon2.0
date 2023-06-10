@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { collection, getDocs, updateDoc, doc, query, where } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc, query, where, onSnapshot } from "firebase/firestore";
 import { firestoreDB } from "@/firebase";
 import { useCurrentUser } from "vuefire";
 const currentUserLogged = useCurrentUser();
@@ -48,11 +48,9 @@ let users: any = ref([]);
 
 onMounted(async () => {
     try {
-        const usersFromFB = await getDocs(collection(firestoreDB, "users"));
 
-        usersFromFB.forEach((doc) => {
-            const data = doc.data();
-            users.value.push(data);
+        onSnapshot(collection(firestoreDB, 'users'), (snapshot) => {
+            users.value = snapshot.docs.map((doc) => doc.data());
         });
 
     } catch (error) {

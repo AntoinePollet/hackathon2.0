@@ -1,7 +1,7 @@
 <template>
     <div class="px-10 py-5 gap-y-10 overflow-auto h-full">
         <!-- <div class="text-3xl font-bold mb-5">Profile</div> -->
-        <Icon @click="router.push({ name: 'admin-employees-list' })" height="2.5rem" width="2.5rem"
+        <Icon @click="router.go(-1)" height="2.5rem" width="2.5rem"
             class="rounded-full drop-shadow-md hover:drop-shadow-lg hover:cursor-pointer bg-white p-1"
             icon="ph:arrow-left-bold" />
 
