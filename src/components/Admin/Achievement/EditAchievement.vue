@@ -1,6 +1,5 @@
 <template>
     <div class="w-full" v-if="achievement">
-        {{achievement}}
         <v-text-field v-model="achievement.title" label="Intitulé" variant="outlined"/>
         <v-textarea v-model="achievement.description" label="Description" variant="outlined"/>
         <v-select
