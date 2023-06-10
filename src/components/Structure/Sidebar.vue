@@ -4,7 +4,7 @@
             <img src="@/assets/logoCarbonGrey.svg" height="500" width="500" alt="" />
         </div>
         <div class="flex flex-col gap-y-1">
-            <router-link v-if="currentUserRole === 'consultant'" v-for="item in items" :to="{ name: item.to }"
+            <router-link v-if="currentUserRole === 'consultant' || currentUserRole === 'manager'" v-for="item in items" :to="{ name: item.to }"
                 class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
                     <font-awesome-icon :icon="item.icon" />
@@ -14,7 +14,7 @@
 
             <v-divider class="border-black"></v-divider>
 
-            <router-link v-if="currentUserRole === 'admin' || currentUserRole === 'manager'" v-for="item in adminItems"
+            <router-link v-if="currentUserRole === 'admin' || currentUserRole === 'recruteur'" v-for="item in adminItems"
                 :to="{ name: item.to }" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                 <div class="flex items-center px-4 py-2 gap-x-3">
                     <font-awesome-icon :icon="item.icon" />
@@ -125,7 +125,7 @@ const adminItems = ref([
         value: "admin-trainings",
     },
     {
-        title: "Skills",
+        title: "Compétences",
         icon: "fa-solid fa-hammer",
         to: "admin-skills-list",
         value: "admin-skills",

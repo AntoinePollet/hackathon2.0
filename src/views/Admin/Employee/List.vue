@@ -2,7 +2,6 @@
     <div class="p-10 gap-y-10">
         <div class="text-3xl font-bold mb-10">Employées</div>
         <div class="flex mb-5 gap-4 items-center">
-            <v-btn color="primary" @click="generateUsers">Générer des users</v-btn>
             <v-btn color="primary">
                 Nouveau
                 <v-dialog v-model="isDialogOpen" activator="parent" width="auto">
