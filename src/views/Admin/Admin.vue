@@ -16,7 +16,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ref } from "vue";
 import router from "@/router";
 
-
 import Sidebar from "@/components/Structure/Sidebar.vue";
 import Navbar from "@/components/Structure/Header.vue";
 
@@ -25,7 +24,7 @@ const isCurrentUserAdmin = ref(false);
 onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {
         userAuth.getIdTokenResult().then(function ({ claims }) {
-            if (claims.admin || claims.roles === "admin") {
+            if (claims.admin || claims.role === "admin") {
                 isCurrentUserAdmin.value = true;
             } else {
                 router.go(-1);
