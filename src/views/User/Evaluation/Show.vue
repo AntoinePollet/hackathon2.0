@@ -25,15 +25,22 @@
                     <v-card-title class="text-lg">{{ skill.name }}</v-card-title>
                     <v-card-subtitle class="text-sm">{{ skill.category }}</v-card-subtitle>
                     <v-row align="center" class="row">
-                        <v-col cols="9">
+                        <v-col cols="8">
                             <v-slider v-model="skill.rating" min="1" max="4" step="1" class="ml-5"></v-slider>
                         </v-col>
-                        <v-col cols="3">
+                        <v-col cols="1">
                             <div class="text-center">
                                 <v-chip small color="red">
                                     <span class="mr-1">{{ skill.rating }}</span>
                                     <span>/ {{ skillMaxRating }}</span>
                                 </v-chip>
+                            </div>
+                        </v-col>
+                        <v-col cols="3">
+                            <div class="text-center">
+                                <v-btn variant="elevated" icon small color="red" @click="removeSkill(index)" class="ml-2 relative bottom-2">
+                                    <v-icon class="text-red-500">mdi-delete</v-icon>
+                                </v-btn>
                             </div>
                         </v-col>
                     </v-row>
@@ -169,6 +176,27 @@ const addNewSkill = async () => {
     }
   } catch (error) {
         console.error('Erreur lors de l\'ajout de la compétence :', error);
+  }
+}
+
+const removeSkill = async (indexSkillToRemove: any) => {
+    try {
+        user.value.skills.splice(indexSkillToRemove, 1);
+
+        const userToEdit = doc(firestoreDB, "users", user.value.id);
+
+        await updateDoc(userToEdit, {
+            skills: user.value.skills
+        });
+
+        createToast("Skill supprimé", {
+            position: "bottom-right",
+            timeout: 2000,
+            showIcon: true,
+            type: "success",
+        });
+  } catch (error) {
+    console.log(error);
   }
 }
 </script>
