@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
-        <v-text-field v-model="title" label="title" variant="outlined" />
-        <v-textarea v-model="description" label="description" variant="outlined" />
+        <v-text-field v-model="title" label="Titre" variant="outlined" />
+        <v-textarea v-model="description" label="Description" variant="outlined" />
         <v-select
             v-if="icons"
             v-model="icon"
@@ -19,7 +19,7 @@
                 </div>
             </template>
         </v-select>
-        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Create</button>
+        <button class="my-4 border p-3 border-h-black rounded hover:bg-h-black hover:text-h-white" @click="submit">Créer</button>
     </div>
 </template>
 

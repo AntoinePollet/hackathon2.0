@@ -1,21 +1,15 @@
 <template>
     <div class="p-10 gap-y-10">
         <div class="text-3xl font-bold mb-10">
-          Trainings
+            Trainings
         </div>
-        <div class="mb-6 flex items-center">
-          <router-link :to="{ name: 'admin-trainings-create' }" class="p-2 hover:underline">
-            New training
-          </router-link>
-          <v-text-field variant="outlined" label="search" hide-details/>
-          <v-btn class="m-2" variant="text">Filter</v-btn>
+        <div class="mb-6 flex gap-4 items-center">
+            <v-btn variant="flat" @click="router.push({ name: 'admin-trainings-create' })">Nouvelle formation</v-btn>
+            <v-text-field label="search" variant="outlined" density="compact" hide-details />
+            <v-btn variant="flat">Filter</v-btn>
         </div>
         <div class="flex flex-wrap gap-6">
-          <training
-            v-for="training in trainings"
-            :key="training.id"
-            :training="training"
-          />
+            <training v-for="training in trainings" :key="training.id" :training="training" />
         </div>
     </div>
 </template>
@@ -24,10 +18,12 @@
 import { useTrainingStore } from '@/stores/training';
 import { storeToRefs } from 'pinia';
 import Training from "@/components/Admin/Training/training.vue";
-import {useCollection} from "vuefire";
-import {collection} from "firebase/firestore";
-import {firestoreDB} from "@/firebase";
+import { useCollection } from "vuefire";
+import { collection } from "firebase/firestore";
+import { firestoreDB } from "@/firebase";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const trainings = useCollection(collection(firestoreDB, 'trainings'))
 
 const trainingStore = useTrainingStore();

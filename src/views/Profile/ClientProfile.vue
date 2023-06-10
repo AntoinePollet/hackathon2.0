@@ -229,7 +229,7 @@ const isCurrentUserAdminOrRecruteur = ref(false);
 onAuthStateChanged(getAuth(), (userAuth) => {
     if (userAuth) {
         userAuth.getIdTokenResult().then(function ({ claims }) {
-            if (claims.admin || claims.recruteur) {
+            if (claims.admin || claims.recruteur || claims.role === "admin" || claims.role === "recruteur") {
                 isCurrentUserAdminOrRecruteur.value = true;
             }
         });
