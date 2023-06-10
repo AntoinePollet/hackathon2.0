@@ -97,7 +97,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(user, index) of filteredUsers"
+                        <tr v-for="(user, index) of filteredUsers" :key="`${user.uuid}-${index}`"
                             class="hover:bg-gray-200 bg-gray-100 border-b cursor-pointer"
                             :class="usersSelected.includes(user) ? 'bg-purple-100 hover:bg-purple-200' : 'bg-gray-100'"
                             @click.stop="navigateToProfile(user.uuid)">
@@ -257,11 +257,13 @@ const filteredUsers = computed(() => {
     }
     if (filter.value.length > 0) {
         return filterUsers.filter((user) => {
-            return (
-                user.firstname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
-                user.lastname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
-                user.email.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
-            );
+            if (user.firstname && user.lastname && user.email) {
+                return (
+                    user.firstname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
+                    user.lastname.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1 ||
+                    user.email.toLowerCase().indexOf(filter.value.toLowerCase()) !== -1
+                );
+            }
         });
     }
     return filterUsers;
