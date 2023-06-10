@@ -192,7 +192,6 @@ export const useUserStore = defineStore("user", () => {
                 .then((userCredential: any) => {
                     // Signed in
                     user.value = userCredential.user;
-                    // console.log("register", userCredential.user);
                     // ...
                 })
                 .catch((error: any) => {
@@ -272,7 +271,6 @@ export const useUserStore = defineStore("user", () => {
     async function getUser(userId: string) {
         try {
             const someTodo = useDocument(doc(collection(firestoreDB, 'users'), "yKBXyU2CwWfjBgMxtTtm"));
-            console.log(someTodo)
             user.value = someTodo;
         } catch (error) {
             throw error;

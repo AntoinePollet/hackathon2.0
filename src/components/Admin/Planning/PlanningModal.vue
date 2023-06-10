@@ -13,6 +13,7 @@
                         <v-text-field v-model="planning_title" variant="outlined" label="titre" />
                         Date
                         <input type="datetime-local" v-model="date" class="p-3 rounded border border-neutral-400"/>
+                        Utilisateur
                         <v-select
                             v-model="user_id"
                             :items="users"
@@ -21,7 +22,9 @@
                             class=""
                             hide-details
                             variant="outlined"
-                        /><v-select
+                        />
+                        Client
+                        <v-select
                             v-model="client_id"
                             :items="users"
                             item-title="email"

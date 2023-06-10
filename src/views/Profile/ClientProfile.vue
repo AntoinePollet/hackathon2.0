@@ -218,12 +218,6 @@ const ellipsisIfMoreThanThreeWords = (skill: string) => {
     return skill;
 }
 
-console.log(
-    "%cShow.vue line:46 currentUserLoggedIn",
-    "color: #007acc;",
-    currentUserLoggedIn
-);
-
 const isCurrentUserAdminOrRecruteur = ref(false);
 
 onAuthStateChanged(getAuth(), (userAuth) => {

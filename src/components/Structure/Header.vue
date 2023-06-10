@@ -17,11 +17,9 @@ import { getCurrentUser, getCurrentUserTokenResult } from "@/router"
 const user = ref();
 
 // const tokenResult = await getCurrentUserTokenResult();
-// console.log('tokenResult', tokenResult)
 
 onMounted(async () => {
     user.value = await getCurrentUser();
-    console.log(user.value)
 })
 
 const router = useRouter();

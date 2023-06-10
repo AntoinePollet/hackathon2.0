@@ -17,8 +17,6 @@ export const useEventStore = defineStore('events', () => {
         try {
             const querySnapshot = await getDocs(collection(firestoreDB, "events"));
             querySnapshot.forEach((doc: any) => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
             });
         } catch (error) {
 
@@ -28,9 +26,7 @@ export const useEventStore = defineStore('events', () => {
     function watchEventChanges() {
         try {
             const unsub = onSnapshot(doc(firestoreDB, "events"), (doc) => {
-                console.log("Current data: ", doc.data());
             });
-            console.log(unsub)
         } catch (error) {
 
         }
@@ -38,14 +34,12 @@ export const useEventStore = defineStore('events', () => {
 
     async function publishEvent(eventDoc: EventDoc): Promise<any> {
         try {
-            console.log('publishEvent')
             const docRef = await addDoc(collection(firestoreDB, "events"), {
                 title: eventDoc.title,
                 description: eventDoc.description,
                 type: eventDoc.type,
                 created_at: serverTimestamp()
             });
-            console.log("Document written with ID: ", docRef);
         } catch (e) {
             console.error("Error adding document: ", e);
         }

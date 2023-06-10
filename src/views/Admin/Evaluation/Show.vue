@@ -125,7 +125,6 @@ const updateSkillsRating = async () => {
             const docId = querySnapshot.docs[0].id;
 
             const consultantRef = doc(firestoreDB, "users", docId);
-            console.log("consultant update", consultantRef, consultant.data());
             // Met à jour le document correspondant dans Firestore en utilisant l'ID
             await updateDoc(consultantRef, {
                 skills: skills
