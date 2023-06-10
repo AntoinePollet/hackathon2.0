@@ -90,6 +90,12 @@ const items = ref([
         icon: "fa-solid fa-trophy",
         to: "achievements-list",
         value: "my-achievement",
+    },
+    {
+        title: "Evaluation",
+        icon: "fa-solid fa-graduation-cap",
+        to: "evaluation-show",
+        value: "my-evaluation",
     }
 ]);
 

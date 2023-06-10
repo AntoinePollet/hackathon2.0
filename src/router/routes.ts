@@ -62,7 +62,7 @@ export default [
                 component: () => import("@/views/User/Training/Show.vue"),
             },
             {
-                path: "evaluation/:id",
+                path: "evaluation",
                 name: "evaluation-show",
                 component: () => import("@/views/User/Evaluation/Show.vue"),
             },
@@ -218,6 +218,11 @@ export default [
                 path: "evaluations",
                 name: "admin-evaluations",
                 component: () => import("@/views/Admin/Evaluation/List.vue"),
+            },
+            {
+                path: "evaluation/:id",
+                name: "admin-evaluation-show",
+                component: () => import("@/views/Admin/Evaluation/Show.vue"),
             },
         ],
     },

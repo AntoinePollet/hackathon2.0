@@ -53,16 +53,14 @@ const planningStore = usePlanningStore();
 const { publishPlanning } = planningStore;
 
 const title = ref('')
-const start_at = ref('')
-const end_at = ref('')
+const date = ref('')
 const user_id = ref('')
 
 const submit = async (planning: PlanningDoc) => {
     await publishPlanning({
         id: '',
         title: title.value,
-        start_at: start_at.value,
-        end_at: end_at.value,
+        date: date.value,
         user_id: user_id.value
     })
 }

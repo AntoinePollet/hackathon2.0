@@ -26,7 +26,7 @@
                         </div>
                     </v-card-text>
                     <div class="flex justify-center mb-5" v-if="user.uuid">
-                        <router-link :to="{ name: 'evaluation-show', params: { id: user.uuid } }">
+                        <router-link :to="{ name: 'admin-evaluation-show', params: { id: user.uuid } }">
                             <v-btn color="primary">Évaluer</v-btn>
                         </router-link>
                     </div>
