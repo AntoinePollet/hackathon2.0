@@ -14,62 +14,76 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
                 <h1 class="font-bold text-2xl py-3">Dashboard</h1>
             </div>
             <div class="grid grid-cols-2 h-fit flex-wrap gap-4 p-4">
-                <v-card class="h-fit">
+                <div class="h-fit border rounded-lg">
                     <div class="flex bg-white rounded-lg">
-                        <div class="p-6">
+                        <div class="p-6 w-full">
                             <div class="flex items-center whitespace-nowrap">
                                 <div>
                                     <v-img :src="carbonBlue" height="1.5rem" width="1.5rem" />
                                 </div>
-                                <v-card-title class="text-xl font-bold text-h-blue pl-3">50 Carbonées</v-card-title>
+                                <div class="text-xl font-bold text-h-blue pl-3">50 Carbonées</div>
                             </div>
-                            <p class="text-sm pt-2 italic">Small description for this card ...</p>
+                            <p class="text-sm pt-2 italic">Félicitation à John Doe d'avoir rejoint Carbon</p>
                         </div>
                     </div>
-                </v-card>
-                <v-card class="h-fit">
+                </div>
+                <div class="h-fit border rounded-lg">
                     <div class="flex bg-white rounded-lg">
-                        <div class="p-6">
+                        <div class="p-6 w-full">
                             <div class="flex items-center">
                                 <div>
 
                                     <v-img :src="carbonRed" height="1.5rem" width="1.5rem" />
                                 </div>
-                                <v-card-title class="text-xl font-bold text-h-red pl-3">0 Entreprises</v-card-title>
+                                <div class="text-xl font-bold text-h-red pl-3">13 Entreprises</div>
                             </div>
-                            <p class="text-sm pt-2 italic">Small description for this card ...</p>
+                            <p class="text-sm pt-2 italic">13 entreprises nous font confiance</p>
                         </div>
                     </div>
-                </v-card>
-                <v-card class="h-fit" elevation="3">
+                </div>
+                <div class="h-fit border rounded-lg" elevation="3">
                     <div class="flex bg-white rounded-lg">
-                        <div class="p-6">
+                        <div class="p-6 w-full">
                             <div class="flex items-center whitespace-nowrap">
                                 <div>
                                     <v-img :src="carbonGreen" height="1.5rem" width="1.5rem" />
                                 </div>
-                                <v-card-title class="text-xl font-bold text-h-green pl-3 truncate">70 Missions effectuées
-                                    par nos Carbonées</v-card-title>
+
+                                <v-tooltip text="156 Missions effectuées
+                                            par nos Carbonées">
+                                    <template v-slot:activator="{ props }">
+                                        <div v-bind="props" class="text-xl font-bold text-h-green pl-3 truncate">156
+                                            Missions effectuées
+                                            par nos Carbonées</div>
+                                    </template>
+                                </v-tooltip>
+
                             </div>
-                            <p class="text-sm pt-2 italic">Small description for this card ...</p>
+                            <p class="text-sm pt-2 italic">Déjà plus de 150 missions effectuées par notre équipe</p>
                         </div>
                     </div>
-                </v-card>
+                </div>
 
-                <v-card class="h-fit">
+                <div class="h-fit border rounded-lg">
                     <div class="flex bg-white rounded-lg">
-                        <div class="p-6">
+                        <div class="p-6 w-full">
                             <div class="flex items-center whitespace-nowrap">
                                 <div>
                                     <v-img :src="carbonBlack" height="1.5rem" width="1.5rem" />
                                 </div>
-                                <v-card-title class="text-xl font-bold text-h-black pl-3 truncate">40 Formations
-                                    disponible</v-card-title>
+                                <v-tooltip text="40 Formations disponible">
+                                    <template v-slot:activator="{ props }">
+                                        <div v-bind="props" class="text-xl font-bold text-h-black pl-3 truncate">40
+                                            Formations
+                                            disponible</div>
+                                    </template>
+                                </v-tooltip>
+
                             </div>
-                            <p class="text-sm pt-2 italic">Small description for this card ...</p>
+                            <p class="text-sm pt-2 italic">Nouvelle formation disponible: Reactjs</p>
                         </div>
                     </div>
-                </v-card>
+                </div>
             </div>
             <div class="overflow-auto grid grid-cols-1 p-4" style="overflow: auto;">
 
@@ -87,7 +101,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
                                 <v-btn color="secondary" size="small">S'inscrire</v-btn>
                             </div>
                             <div class="flex justify-between bg-white rounded-lg p-3">
-                                <div class="text-gray-900 italic">Formation Vuejs<span class="text-gray-500 italic"> - 14
+                                <div class="text-gray-900 italic">Formation Vuejs<span class="text-gray-500 italic"> -
+                                        14
                                         juin à 13:05</span></div>
                                 <v-btn color="secondary" size="small">S'inscrire</v-btn>
                             </div>
@@ -102,7 +117,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
                                 <v-btn color="secondary" size="small">S'inscrire</v-btn>
                             </div>
                             <div class="flex justify-between bg-white rounded-lg p-3">
-                                <div class="text-gray-900 italic">Formation Nestjs<span class="text-gray-500 italic"> - 22
+                                <div class="text-gray-900 italic">Formation Nestjs<span class="text-gray-500 italic"> -
+                                        22
                                         juin à 09:20</span></div>
                                 <v-btn color="secondary" size="small">S'inscrire</v-btn>
                             </div>
