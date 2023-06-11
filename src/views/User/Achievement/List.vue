@@ -39,7 +39,7 @@ const currentUser = ref()
 onMounted(async () => {
     currentUser.value = await getCurrentUser()
     await getUser(currentUser.value.uid)
-    achievements.value = user.value.data.achievements
+    achievements.value = user.value?.data?.achievements
 })
 
 

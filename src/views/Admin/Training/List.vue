@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { useTrainingStore } from '@/stores/training';
 import { storeToRefs } from 'pinia';
-import Training from "@/components/Admin/Training/training.vue";
+import Training from "@/components/Admin/Training/Training.vue";
 import { useCollection } from "vuefire";
 import { collection } from "firebase/firestore";
 import { firestoreDB } from "@/firebase";

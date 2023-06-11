@@ -175,7 +175,7 @@ const removeSkill = async (indexSkillToRemove: any) => {
 }
 
 const setSkillsRatingTo1IfUndefined = () => {
-    user.value.skills.forEach((skill: any) => {
+    user.value.skills?.forEach((skill: any) => {
         if (!skill.rating) {
             skill.rating = 1;
         }
