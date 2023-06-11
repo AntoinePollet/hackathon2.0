@@ -84,12 +84,6 @@ const handleLogout = () => {
 
 const items = ref([
     {
-        title: "Actualités",
-        icon: "fa-solid fa-newspaper",
-        to: "news-list",
-        value: "news",
-    },
-    {
         title: "Planning",
         icon: "fa-solid fa-calendar",
         to: "plannings-list",
