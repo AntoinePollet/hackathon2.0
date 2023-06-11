@@ -12,7 +12,7 @@
         </div>
         <div class="p-5">
             <v-btn block @click="register()" color="primary">
-                {{currentUser?.value?.trainings?.some(train => train.title === training.title) ? 'Se désinscrire' : 'S\'inscrire'}}
+                {{training.registered ? 'Se désinscrire' : 'S\'inscrire'}}
             </v-btn>
         </div>
     </v-card>
@@ -22,17 +22,13 @@
 import { PropType, computed } from 'vue';
 import { TrainingDoc } from "@/interfaces/training";
 import {useTrainingStore} from "@/stores/training";
-import {UserI} from "@/interfaces/user";
+import {useRouter} from "vue-router";
 
 const props = defineProps({
-    training: {
-        type: Object as PropType<TrainingDoc>,
-        required: true
-    },
-    currentUser: {
-        type: Object as PropType<UserI>,
-        required: true
-    }
+  training: {
+    type: Object as PropType<TrainingDoc>,
+    required: true
+  }
 });
 
 const trainingStore = useTrainingStore();
@@ -40,7 +36,7 @@ const { registerToTraining } = trainingStore;
 
 const register = () => {
     try {
-        registerToTraining(props.currentUser, props.training)
+        registerToTraining(!props.training.registered, props.training.id)
     } catch (e) {
         console.log(e)
     }

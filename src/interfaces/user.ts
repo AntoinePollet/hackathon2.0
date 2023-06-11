@@ -1,6 +1,7 @@
 import { StoreActions } from "pinia"
 import { SkillsI } from "./skills"
 import {AchievementDoc} from "@/interfaces/achievement";
+import {TrainingDoc} from "@/interfaces/training";
 
 export interface TrainingI {
     title: string
@@ -30,6 +31,7 @@ export interface UserI {
     training: TrainingI[]
     jobs: JobI[]
     achievements: AchievementDoc[]
+    trainings: TrainingDoc[]
 }
 
 export interface UpdateUser {

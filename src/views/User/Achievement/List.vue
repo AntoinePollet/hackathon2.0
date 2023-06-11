@@ -5,7 +5,7 @@
         </div>
         <div class="mb-6 flex items-center">
           <v-text-field variant="outlined" label="search" hide-details/>
-          <v-btn class="m-2" variant="text">Filter</v-btn>
+          <v-btn class="m-2" variant="text">Filtre</v-btn>
         </div>
         <div class="flex flex-wrap gap-6">
             <achievement
@@ -18,7 +18,6 @@
 
 <script setup>
 import Achievement from "@/components/Achievement/Achievement.vue";
-import {useCollection} from "vuefire";
 import {collection, orderBy, query, where} from "firebase/firestore";
 import {firestoreDB} from "@/firebase";
 import {useUserStore} from "@/stores/user";
@@ -35,12 +34,11 @@ const userStore = useUserStore()
 const { getUser } = userStore
 const { user } = storeToRefs(userStore)
 
-const test = ref()
-const currentUserAchievement = ref()
+const currentUser = ref()
 
 onMounted(async () => {
-    test.value = await getCurrentUser()
-    await getUser(test.value.uid)
+    currentUser.value = await getCurrentUser()
+    await getUser(currentUser.value.uid)
     achievements.value = user.value.data.achievements
 })
 

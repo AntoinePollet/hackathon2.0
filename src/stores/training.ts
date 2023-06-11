@@ -5,6 +5,7 @@ import { EventDoc } from "@/interfaces/event";
 import { ComputedRef, computed } from "vue";
 import { TrainingDoc } from "@/interfaces/training";
 import {useCollection} from "vuefire";
+import {UserI} from "@/interfaces/user";
 export const useTrainingStore = defineStore('trainings', () => {
 
     const sortedTrainings: ComputedRef<DocumentData> = computed(() => {
@@ -13,13 +14,20 @@ export const useTrainingStore = defineStore('trainings', () => {
         })
     });
 
-    async function registerToTraining(status: boolean, id: string) {
+    async function registerToTraining(user: UserI, training: TrainingDoc) {
         try {
-            const docRef = doc(firestoreDB, "trainings", id);
+            const userRef = doc(firestoreDB, "users", user.value.id);
 
-            await updateDoc(docRef ,{
-                registered: status,
-            });
+            let filteredTrainings: TrainingDoc[] = user?.value?.trainings?.length ? [...user?.value?.trainings] : []
+            if (!filteredTrainings.find(train => train.title === training.title)) {
+                filteredTrainings.push(training);
+            } else {
+                filteredTrainings = user?.value?.trainings?.filter(train => train.title !== training.title);
+            }
+
+            await updateDoc(userRef, {
+                trainings: filteredTrainings
+            })
 
         } catch (e) {
             console.log(e)

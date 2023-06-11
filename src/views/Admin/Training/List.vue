@@ -6,7 +6,7 @@
         <div class="mb-6 flex gap-4 items-center">
             <v-btn variant="flat" @click="router.push({ name: 'admin-trainings-create' })">Nouvelle formation</v-btn>
             <v-text-field label="search" variant="outlined" density="compact" hide-details />
-            <v-btn variant="flat">Filter</v-btn>
+            <v-btn variant="flat">Filtre</v-btn>
         </div>
         <div class="flex flex-wrap gap-6">
             <training v-for="training in trainings" :key="training.id" :training="training" />

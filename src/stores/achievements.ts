@@ -69,9 +69,8 @@ export const useAchievementsStore = defineStore('achievements', () => {
             await updateDoc(userRef, {
                 achievements: user?.achievements ? [...user?.achievements, achievement] : [achievement]
             })
-
         } catch (e) {
-
+            console.log(e)
         }
     }
 
