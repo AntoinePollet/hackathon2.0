@@ -15,7 +15,8 @@
                         <p class="text-lg">{{ user.role }}</p>
                     </div>
                     <div class="ml-auto"> <!-- Utilisation de ml-auto pour aligner le bouton à droite -->
-                        <v-btn prepend-icon="mdi-plus" color="primary" @click="openAddSkillDialog" class="add-skill-btn">Ajouter une compétence</v-btn>
+                        <v-btn prepend-icon="mdi-plus" color="primary" @click="openAddSkillDialog"
+                            class="add-skill-btn">Ajouter une compétence</v-btn>
                     </div>
                 </div>
             </section>
@@ -38,7 +39,8 @@
                         </v-col>
                         <v-col cols="3">
                             <div class="text-center">
-                                <v-btn variant="elevated" icon small color="red" @click="removeSkill(index)" class="ml-2 relative bottom-2">
+                                <v-btn variant="elevated" icon small color="red" @click="removeSkill(index)"
+                                    class="ml-2 relative bottom-2">
                                     <v-icon class="text-red-500">mdi-delete</v-icon>
                                 </v-btn>
                             </div>
@@ -51,16 +53,16 @@
         </v-container>
         <v-dialog v-model="addSkillDialog" max-width="500px">
             <v-card>
-            <v-card-title>Ajouter une compétence</v-card-title>
-            <v-card-text>
-                <v-form @submit.prevent="addNewSkill">
-                    <v-text-field v-model="newSkill.name" label="Nom de la compétence"></v-text-field>
-                    <v-text-field v-model="newSkill.category" label="Catégorie de la compétence"></v-text-field>
-                    <v-btn type="submit" color="primary">Ajouter</v-btn>
-                </v-form>
-            </v-card-text>
+                <v-card-title>Ajouter une compétence</v-card-title>
+                <v-card-text>
+                    <v-form @submit.prevent="addNewSkill">
+                        <v-text-field v-model="newSkill.name" label="Nom de la compétence"></v-text-field>
+                        <v-text-field v-model="newSkill.category" label="Catégorie de la compétence"></v-text-field>
+                        <v-btn type="submit" color="primary">Ajouter</v-btn>
+                    </v-form>
+                </v-card-text>
             </v-card>
-      </v-dialog>
+        </v-dialog>
     </div>
 </template>
   
@@ -71,7 +73,7 @@ import { collection, getDocs, updateDoc, doc, query, where, onSnapshot } from "f
 import { firestoreDB } from "@/firebase";
 import { useEventStore } from '@/stores/event'
 import { createToast } from 'mosha-vue-toastify';
-import { useCurrentUser } from "vuefire"; 
+import { useCurrentUser } from "vuefire";
 
 const eventStore = useEventStore();
 const { publishEvent } = eventStore;
@@ -81,8 +83,8 @@ const addSkillDialog = ref(false);
 const newSkill = ref({ name: '', category: '' });
 
 onMounted(async () => {
-    const currentUserLogged = useCurrentUser(); 
-    const uid = currentUserLogged.value?.uid;        
+    const currentUserLogged = useCurrentUser();
+    const uid = currentUserLogged.value?.uid;
 
     try {
         onSnapshot(doc(firestoreDB, "users", uid), (doc) => {
@@ -123,34 +125,34 @@ const openAddSkillDialog = () => {
 }
 
 const addNewSkill = async () => {
-  try {
-    const { name, category } = newSkill.value;
+    try {
+        const { name, category } = newSkill.value;
 
-    if (name && category) {
-        const skill = { name, category, rating: 1 };
-        
-        const userToEdit = doc(firestoreDB, "users", user.value.id);
+        if (name && category) {
+            const skill = { name, category, rating: 1 };
 
-        await updateDoc(userToEdit, {
-            skills: [skill, ...user.value.skills]
-        });
+            const userToEdit = doc(firestoreDB, "users", user.value.id);
 
-        // Fermer le dialogue et réinitialiser le formulaire
-        addSkillDialog.value = false;
-        newSkill.value = { name: '', category: '' };
+            await updateDoc(userToEdit, {
+                skills: [skill, ...user.value.skills]
+            });
 
-        createToast('La compétence a été ajoutée avec succès.', {
-            position: 'bottom-right',
-            type: 'success',
-            showIcon: true,
-            timeout: 2000,
-        });
-    } else {
-        console.warn('Veuillez remplir tous les champs du formulaire.');
-    }
-  } catch (error) {
+            // Fermer le dialogue et réinitialiser le formulaire
+            addSkillDialog.value = false;
+            newSkill.value = { name: '', category: '' };
+
+            createToast('La compétence a été ajoutée avec succès.', {
+                position: 'bottom-right',
+                type: 'success',
+                showIcon: true,
+                timeout: 2000,
+            });
+        } else {
+            console.warn('Veuillez remplir tous les champs du formulaire.');
+        }
+    } catch (error) {
         console.error('Erreur lors de l\'ajout de la compétence :', error);
-  }
+    }
 }
 
 const removeSkill = async (indexSkillToRemove: any) => {
@@ -163,15 +165,15 @@ const removeSkill = async (indexSkillToRemove: any) => {
             skills: user.value.skills
         });
 
-        createToast("Skill supprimé", {
+        createToast("Compétence supprimé", {
             position: "bottom-right",
             timeout: 2000,
             showIcon: true,
             type: "success",
         });
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const setSkillsRatingTo1IfUndefined = () => {
