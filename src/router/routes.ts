@@ -42,16 +42,6 @@ export default [
                 component: () => import("@/views/User/Achievement/List.vue"),
             },
             {
-                path: "achievement/:id",
-                name: "achievements-show",
-                component: () => import("@/views/User/Achievement/Show.vue"),
-            },
-            {
-                path: "achievement/:id/edit",
-                name: "achievements-edit",
-                component: () => import("@/views/User/Achievement/Edit.vue"),
-            },
-            {
                 path: "trainings",
                 name: "trainings-list",
                 component: () => import("@/views/User/Training/List.vue"),
