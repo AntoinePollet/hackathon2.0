@@ -36,8 +36,8 @@
             <v-text-field variant="outlined" v-model="editedSkill.name" label="Nom" required></v-text-field>
             <v-text-field variant="outlined" v-model="editedSkill.category" label="Catégorie" required></v-text-field>
             <v-card-actions>
-              <v-btn color="primary" type="submit">Enregistrer</v-btn>
-              <v-btn color="error" @click="closeEditDialog">Annuler</v-btn>
+              <v-btn color="primary" variant="flat" type="submit">Enregistrer</v-btn>
+              <v-btn color="error" variant="flat" @click="closeEditDialog">Annuler</v-btn>
             </v-card-actions>
           </v-form>
         </v-card-text>
@@ -52,8 +52,8 @@
           Êtes-vous sûr de vouloir supprimer cette compétence ?
         </v-card-text>
         <v-card-actions>
-          <v-btn color="error" @click="deleteSkill">Supprimer</v-btn>
-          <v-btn color="primary" @click="closeDeleteDialog">Annuler</v-btn>
+          <v-btn color="error" variant="flat" @click="deleteSkill">Supprimer</v-btn>
+          <v-btn color="primary" variant="flat" @click="closeDeleteDialog">Annuler</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -75,42 +75,44 @@ const deleteDialog = ref(false);
 const skillToDelete = ref({})
 
 onMounted(async () => {
-    try {
-      const skillsCollection = collection(firestoreDB, 'commonSkills');
+  try {
+    const skillsCollection = collection(firestoreDB, 'commonSkills');
 
-      onSnapshot(skillsCollection, (snapshot) => {
-        skills.value = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          const dataAndId = {...data, id: doc.id};
-          skills.value.push(dataAndId);
-        });
-
-        skills.value.sort((a, b) => {
-          if (a.category < b.category) {
-            return -1;
-          } else if (a.category > b.category) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
+    onSnapshot(skillsCollection, (snapshot) => {
+      skills.value = [];
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const dataAndId = { ...data, id: doc.id };
+        skills.value.push(dataAndId);
       });
-        
-    } catch (error) {
-        console.log(error);
-    }
+
+      skills.value.sort((a, b) => {
+        if (a.category < b.category) {
+          return -1;
+        } else if (a.category > b.category) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const addSkill = async () => {
   try {
     await addDoc(collection(firestoreDB, "commonSkills"), newSkill.value);
     createToast("Compétence ajoutée", {
-        position: "bottom-right",
-        timeout: 2000,
-        showIcon: true,
-        type: "success",
+      position: "bottom-right",
+      timeout: 2000,
+      showIcon: true,
+      type: "success",
     });
+    newSkill.value = {};
+
   } catch (error) {
     console.log(error);
   }
@@ -134,6 +136,7 @@ const saveSkill = async () => {
   });
 
   editDialog.value = false;
+  editedSkill.value = {};
 
   createToast("Compétence modifiée", {
     position: "bottom-right",
@@ -172,14 +175,13 @@ const closeDeleteDialog = () => {
 }
 
 onAuthStateChanged(getAuth(), (userAuth) => {
-    if (userAuth) {
-        userAuth.getIdTokenResult().then(function ({ claims }) {
-        });
-    }
+  if (userAuth) {
+    userAuth.getIdTokenResult().then(function ({ claims }) {
+    });
+  }
 });
 
 </script>
 
 <style scoped>
-
 </style>

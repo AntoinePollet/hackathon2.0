@@ -1,11 +1,7 @@
 <template>
     <v-btn color="primary" block>
         Assigner
-        <v-dialog
-            v-model="isDialogOpen"
-            activator="parent"
-            width="auto"
-        >
+        <v-dialog v-model="isDialogOpen" activator="parent" width="auto">
             <v-card>
                 <div class="p-5" id="dialogCreate">
                     <h2 class="mb-4">Assigner un utilisateur</h2>
@@ -14,11 +10,10 @@
                             <div class="">{{ user.firstname }}</div>
                             <div>{{ user.lastname }}</div>
                             <div class="grow" />
-                            <v-btn color="primary"
-                                   @click="assignTo(user, achievement)"
-                                   :disabled="user?.achievements?.some(obj => obj['title'] === achievement?.title)"
-                            >
-                                {{ user?.achievements?.some(obj => obj['title'] === achievement?.title) ? "Assigned" : "Assign" }}
+                            <v-btn color="primary" @click="assignTo(user, achievement)"
+                                :disabled="user?.achievements?.some(obj => obj['title'] === achievement?.title)">
+                                {{ user?.achievements?.some(obj => obj['title'] === achievement?.title) ? "Deja Assigné" :
+                                    "Assigner" }}
                             </v-btn>
                         </div>
                     </div>
@@ -29,13 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, PropType, ref} from "vue";
-import {AchievementDoc} from "@/interfaces/achievement";
-import {useCollection} from "vuefire";
-import {collection} from "firebase/firestore";
+import { onMounted, PropType, ref } from "vue";
+import { AchievementDoc } from "@/interfaces/achievement";
+import { useCollection } from "vuefire";
+import { collection } from "firebase/firestore";
 import { firestoreDB } from "@/firebase";
-import {useAchievementsStore} from "@/stores/achievements";
-import {UserI} from "@/interfaces/user";
+import { useAchievementsStore } from "@/stores/achievements";
+import { UserI } from "@/interfaces/user";
 
 const isDialogOpen = ref<boolean>(false);
 
@@ -57,5 +52,4 @@ const assignTo = async (user: UserI, achievement: AchievementDoc) => {
 </script>
 
 <style scoped>
-
 </style>

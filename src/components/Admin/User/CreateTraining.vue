@@ -14,5 +14,4 @@ const password = ref();
 </script>
 
 <style scoped>
-
 </style>

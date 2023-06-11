@@ -119,8 +119,8 @@
                                         <v-tooltip v-if="skill.name.split(' ').length > 2" :text="skill.name">
                                             <template v-slot:activator="{ props }">
                                                 <span @click.stop="filterBySkill(skill.name)">
-                                                    <v-chip v-bind="props"
-                                                        :color="skillLevelColor(skill.rating)">{{ ellipsisIfMoreThanThreeWords(skill.name) }}</v-chip>
+                                                    <v-chip v-bind="props" :color="skillLevelColor(skill.rating)">{{
+                                                        ellipsisIfMoreThanThreeWords(skill.name) }}</v-chip>
                                                 </span>
                                             </template>
                                         </v-tooltip>
@@ -280,10 +280,10 @@ const newUserData = ref({
 
 const isButtonNewUserSubmittes = ref(false);
 
-const handleSubmitNewUser = () => {
+const handleSubmitNewUser = async () => {
     if (currentUserLoggedIn?.value?.accessToken) {
         isButtonNewUserSubmittes.value = true;
-        axios
+        await axios
             .post(
                 `${import.meta.env.VITE_FIRESTORE_API}/users`,
                 {
@@ -308,6 +308,7 @@ const handleSubmitNewUser = () => {
             .finally(() => {
                 isButtonNewUserSubmittes.value = false;
             });
+        await getUsers();
     }
 
 };

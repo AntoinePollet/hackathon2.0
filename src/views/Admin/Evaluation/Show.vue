@@ -191,7 +191,7 @@ const removeSkill = async (indexSkillToRemove: any) => {
             skills: user.value.skills
         });
 
-        createToast("Skill supprimé", {
+        createToast("Compétence supprimé", {
             position: "bottom-right",
             timeout: 2000,
             showIcon: true,
