@@ -28,7 +28,7 @@
             </div>
 
             <div v-if="currentUserRole === 'consultant'" class="flex flex-col gap-y-1">
-                <router-link v-for="item in adminItems"
+                <router-link v-for="item in clientItems"
                              :to="{ name: item.to }" class="mx-2 hover:rounded-xl hover:bg-slate-100 cursor-pointer">
                     <div class="flex items-center px-4 py-2 gap-x-3">
                         <font-awesome-icon :icon="item.icon" />
