@@ -1,6 +1,6 @@
 <template>
     <v-card class="flex w-64">
-        <div class="flex flex-col p-4">
+        <div class="flex flex-col p-4 h-full">
             <div class="flex h-32 w-full p-5">
                 <Icon :icon="`flat-color-icons:${achievement.icon}`" class="h-full w-full" />
             </div>
